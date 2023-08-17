@@ -1,0 +1,20 @@
+<h1>Welcome, this is the home page</h1>
+
+<button type="button"
+        class="btn btn-lg btn-danger"
+        data-bs-toggle="popover"
+        title="Popover title"
+        data-bs-content="Amazing content, right ?">
+        Click to toggle popover
+</button>
+
+<script>
+//// NOTE: document ready will result in an error "$ is not defined", so use window.onload instead.
+// $(document).ready(function() {
+//   $("button").popover();
+// });
+
+window.onload = function () {
+  $("button").popover();
+};
+</script>
