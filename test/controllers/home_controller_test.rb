@@ -5,4 +5,9 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     get home_demo1_url
     assert_response :success
   end
+
+  test "should get demo2" do
+    get home_demo2_url
+    assert_response :success
+  end
 end
