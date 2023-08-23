@@ -52,6 +52,14 @@ gem 'jquery-rails'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Capistrano (copied from smellpgh gemfile)
+gem 'capistrano', '3.5.0', require: false
+gem 'capistrano-sudo', require: false
+# replaces old rvm-capistrano gem: https://github.com/rvm/rvm1-capistrano3
+gem 'rvm1-capistrano3', require: false
+# terminal input-hiding for capistrano
+gem 'highline', require: false
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
