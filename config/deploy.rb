@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '~> 3.17'
 
 # app/deployment info
 set :application, 'csp-golocal'
@@ -7,7 +7,7 @@ set :deploy_to, "/var/www/#{fetch(:application)}/#{fetch(:stage)}"
 
 # shared resources
 set :linked_dirs, %w(log public/system tmp/cache)
-set :linked_files, %w(config/database.yml config/secrets.yml config/environment.rb config/environments/production.rb)
+#set :linked_files, %w(config/database.yml config/secrets.yml config/environment.rb config/environments/production.rb)
 
 # git/version control info
 set :scm, :git

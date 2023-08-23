@@ -80,13 +80,11 @@ GEM
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
-    capistrano (3.5.0)
+    capistrano (3.17.3)
       airbrussh (>= 1.0.0)
-      capistrano-harrow
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-harrow (0.5.3)
     capistrano-sudo (0.0.4)
       capistrano (~> 3.3)
       sshkit-sudo (>= 0.0.4)
@@ -259,7 +257,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2.0)
-  capistrano (= 3.5.0)
+  capistrano (~> 3.17)
   capistrano-sudo
   capybara
   debug

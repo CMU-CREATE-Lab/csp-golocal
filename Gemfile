@@ -53,7 +53,7 @@ gem 'jquery-rails'
 # gem "image_processing", "~> 1.2"
 
 # Capistrano (copied from smellpgh gemfile)
-gem 'capistrano', '3.5.0', require: false
+gem 'capistrano', '~> 3.17', require: false
 gem 'capistrano-sudo', require: false
 # replaces old rvm-capistrano gem: https://github.com/rvm/rvm1-capistrano3
 gem 'rvm1-capistrano3', require: false
