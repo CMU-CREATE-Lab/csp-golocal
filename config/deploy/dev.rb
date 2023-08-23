@@ -6,4 +6,4 @@ set :branch, "deploy-dev"
 
 server 'golocal.cmucsp.org', user: fetch(:ssh_username, "login:"), roles: [:web]
 
-role :web, %w{dev.golocal.cmucsp.org}
+role :web, %w{golocal.cmucsp.org}

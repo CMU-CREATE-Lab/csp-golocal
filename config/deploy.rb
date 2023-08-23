@@ -5,12 +5,20 @@ lock '~> 3.17'
 set :application, 'csp-golocal'
 set :deploy_to, "/var/www/#{fetch(:application)}/#{fetch(:stage)}"
 
-# shared resources
-set :linked_dirs, %w(log public/system tmp/cache)
+# shared resources (ignore, for now)
+#set :linked_dirs, %w(log public/system tmp/cache)
 #set :linked_files, %w(config/database.yml config/secrets.yml config/environment.rb config/environments/production.rb)
 
 # git/version control info
-set :scm, :git
+# [Deprecation Notice] `set :scm, :git` is deprecated.
+#To ensure your project is compatible with future versions of Capistrano,
+#remove the :scm setting and instead add these lines to your Capfile after
+#`require "capistrano/deploy"`:
+#
+#      require "capistrano/scm/git"
+#      install_plugin Capistrano::SCM::Git
+#set :scm, :git
+
 set :repo_url, 'https://github.com/CMU-CREATE-Lab/csp-golocal.git'
 set :branch, "main"
 set :repo_path, "#{fetch(:deploy_to)}/repo"
@@ -52,34 +60,34 @@ namespace :deploy do
   end
 
 
-  after :started, :uninit_git_dir do
-    begin
-      on roles(:web) do
-        within "#{fetch(:repo_path)}" do
-          execute(:git, "config", "--unset", "core.logallrefupdates")
-          execute(:git, "config", "--unset", "core.worktree")
-          execute(:git, "config", "core.bare", "true")
-        end
-      end
-    rescue
-      puts "Directory #{fetch(:repo_path)} DNE; skipping uninit_git_dir (NOTE: this should only happen the first time the repo is deployed to the server; otherwise, something terrible probably happened)"
-    end
-  end
-
-
-  after :finished, :reinit_git_dir do
-    on roles(:web) do
-      within "#{fetch(:deploy_to)}/current" do
-        execute(:git, "init", "--separate-git-dir=#{fetch(:repo_path)}")
-        execute(:mkdir,"-p","tmp")
-        sudo(:chmod, "-R", "777", "tmp")
-        # since cache is now symlinked we have to specify the dir
-        sudo(:chmod, "-R", "777", "tmp/cache/*")
-        execute(:rake, "assets:precompile")
-        sudo(:chown, "-R", "#{fetch(:ssh_username)}:rvm", "#{fetch(:deploy_to)}")
-        execute(:touch,"tmp/restart.txt")
-      end
-    end
-  end
+  # after :started, :uninit_git_dir do
+  #   begin
+  #     on roles(:web) do
+  #       within "#{fetch(:repo_path)}" do
+  #         execute(:git, "config", "--unset", "core.logallrefupdates")
+  #         execute(:git, "config", "--unset", "core.worktree")
+  #         execute(:git, "config", "core.bare", "true")
+  #       end
+  #     end
+  #   rescue
+  #     puts "Directory #{fetch(:repo_path)} DNE; skipping uninit_git_dir (NOTE: this should only happen the first time the repo is deployed to the server; otherwise, something terrible probably happened)"
+  #   end
+  # end
+  #
+  #
+  # after :finished, :reinit_git_dir do
+  #   on roles(:web) do
+  #     within "#{fetch(:deploy_to)}/current" do
+  #       execute(:git, "init", "--separate-git-dir=#{fetch(:repo_path)}")
+  #       execute(:mkdir,"-p","tmp")
+  #       sudo(:chmod, "-R", "777", "tmp")
+  #       # since cache is now symlinked we have to specify the dir
+  #       sudo(:chmod, "-R", "777", "tmp/cache/*")
+  #       execute(:rake, "assets:precompile")
+  #       sudo(:chown, "-R", "#{fetch(:ssh_username)}:rvm", "#{fetch(:deploy_to)}")
+  #       execute(:touch,"tmp/restart.txt")
+  #     end
+  #   end
+  # end
 
 end
