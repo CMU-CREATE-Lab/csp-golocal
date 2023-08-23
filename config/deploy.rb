@@ -1,48 +1,84 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+# app/deployment info
+set :application, 'csp-golocal'
+set :deploy_to, "/var/www/#{fetch(:application)}/#{fetch(:stage)}"
 
-# Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+# shared resources
+set :linked_dirs, %w(log public/system tmp/cache)
+set :linked_files, %w(config/database.yml config/secrets.yml config/environment.rb config/environments/production.rb)
 
-# Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, '/var/www/my_app_name'
+# git/version control info
+set :scm, :git
+set :repo_url, 'https://github.com/CMU-CREATE-Lab/csp-golocal.git'
+set :branch, "main"
+set :repo_path, "#{fetch(:deploy_to)}/repo"
 
-# Default value for :scm is :git
-# set :scm, :git
+#set :rvm1_ruby_version, "default"
+set :rvm1_ruby_version, "3.1.4"
 
-# Default value for :format is :airbrussh.
-# set :format, :airbrussh
 
-# You can configure the Airbrussh format using :format_options.
-# These are the defaults.
-# set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
-
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-
-# Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
-
+# deploy tasks
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+
+  # remove the RVM scripts that capistrano creates (breaks when trying to chmod from someone else)
+  before "rvm1:hook", :remove_rvmscripts do
+    on roles(:web) do
+      sudo(:rm,"-rf","#{fetch(:deploy_to)}/rvm1scripts")
+    end
+  end
+
+
+  # ASSERT: group 'rvm' exists and all deploy users are members
+  before :starting, :fix_permissions do
+    on roles(:web) do
+      begin
+        within "#{fetch(:deploy_to)}" do
+          sudo(:chown, "-R", "#{fetch(:ssh_username)}:rvm", "#{fetch(:deploy_to)}")
+        end
+      rescue
+        puts "Directory #{fetch(:deploy_to)} DNE; skipping."
+      end
+      begin
+        within "#{fetch(:tmp_dir)}" do
+          sudo(:chown, "-R", "#{fetch(:ssh_username)}:rvm", "#{fetch(:tmp_dir)}")
+        end
+      rescue
+        puts "Directory #{fetch(:tmp_dir)} DNE; skipping."
+      end
+    end
+  end
+
+
+  after :started, :uninit_git_dir do
+    begin
+      on roles(:web) do
+        within "#{fetch(:repo_path)}" do
+          execute(:git, "config", "--unset", "core.logallrefupdates")
+          execute(:git, "config", "--unset", "core.worktree")
+          execute(:git, "config", "core.bare", "true")
+        end
+      end
+    rescue
+      puts "Directory #{fetch(:repo_path)} DNE; skipping uninit_git_dir (NOTE: this should only happen the first time the repo is deployed to the server; otherwise, something terrible probably happened)"
+    end
+  end
+
+
+  after :finished, :reinit_git_dir do
+    on roles(:web) do
+      within "#{fetch(:deploy_to)}/current" do
+        execute(:git, "init", "--separate-git-dir=#{fetch(:repo_path)}")
+        execute(:mkdir,"-p","tmp")
+        sudo(:chmod, "-R", "777", "tmp")
+        # since cache is now symlinked we have to specify the dir
+        sudo(:chmod, "-R", "777", "tmp/cache/*")
+        execute(:rake, "assets:precompile")
+        sudo(:chown, "-R", "#{fetch(:ssh_username)}:rvm", "#{fetch(:deploy_to)}")
+        execute(:touch,"tmp/restart.txt")
+      end
     end
   end
 
