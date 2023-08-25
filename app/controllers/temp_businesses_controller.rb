@@ -57,6 +57,15 @@ class TempBusinessesController < ApplicationController
     end
   end
 
+  # defaults (for debugging)
+  def index_default
+    @temp_businesses = TempBusiness.all
+  end
+
+  def show_default
+    @temp_business = TempBusiness.find(params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_temp_business

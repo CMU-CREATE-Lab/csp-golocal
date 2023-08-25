@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @temp_business %>
+
+<div>
+  <%= link_to "Edit this temp business", edit_temp_business_path(@temp_business) %> |
+  <%= link_to "Back to temp businesses", "/old/temp_businesses" %>
+
+  <%= button_to "Destroy this temp business", @temp_business, method: :delete %>
+</div>
