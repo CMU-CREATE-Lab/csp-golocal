@@ -11,12 +11,59 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-lg-10 dark">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
 
+      <div class="row">
+        <div class="col-md-6 col-lg-6 green">
+          <p>✅ Offers Delivery</p>
+          <p>✅ Offers Catering</p>
+          <p>❌ Accepts Credit Cards</p>
+        </div>
+        <div class="col-md-6 col-lg-6 green">
+          <p>✅ Vegetarian Options</p>
+          <p>✅ Vegan Options</p>
+          <p>❌ Gluten-free Options</p>
+        </div>
+      </div>
 
-      <h2>Gallery</h2>
+      <h4>Business Information</h4>
+
+      <!-- Shout-out to https://glyphicons.com/ -->
+      <h5><a href="#"><span class="glyphicon glyphicon-globe"></span> Website Link</a></h5>
+      <h5><a href="#"><span class="glyphicon glyphicon-paperclip"></span> Menu Link</a></h5>
+      <h5><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Address</a></h5>
+      <p>4000 Forbes Ave</p>
+      <p>Pittsburgh, PA 15221</p>
+
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-lg-6 green">
+          <h4>Business Hours</h4>
+          <p>Monday-Friday 8am-5pm</p>
+          <p>Saturday 9am-6pm</p>
+          <p>closed Sundays</p>
+        </div>
+        <div class="col-md-6 col-lg-6 green">
+          <h4>Catering Hours</h4>
+          <p>Monday-Friday 8am-5pm</p>
+          <p>Saturday 9am-6pm</p>
+          <p>closed Sundays</p>
+        </div>
+      </div>
+
+      <h4>Catering Details</h4>
+      <p>Cater: drop-off, setup, full service ("pick-up only" option?)</p>
+      <p>Order Sizes</p>
+      <p>How to make a catering order: (including) Lead time for orders, policies like cancellation</p>
+
+      <h4>Contact</h4>
+      <h5>Email: foo@example.com</h5>
+      <h5>Phone: 555.555.5555</h5>
+      <p><i>contact name and description will appear here.</i></p>
+
+      <br/>
+
+      <h4>Photo Gallery</h4>
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -56,16 +103,23 @@
         </a>
       </div>
 
-
+      <h5><a href="#">Sustainability Score: <span class="glyphicon glyphicon-leaf"></span><span class="glyphicon glyphicon-leaf"></span><span class="glyphicon glyphicon-leaf"></span> (popup/modal explanation?)</a></h5>
+      <h5><a href="#">Feedback (description and contact us/mailto link?)</a></h5>
     </div>
     <div class="col-md-4 col-lg-2">
     </div>
   </div>
 </div>
 
-<div>
+<br/>
+<br/>
+<br/>
+
+<div class="container">
   <%= link_to "Edit this temp business", edit_temp_business_path(@temp_business) %> |
   <%= link_to "Back to temp businesses", temp_businesses_path %>
+</div>
 
+<div class="container">
   <%= button_to "Destroy this temp business", @temp_business, method: :delete %>
 </div>
