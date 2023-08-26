@@ -5,3 +5,34 @@ div.dark {
 div.green {
   background-color: #e0ffe0;
 }
+
+div.red {
+  background-color: #ff5050;
+}
+
+div.csp-header {
+  margin-top: 0;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+div.csp-header div.container, div.csp-header h2 {
+  margin: 0;
+}
+
+div.csp-header h2 a {
+  color: #000;
+}
+
+div.csp-header .csp-header-buttons {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 0;
+  font-size: 30px;
+  color: #000;
+}
+
+div.csp-header .csp-header-buttons a {
+  color: #000;
+}
