@@ -39,3 +39,6 @@
 
 # Ignore the db/seeds directory
 db/seeds/
+
+# Ignore demophotos directory
+public/demophotos/
