@@ -1,6 +1,9 @@
 class TempBusinessesController < ApplicationController
   before_action :set_temp_business, only: %i[ show edit update destroy ]
 
+  def demo3
+  end
+
   # GET /temp_businesses or /temp_businesses.json
   def index
     @temp_businesses = TempBusiness.all
