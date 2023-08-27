@@ -7,9 +7,11 @@
 
 <p style="color: green"><%= notice %></p>
 
+<% unless @temp_business.logo.blank? %>
 <div class="jumbotron text-center">
   <%= image_tag(@temp_business.logo, height: "400") %>
 </div>
+<% end %>
 
 <div class="jumbotron text-center dark">
   <h1><%= @temp_business.name %></h1>

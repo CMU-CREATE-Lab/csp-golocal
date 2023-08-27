@@ -7,15 +7,45 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Temp businesses</h1>
-
-<div id="temp_businesses">
-  <% @temp_businesses.each do |temp_business| %>
-    <%= render temp_business %>
-    <p>
-      <%= link_to "Show this temp business", temp_business %>
-    </p>
-  <% end %>
+<div class="container csp-demo3 px-4">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5 gy-5">
+    <% @temp_businesses.each do |temp_business| %>
+    <div class="col">
+      <a style="display:block; color: inherit; text-decoration: inherit;" href="/temp_businesses/<%= temp_business.id %>">
+      <div class="p-3 border bg-light">
+        <% if temp_business.logo.blank? %>
+        <img src="/demophotos/1.png" alt="foobar" style="width:100%; height:250px; object-fit: cover;" />
+        <% else %>
+        <%= image_tag(temp_business.logo, :alt => "foobar", :style => "width:100%; height:250px; object-fit: cover;") %>
+        <% end %>
+        <h3><%= temp_business.name %></h3>
+        <div class="csp-keywords">
+          <% if temp_business.offers_delivery %><span class="badge blue">Delivery</span><% end %>
+          <% if temp_business.offers_catering %><span class="badge blue">Catering</span><% end %>
+          <% if temp_business.vegetarian_options %><span class="badge green">Vegetarian</span><% end %>
+          <% if temp_business.vegan_options %><span class="badge green">Vegan</span><% end %>
+          <% if temp_business.gluten_free_options %><span class="badge green">Gluten-Free</span><% end %>
+          <% if temp_business.offers_delivery %><% end %>
+          <span class="badge">Other</span>
+          <span class="badge">Keywords</span>
+          <span class="badge">Will</span>
+          <span class="badge">Go</span>
+          <span class="badge">Here</span>
+        </div>
+      </div>
+      </a>
+    </div>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New temp business", new_temp_business_path %>
+
+<br/>
+<br/>
+<hr>
+<hr>
+<hr>
+<br/>
+<br/>
+
+<%= link_to "Create new", new_temp_business_path %>
