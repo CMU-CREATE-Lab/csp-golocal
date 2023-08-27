@@ -32,6 +32,7 @@ div.csp-header {
   padding-top: 10px;
   padding-bottom: 20px;
   width: 100%;
+  background-color: #c41230;
 }
 
 div.csp-header div.container, div.csp-header h2 {
@@ -54,6 +55,20 @@ div.csp-header .csp-header-buttons a {
   color: #000;
 }
 
+div.csp-search-keywords a span {
+  color: #666;
+  font-size: 16px;
+  background-color: #ddd;
+}
+
+div.csp-search-keywords a span.keywords-selected {
+  color: #eee;
+  background-color: #111;
+}
+
+div.csp-search-dropdown button {
+  font-weight: bold;
+}
 
 div.container.csp-demo3 {
   background-color: #ffaeae;

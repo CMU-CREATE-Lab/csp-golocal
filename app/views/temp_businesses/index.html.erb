@@ -1,4 +1,4 @@
-<div class="csp-header text-center red">
+<div class="csp-header text-center">
   <div class="csp-header-buttons">
     <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
   </div>
@@ -7,7 +7,34 @@
 
 <p style="color: green"><%= notice %></p>
 
-<div class="container csp-demo3 px-4">
+<div class="container px-4">
+  <h2>Find A Restaurant</h2>
+  <div class="input-group">
+    <input type="text" class="form-control input-lg" placeholder="Search by name" name="search">
+    <div class="input-group-btn">
+      <button id="btn-search" class="btn btn-lg" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+  </div>
+  <br/>
+  <div class="csp-search-keywords">
+    <a href="#"><span class="badge keywords-selected">Delivery</span></a>
+    <a href="#"><span class="badge keywords-selected">Catering</span></a>
+    <a href="#"><span class="badge">Vegetarian</span></a>
+    <a href="#"><span class="badge">Vegan</span></a>
+    <a href="#"><span class="badge">Gluten-Free</span></a>
+  </div>
+  <br/>
+  <div class="btn-group csp-search-dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Catering Options</button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Drop-Off</a></li>
+      <li><a href="#">Setup</a></li>
+      <li><a href="#">Full Service</a></li>
+    </ul>
+  </div>
+</div>
+<br/>
+<div class="container px-4">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5 gy-5">
     <% @temp_businesses.each do |temp_business| %>
     <div class="col">
@@ -28,8 +55,6 @@
           <% if temp_business.offers_delivery %><% end %>
           <span class="badge">Other</span>
           <span class="badge">Keywords</span>
-          <span class="badge">Will</span>
-          <span class="badge">Go</span>
           <span class="badge">Here</span>
         </div>
       </div>
@@ -49,3 +74,18 @@
 <br/>
 
 <%= link_to "Create new", new_temp_business_path %>
+
+
+<script>
+
+window.onload = function () {
+  $("#btn-search").on("click", function () {
+    console.log("click!");
+  });
+  $("div.csp-search-keywords a").on("click", function(event) {
+    var target = event.target;
+    $(target).toggleClass("keywords-selected");
+    console.log("Toggle keyword: " + target.textContent);
+  });
+};
+</script>
