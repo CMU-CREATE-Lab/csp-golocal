@@ -8,18 +8,18 @@
 <p style="color: green"><%= notice %></p>
 
 <% unless @temp_business.logo.blank? %>
-<div class="jumbotron text-center">
+<div class="text-center">
   <%= image_tag(@temp_business.logo, height: "400") %>
 </div>
 <% end %>
 
-<div class="jumbotron text-center dark">
+<div class="text-center">
   <h1><%= @temp_business.name %></h1>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-lg-10 dark">
+    <div class="col-md-10 col-lg-10">
 
       <div class="container csp-keywords">
         <span class="badge">Keywords</span>
@@ -38,12 +38,12 @@
       <br/>
 
       <div class="row">
-        <div class="col-md-6 col-lg-6 green">
+        <div class="col-md-6 col-lg-6">
           <p><%= @temp_business.offers_delivery ? "✅" : "❌" %> Offers Delivery</p>
           <p><%= @temp_business.offers_catering ? "✅" : "❌" %> Offers Catering</p>
           <p><%= @temp_business.accepts_credit_cards ? "✅" : "❌" %> Accepts Credit Cards</p>
         </div>
-        <div class="col-md-6 col-lg-6 green">
+        <div class="col-md-6 col-lg-6">
           <p><%= @temp_business.vegetarian_options ? "✅" : "❌" %> Vegetarian Options</p>
           <p><%= @temp_business.vegan_options ? "✅" : "❌" %> Vegan Options</p>
           <p><%= @temp_business.gluten_free_options ? "✅" : "❌" %> Gluten-free Options</p>
@@ -63,12 +63,12 @@
       <br/>
 
       <div class="row">
-        <div class="col-md-6 col-lg-6 green">
+        <div class="col-md-6 col-lg-6">
           <h4>Business Hours</h4>
           <%= simple_format @temp_business.business_hours %>
         </div>
 <% if @temp_business.offers_catering %>
-        <div class="col-md-6 col-lg-6 green">
+        <div class="col-md-6 col-lg-6">
           <h4>Catering Hours</h4>
           <%= simple_format @temp_business.catering_hours %>
         </div>
