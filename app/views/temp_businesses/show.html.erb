@@ -22,18 +22,11 @@
     <div class="col-md-10 col-lg-10">
 
       <div class="container csp-keywords">
-        <span class="badge">Keywords</span>
-        <span class="badge">Will</span>
-        <span class="badge">Go</span>
-        <span class="badge">Here</span>
-        <span class="badge">fresh</span>
-        <span class="badge">local</span>
-        <span class="badge">social</span>
-        <span class="badge">mobile</span>
-        <span class="badge">solomo-bro</span>
-        <span class="badge">#Hashtag</span>
-        <span class="badge">2023</span>
-        <span class="badge red">color?</span>
+        <% if @temp_business.offers_delivery %><span class="badge">Delivery</span><% end %>
+        <% if @temp_business.offers_catering %><span class="badge">Catering</span><% end %>
+        <% if @temp_business.vegetarian_options %><span class="badge">Vegetarian</span><% end %>
+        <% if @temp_business.vegan_options %><span class="badge">Vegan</span><% end %>
+        <% if @temp_business.gluten_free_options %><span class="badge">Gluten-Free</span><% end %>
       </div>
       <br/>
 
@@ -53,11 +46,10 @@
       <h4>Business Information</h4>
 
       <!-- Shout-out to https://glyphicons.com/ -->
-      <% unless @temp_business.website_link.blank? %><h5><a target="_blank" href="<%= @temp_business.website_link %>"><span class="glyphicon glyphicon-globe"></span> Website Link</a></h5><% end %>
-      <% unless @temp_business.website_link.blank? %><h5><a target="_blank" href="<%= @temp_business.menu_link %>"><span class="glyphicon glyphicon-paperclip"></span> Menu Link</a></h5><% end %>
+      <% unless @temp_business.website_link.blank? %><h5><a target="_blank" href="<%= @temp_business.website_link %>"><span class="glyphicon glyphicon-globe"></span> Website (Link)</a></h5><% end %>
+      <% unless @temp_business.website_link.blank? %><h5><a target="_blank" href="<%= @temp_business.menu_link %>"><span class="glyphicon glyphicon-paperclip"></span> Menu (Link)</a></h5><% end %>
 <% unless @temp_business.address.blank? %>
-      <h5><a target="_blank" href="#"><span class="glyphicon glyphicon-map-marker"></span> Address</a></h5>
-      <p><%= @temp_business.address %></p>
+      <h5><a target="_blank" href="http://maps.google.com/?q=<%= @temp_business.address %>"><span class="glyphicon glyphicon-map-marker"></span> Address (Google Maps) <p><%= @temp_business.address %></p></a></h5>
 <% end %>
 
       <br/>
@@ -75,17 +67,12 @@
 <% end %>
       </div>
 
-<% if @temp_business.offers_catering %>
-      <h4>Catering Details</h4>
-      <p>Cater: drop-off, setup, full service ("pick-up only" option?)</p>
-      <p>Order Sizes</p>
-      <p>How to make a catering order: (including) Lead time for orders, policies like cancellation</p>
-<% end %>
-
+<% unless @temp_business.contact_email.blank? and @temp_business.contact_phone.blank? and @temp_business.contact_name_description.blank? %>
       <h4>Contact</h4>
       <% unless @temp_business.contact_email.blank? %><h5>Email: <%= @temp_business.contact_email %></h5><% end %>
       <% unless @temp_business.contact_phone.blank? %><h5>Phone: <%= @temp_business.contact_phone %></h5><% end %>
-      <p><i>contact name and description will appear here. (<%= @temp_business.contact_name_description %>)</i></p>
+      <p><i>(<%= @temp_business.contact_name_description %>)</i></p>
+<% end %>
 
       <br/>
 
@@ -131,8 +118,6 @@
       </div>
 <% end %>
 
-      <h5><a href="#">Sustainability Score: <span class="glyphicon glyphicon-leaf"></span><span class="glyphicon glyphicon-leaf"></span><span class="glyphicon glyphicon-leaf"></span> (popup/modal explanation?)</a></h5>
-      <h5><a href="#">Feedback (description and contact us/mailto link?)</a></h5>
     </div>
     <div class="col-md-2 col-lg-2">
     </div>

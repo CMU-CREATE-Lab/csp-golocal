@@ -9,6 +9,7 @@
 <div class="container px-4">
   <h2>Find A Restaurant</h2>
   <br/>
+  <h4>Filter Options</h4>
   <div class="csp-search-keywords">
     <a href="#"><span class="badge keywords-selected">Delivery</span></a>
     <a href="#"><span class="badge keywords-selected">Catering</span></a>
@@ -18,6 +19,10 @@
     <a href="#"><span class="badge">Cater: Drop-Off</span></a>
     <a href="#"><span class="badge">Cater: Setup</span></a>
     <a href="#"><span class="badge">Cater: Full Service</span></a>
+    <a href="#"><span class="badge">Cater: Small (1-25)</span></a>
+    <a href="#"><span class="badge">Cater: Medium (26-50)</span></a>
+    <a href="#"><span class="badge">Cater: Large (51-100)</span></a>
+    <a href="#"><span class="badge">Cater: X-Large (100+)</span></a>
   </div>
   <br/>
 </div>
@@ -35,15 +40,11 @@
         <% end %>
         <h3><%= temp_business.name %></h3>
         <div class="csp-keywords">
-          <% if temp_business.offers_delivery %><span class="badge blue">Delivery</span><% end %>
-          <% if temp_business.offers_catering %><span class="badge blue">Catering</span><% end %>
-          <% if temp_business.vegetarian_options %><span class="badge green">Vegetarian</span><% end %>
-          <% if temp_business.vegan_options %><span class="badge green">Vegan</span><% end %>
-          <% if temp_business.gluten_free_options %><span class="badge green">Gluten-Free</span><% end %>
-          <% if temp_business.offers_delivery %><% end %>
-          <span class="badge">Other</span>
-          <span class="badge">Keywords</span>
-          <span class="badge">Here</span>
+          <% if temp_business.offers_delivery %><span class="badge">Delivery</span><% end %>
+          <% if temp_business.offers_catering %><span class="badge">Catering</span><% end %>
+          <% if temp_business.vegetarian_options %><span class="badge">Vegetarian</span><% end %>
+          <% if temp_business.vegan_options %><span class="badge">Vegan</span><% end %>
+          <% if temp_business.gluten_free_options %><span class="badge">Gluten-Free</span><% end %>
         </div>
       </div>
       </a>
