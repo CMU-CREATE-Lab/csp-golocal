@@ -11,18 +11,9 @@
   <br/>
   <h4>Filter Options</h4>
   <div class="csp-search-keywords">
-    <a href="#"><span class="badge keywords-selected">Delivery</span></a>
-    <a href="#"><span class="badge keywords-selected">Catering</span></a>
-    <a href="#"><span class="badge">Vegetarian</span></a>
-    <a href="#"><span class="badge">Vegan</span></a>
-    <a href="#"><span class="badge">Gluten-Free</span></a>
-    <a href="#"><span class="badge">Cater: Drop-Off</span></a>
-    <a href="#"><span class="badge">Cater: Setup</span></a>
-    <a href="#"><span class="badge">Cater: Full Service</span></a>
-    <a href="#"><span class="badge">Cater: Small (1-25)</span></a>
-    <a href="#"><span class="badge">Cater: Medium (26-50)</span></a>
-    <a href="#"><span class="badge">Cater: Large (51-100)</span></a>
-    <a href="#"><span class="badge">Cater: X-Large (100+)</span></a>
+    <% @filter_keywords_to_display.each do |keyword, display| %>
+    <a href="#"><span value="<%= keyword %>" class="badge"><%= display %></span></a>
+    <% end %>
   </div>
   <br/>
 </div>
@@ -40,11 +31,9 @@
         <% end %>
         <h3><%= temp_business.name %></h3>
         <div class="csp-keywords">
-          <% if temp_business.offers_delivery %><span class="badge">Delivery</span><% end %>
-          <% if temp_business.offers_catering %><span class="badge">Catering</span><% end %>
-          <% if temp_business.vegetarian_options %><span class="badge">Vegetarian</span><% end %>
-          <% if temp_business.vegan_options %><span class="badge">Vegan</span><% end %>
-          <% if temp_business.gluten_free_options %><span class="badge">Gluten-Free</span><% end %>
+          <% temp_business.generate_keywords_for_filter.each do |keyword| %>
+          <span value="<%= keyword %>" class="badge"><%= @filter_keywords_to_display[keyword.to_sym] %></span>
+          <% end %>
         </div>
       </div>
       </a>
@@ -68,13 +57,10 @@
 <script>
 
 window.onload = function () {
-  $("#btn-search").on("click", function () {
-    console.log("click!");
-  });
   $("div.csp-search-keywords a").on("click", function(event) {
     var target = event.target;
     $(target).toggleClass("keywords-selected");
-    console.log("Toggle keyword: " + target.textContent);
+    console.log("Toggle keyword: " + target.textContent + ", value=" + $(target).attr("value"));
   });
 };
 </script>

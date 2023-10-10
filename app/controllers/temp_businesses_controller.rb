@@ -7,10 +7,12 @@ class TempBusinessesController < ApplicationController
   # GET /temp_businesses or /temp_businesses.json
   def index
     @temp_businesses = TempBusiness.all
+    @filter_keywords_to_display = TempBusiness.filter_keywords_to_display
   end
 
   # GET /temp_businesses/1 or /temp_businesses/1.json
   def show
+    @filter_keywords_to_display = TempBusiness.filter_keywords_to_display
   end
 
   # GET /temp_businesses/new

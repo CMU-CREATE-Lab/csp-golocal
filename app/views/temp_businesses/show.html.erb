@@ -22,11 +22,9 @@
     <div class="col-md-10 col-lg-10">
 
       <div class="container csp-keywords">
-        <% if @temp_business.offers_delivery %><span class="badge">Delivery</span><% end %>
-        <% if @temp_business.offers_catering %><span class="badge">Catering</span><% end %>
-        <% if @temp_business.vegetarian_options %><span class="badge">Vegetarian</span><% end %>
-        <% if @temp_business.vegan_options %><span class="badge">Vegan</span><% end %>
-        <% if @temp_business.gluten_free_options %><span class="badge">Gluten-Free</span><% end %>
+        <% @temp_business.generate_keywords_for_filter.each do |keyword| %>
+        <span value="<%= keyword %>" class="badge"><%= @filter_keywords_to_display[keyword.to_sym] %></span>
+        <% end %>
       </div>
       <br/>
 
