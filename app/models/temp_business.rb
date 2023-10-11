@@ -41,8 +41,7 @@ class TempBusiness < ApplicationRecord
 
 
   def generate_keywords_for_filter
-    mkeywords = self.generate_keywords
-    return (TempBusiness.filter_keywords & mkeywords)
+    return (TempBusiness.filter_keywords & generate_keywords())
   end
 
 end

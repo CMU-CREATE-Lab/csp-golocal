@@ -8,6 +8,8 @@ class TempBusinessesController < ApplicationController
   def index
     @temp_businesses = TempBusiness.all
     @filter_keywords_to_display = TempBusiness.filter_keywords_to_display
+    @js_businesses = @temp_businesses.map{|x| {name: x.name, logo: (x.logo.blank? ? "" : url_for(x.logo)), link: "/temp_businesses/#{x.id}", keywords: x.generate_keywords_for_filter}}.to_json
+    @js_filter_keywords_to_display = @filter_keywords_to_display.to_json
   end
 
   # GET /temp_businesses/1 or /temp_businesses/1.json

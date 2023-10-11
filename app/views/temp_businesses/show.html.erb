@@ -67,9 +67,9 @@
 
 <% unless @temp_business.contact_email.blank? and @temp_business.contact_phone.blank? and @temp_business.contact_name_description.blank? %>
       <h4>Contact</h4>
+      <p><i>(<%= @temp_business.contact_name_description %>)</i></p>
       <% unless @temp_business.contact_email.blank? %><h5>Email: <%= @temp_business.contact_email %></h5><% end %>
       <% unless @temp_business.contact_phone.blank? %><h5>Phone: <%= @temp_business.contact_phone %></h5><% end %>
-      <p><i>(<%= @temp_business.contact_name_description %>)</i></p>
 <% end %>
 
       <br/>
