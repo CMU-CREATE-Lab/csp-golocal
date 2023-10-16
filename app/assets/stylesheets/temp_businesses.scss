@@ -66,6 +66,17 @@ div.csp-search-keywords a span.keywords-selected {
   background-color: #111;
 }
 
+div.csp-index-keywords span {
+  color: #666;
+  font-size: 16px;
+  background-color: #ddd;
+}
+
+div.csp-index-keywords span.keywords-selected {
+  color: #eee;
+  background-color: #111;
+}
+
 div.csp-search-dropdown button {
   font-weight: bold;
 }

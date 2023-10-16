@@ -38,9 +38,85 @@
 
 <script>
 
+// JSON Array representing each business and its fields (to display on list)
 var js_businesses = <%= raw @js_businesses %>;
+
+// JSON Object that maps keyword identifiers to their display names
 var js_filter_keywords_to_display = <%= raw @js_filter_keywords_to_display %>;
 
+// array of keywords;
+var keywordsSelected = [];
+
+// seed for randomizing the position of businesses that share the same number of keywords
+var today = new Date();
+var randomSeed = ""+today.getDate()+today.getMonth()+today.getYear();
+
+
+// helper functions
+
+function updateKeywordsSelected() {
+  // https://api.jquery.com/map/
+  keywordsSelected = $("div.csp-search-keywords span.keywords-selected").map(function() {
+    return $(this).attr("value");
+  }).get();
+}
+
+function intersectArray(array1, array2) {
+  // https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
+  return array1.filter(value => array2.includes(value));
+}
+
+function trulyRandomCompare() {
+  return Math.floor(Math.random()*3) - 1;
+}
+
+function randomCompare(a, b, seed) {
+  // compare based on length of string (either 0 or 1)
+  // NOTE: this function does not mathematically guarantee the same sorting for all permutations of a given Array
+  var x = (a.length + seed) % 2;
+  var y = (b.length + seed) % 2;
+  return x-y;
+}
+
+function ascendingCompare(a, b) {
+  return a.localeCompare(b);
+}
+
+function generateSortFunctionWithAscendingNames(keywords) {
+  return (function(a, b) {
+    // #-matching-keywords in descending order
+    var s1 = (intersectArray(keywords, b.keywords).length - intersectArray(keywords, a.keywords).length);
+    // Name in ascending order (i.e. A-Z)
+    var s2 = ascendingCompare(a.name, b.name);
+    return (2 * s1) + s2;
+  });
+}
+
+function generateSortFunctionWithRandomSeed(keywords, seed) {
+  return (function(a, b) {
+    // #-matching-keywords in descending order
+    var s1 = (intersectArray(keywords, b.keywords).length - intersectArray(keywords, a.keywords).length);
+    // intermediate function: takes 2 names and random Seed (today's Date) as input, outputs value to use for s2
+    // TODO Q: must this be transitive? because you may end up having A < B, B < C, and not A < C
+    var s2 = randomCompare(a.name, b.name, seed);
+    //var s2 = trulyRandomCompare();
+    return (2 * s1) + s2;
+  });
+}
+
+// returns a function (i.e. compareFunction) that is passed into the sort() function.
+function generateSortFunction(keywords) {
+  //// NOTE: choose one
+
+  // // sort function with ascending names for businesses with the same number of keywords
+  // return generateSortFunctionWithAscendingNames(keywords);
+
+  // sort function with randomized position for busineses with the same number of keywords
+  return generateSortFunctionWithRandomSeed(keywords, parseInt(randomSeed));
+}
+
+
+// DOM manipulation functions
 
 function createDivForBusiness(business) {
   // see "Creating New Elements": https://api.jquery.com/jQuery/#jQuery2
@@ -49,11 +125,12 @@ function createDivForBusiness(business) {
   var div2 = $('<div class="p-3 border bg-light" />');
   var img = $('<img src="'+business.logo+'" alt="foobar" style="width:100%; height:250px; object-fit: cover;" />');
   var h3 = $('<h3>'+business.name+'</h3>');
-  var divKeywords = $('<div class="csp-keywords" />');
+  var divKeywords = $('<div class="csp-index-keywords" />');
 
   var listSpans = business.keywords.map( function(item) {
     var display = js_filter_keywords_to_display[item];
-    return $('<span value="'+this+'" class="badge">'+display+'</span>');
+    var classesForCss = keywordsSelected.includes(item) ? " keywords-selected" : "";
+    return $('<span value="'+item+'" class="badge'+classesForCss+'">'+display+'</span>');
   });
 
   // construction
@@ -69,19 +146,17 @@ function createDivForBusiness(business) {
   return divCol;
 }
 
-
 function businessListClear() {
   $("#business-list").children().remove();
 }
 
-
 function businessListAppend(jsonArray) {
   jsonArray.forEach(function(item) {
     // TODO call createDivForBusiness only once?
+    // NOTE: alternatively you can jquery select keywords as $('span[value="offers_delivery"]')
     $("#business-list").append( createDivForBusiness(item) );
   });
 }
-
 
 function populateViews(list) {
   businessListClear();
@@ -89,49 +164,20 @@ function populateViews(list) {
 }
 
 
+// document on-ready, listeners, initializers
+
 window.onload = function () {
   $("div.csp-search-keywords a").on("click", function(event) {
     var target = event.target;
     $(target).toggleClass("keywords-selected");
     //console.log("Toggle keyword: " + target.textContent + ", value=" + $(target).attr("value"));
-    populateViews(js_businesses.sort(generateSortFunction( generateListOfKeywordsSelected() )));
+    updateKeywordsSelected();
+    populateViews(js_businesses.sort(generateSortFunction( keywordsSelected )));
   });
 
   // ASSERT: no filters selected on page load
-  populateViews(js_businesses);
+  //populateViews(js_businesses);
+  populateViews(js_businesses.sort(generateSortFunction( keywordsSelected )));
 };
-
-
-// -- TODO test functions (integrate and delete later)
-
-function intersectArray(array1, array2) {
-  // https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
-  return array1.filter(value => array2.includes(value));
-}
-
-function generateSortFunction(keywords) {
-  return (function(a, b) {
-    // #-matching-keywords in descending order
-    var s1 = (intersectArray(keywords, b.keywords).length - intersectArray(keywords, a.keywords).length);
-    // Name in ascending order (i.e. A-Z)
-    var s2 = a.name.localeCompare(b.name);
-    return (2 * s1) + s2;
-  });
-}
-
-function generateListOfKeywordsSelected() {
-  // https://api.jquery.com/map/
-  return $("div.csp-search-keywords span.keywords-selected").map(function() {
-    return $(this).attr("value");
-  }).get();
-}
-
-// list = [ "offers_delivery", "offers_catering" ];
-// blist = [ js_businesses[0], js_businesses[1], js_businesses[2], js_businesses[3] ];
-// var listOfKeywords = $("div.csp-search-keywords span.keywords-selected").map(function() {
-//   return $(this).attr("value");
-// }).get();
-
-// -- ...
 
 </script>
