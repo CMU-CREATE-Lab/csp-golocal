@@ -1,4 +1,5 @@
 class TempBusinessesController < ApplicationController
+  layout "application_front"
   before_action :set_temp_business, only: %i[ show edit update destroy ]
 
   def demo3
@@ -15,6 +16,12 @@ class TempBusinessesController < ApplicationController
   # GET /temp_businesses/1 or /temp_businesses/1.json
   def show
     @filter_keywords_to_display = TempBusiness.filter_keywords_to_display
+    @header_buttons = [
+      {
+        :icon => "glyphicon-arrow-left",
+        :link => temp_businesses_path
+      }
+    ]
   end
 
   # GET /temp_businesses/new

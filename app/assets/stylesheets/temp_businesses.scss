@@ -1,31 +1,5 @@
-div.dark {
-  background-color: #eee;
-}
 
-div.green {
-  background-color: #e0ffe0;
-}
-
-div.red {
-  background-color: #ff5050;
-}
-
-div.csp-keywords span.badge {
-  font-size: 14px;
-  background-color: #666;
-}
-
-div.csp-keywords span.badge.red {
-  background-color: #ee6060;
-}
-
-div.csp-keywords span.badge.green {
-  background-color: #60ee60;
-}
-
-div.csp-keywords span.badge.blue {
-  background-color: #6060ee;
-}
+// header
 
 div.csp-header {
   margin-top: 0;
@@ -55,6 +29,25 @@ div.csp-header .csp-header-buttons a {
   color: #000;
 }
 
+
+// footer
+
+div.csp-footer {
+  width: 100%;
+  height: 250px;
+  margin-top: 50px;
+  padding-top: 100px;
+  color: #000;
+  background-color: #c41230;
+}
+
+div.csp-footer a {
+  color: #00a;
+}
+
+
+// Business pages
+
 div.csp-search-keywords a span {
   color: #666;
   font-size: 16px;
@@ -77,10 +70,42 @@ div.csp-index-keywords span.keywords-selected {
   background-color: #111;
 }
 
+
+// misc
+
+div.container.csp-demo3 {
+  background-color: #ffaeae;
+}
+
 div.csp-search-dropdown button {
   font-weight: bold;
 }
 
-div.container.csp-demo3 {
-  background-color: #ffaeae;
+div.dark {
+  background-color: #eee;
+}
+
+div.green {
+  background-color: #e0ffe0;
+}
+
+div.red {
+  background-color: #ff5050;
+}
+
+div.csp-keywords span.badge {
+  font-size: 14px;
+  background-color: #666;
+}
+
+div.csp-keywords span.badge.red {
+  background-color: #ee6060;
+}
+
+div.csp-keywords span.badge.green {
+  background-color: #60ee60;
+}
+
+div.csp-keywords span.badge.blue {
+  background-color: #6060ee;
 }
