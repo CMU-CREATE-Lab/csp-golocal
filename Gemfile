@@ -60,6 +60,10 @@ gem 'rvm1-capistrano3', require: false
 # terminal input-hiding for capistrano
 gem 'highline', require: false
 
+# implement User Abilities & authorizations
+gem 'cancancan'
+gem 'sorcery'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
