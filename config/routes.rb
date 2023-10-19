@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'user/login'
+  get 'user/logout'
+  get 'user/home'
+  get 'user/index'
+  get 'user/new'
+  get 'user/create'
+  get 'user/destroy'
   resources :temp_businesses
 
   get "old/temp_businesses", to: "temp_businesses#index_default"
