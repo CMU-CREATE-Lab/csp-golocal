@@ -1,9 +1,15 @@
-app/models/ability.rb# frozen_string_literal: true
+# frozen_string_literal: true
 
 class Ability
   include CanCan::Ability
 
   def initialize(user)
+    ##user ||= User.new # guest user (not logged in)
+    # TODO check user roles?
+    if user
+      can :manage, :all
+    end
+    # ...
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

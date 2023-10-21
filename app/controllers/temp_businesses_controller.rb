@@ -26,15 +26,18 @@ class TempBusinessesController < ApplicationController
 
   # GET /temp_businesses/new
   def new
+    authorize! :create, TempBusiness
     @temp_business = TempBusiness.new
   end
 
   # GET /temp_businesses/1/edit
   def edit
+    authorize! :update, TempBusiness
   end
 
   # POST /temp_businesses or /temp_businesses.json
   def create
+    authorize! :create, TempBusiness
     @temp_business = TempBusiness.new(temp_business_params)
 
     respond_to do |format|
@@ -50,6 +53,7 @@ class TempBusinessesController < ApplicationController
 
   # PATCH/PUT /temp_businesses/1 or /temp_businesses/1.json
   def update
+    authorize! :update, TempBusiness
     respond_to do |format|
       if @temp_business.update(temp_business_params)
         format.html { redirect_to temp_business_url(@temp_business), notice: "Temp business was successfully updated." }
@@ -63,6 +67,7 @@ class TempBusinessesController < ApplicationController
 
   # DELETE /temp_businesses/1 or /temp_businesses/1.json
   def destroy
+    authorize! :destroy, TempBusiness
     @temp_business.destroy
 
     respond_to do |format|
