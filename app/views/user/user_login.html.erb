@@ -1,0 +1,30 @@
+<h1>User#login</h1>
+<p>Find me in app/views/user/login.html.erb</p>
+
+<!-- TODO form post, username vs email, ...other stuff probably -->
+
+<% if flash.keys.length > 0 %>
+<div id="section" class="notice">
+  <% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+</div>
+<% end %>
+
+<div class="container">
+  <h2>Vertical (basic) form</h2>
+  <%= form_tag "/login" do %>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="username" class="form-control" id="username" placeholder="Enter username or email" name="username">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember_me"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  <% end %>
+</div>
