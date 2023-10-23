@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   get 'user/login', to: "user#user_login"
-  get '/logout', to: "user#user_logout"
+  get 'logout', to: "user#user_logout"
   get 'user/home'
   get 'user/index'
   get 'user/new'
   get 'user/create'
   get 'user/destroy'
 
-  post '/login', to: "user#post_login"
+  get 'login', to: redirect("/user/login")
+  post 'login', to: "user#post_login"
 
   resources :temp_businesses
 

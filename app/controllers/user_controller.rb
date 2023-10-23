@@ -7,7 +7,7 @@ class UserController < ApplicationController
     if user
       # actions
       #render :inline => params
-      redirect_to "/user/home"
+      redirect_back_or_to "/user/home"
     else
       flash.now.alert = "Username or password was invalid"
       render :user_login
