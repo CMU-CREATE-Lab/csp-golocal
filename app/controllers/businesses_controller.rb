@@ -1,26 +1,40 @@
 class BusinessesController < ApplicationController
+  layout "application_front"
   before_action :set_business, only: %i[ show edit update destroy ]
 
   # GET /businesses or /businesses.json
   def index
-    @businesses = Business.all
+    @businesses = Business.where(:is_published => true)
+    @filter_keywords_to_display = Business.filter_keywords_to_display
+    @js_businesses = @businesses.map{|x| {name: x.name, logo: (x.logo.blank? ? "" : url_for(x.logo)), link: "/businesses/#{x.id}", keywords: x.generate_keywords_for_filter}}.to_json
+    @js_filter_keywords_to_display = @filter_keywords_to_display.to_json
   end
 
   # GET /businesses/1 or /businesses/1.json
   def show
+    @filter_keywords_to_display = Business.filter_keywords_to_display
+    @header_buttons = [
+      {
+        :icon => "glyphicon-arrow-left",
+        :link => businesses_path
+      }
+    ]
   end
 
   # GET /businesses/new
   def new
+    authorize! :create, Business
     @business = Business.new
   end
 
   # GET /businesses/1/edit
   def edit
+    authorize! :update, Business
   end
 
   # POST /businesses or /businesses.json
   def create
+    authorize! :create, Business
     @business = Business.new(business_params)
 
     respond_to do |format|
@@ -36,6 +50,7 @@ class BusinessesController < ApplicationController
 
   # PATCH/PUT /businesses/1 or /businesses/1.json
   def update
+    authorize! :update, Business
     respond_to do |format|
       if @business.update(business_params)
         format.html { redirect_to business_url(@business), notice: "Business was successfully updated." }
@@ -49,6 +64,7 @@ class BusinessesController < ApplicationController
 
   # DELETE /businesses/1 or /businesses/1.json
   def destroy
+    authorize! :destroy, Business
     @business.destroy
 
     respond_to do |format|
