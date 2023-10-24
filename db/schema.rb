@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_171823) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_172230) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_171823) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string "name"
+    t.text "business_hours"
+    t.text "catering_hours"
+    t.string "address"
+    t.string "website_link"
+    t.text "contact_name_description"
+    t.string "contact_email"
+    t.string "contact_phone"
+    t.string "menu_link"
+    t.boolean "offers_delivery"
+    t.boolean "offers_catering"
+    t.boolean "vegetarian_options"
+    t.boolean "vegan_options"
+    t.boolean "gluten_free_options"
+    t.boolean "handles_tax_exemption"
+    t.boolean "handles_small_cater_size"
+    t.boolean "handles_medium_cater_size"
+    t.boolean "handles_large_cater_size"
+    t.boolean "handles_xlarge_cater_size"
+    t.text "small_cater_size_lead_time"
+    t.text "medium_cater_size_lead_time"
+    t.text "large_cater_size_lead_time"
+    t.text "xlarge_cater_size_lead_time"
+    t.boolean "cater_drop_off"
+    t.boolean "cater_setup"
+    t.boolean "cater_full_service"
+    t.boolean "is_published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "temp_businesses", force: :cascade do |t|

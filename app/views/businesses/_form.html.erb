@@ -1,0 +1,157 @@
+<%= form_with(model: business) do |form| %>
+  <% if business.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(business.errors.count, "error") %> prohibited this business from being saved:</h2>
+
+      <ul>
+        <% business.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :logo, style: "display: block" %>
+    <%= form.file_field :logo %>
+  </div>
+
+  <div>
+    <%= form.label :business_hours, style: "display: block" %>
+    <%= form.text_area :business_hours %>
+  </div>
+
+  <div>
+    <%= form.label :catering_hours, style: "display: block" %>
+    <%= form.text_area :catering_hours %>
+  </div>
+
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :website_link, style: "display: block" %>
+    <%= form.text_field :website_link %>
+  </div>
+
+  <div>
+    <%= form.label :contact_name_description, style: "display: block" %>
+    <%= form.text_area :contact_name_description %>
+  </div>
+
+  <div>
+    <%= form.label :contact_email, style: "display: block" %>
+    <%= form.text_field :contact_email %>
+  </div>
+
+  <div>
+    <%= form.label :contact_phone, style: "display: block" %>
+    <%= form.text_field :contact_phone %>
+  </div>
+
+  <div>
+    <%= form.label :menu_link, style: "display: block" %>
+    <%= form.text_field :menu_link %>
+  </div>
+
+  <div>
+    <%= form.label :offers_delivery, style: "display: block" %>
+    <%= form.check_box :offers_delivery %>
+  </div>
+
+  <div>
+    <%= form.label :offers_catering, style: "display: block" %>
+    <%= form.check_box :offers_catering %>
+  </div>
+
+  <div>
+    <%= form.label :vegetarian_options, style: "display: block" %>
+    <%= form.check_box :vegetarian_options %>
+  </div>
+
+  <div>
+    <%= form.label :vegan_options, style: "display: block" %>
+    <%= form.check_box :vegan_options %>
+  </div>
+
+  <div>
+    <%= form.label :gluten_free_options, style: "display: block" %>
+    <%= form.check_box :gluten_free_options %>
+  </div>
+
+  <div>
+    <%= form.label :handles_tax_exemption, style: "display: block" %>
+    <%= form.check_box :handles_tax_exemption %>
+  </div>
+
+  <div>
+    <%= form.label :handles_small_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_small_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :handles_medium_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_medium_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :handles_large_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_large_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :handles_xlarge_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_xlarge_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :small_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :small_cater_size_lead_time %>
+  </div>
+
+  <div>
+    <%= form.label :medium_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :medium_cater_size_lead_time %>
+  </div>
+
+  <div>
+    <%= form.label :large_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :large_cater_size_lead_time %>
+  </div>
+
+  <div>
+    <%= form.label :xlarge_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :xlarge_cater_size_lead_time %>
+  </div>
+
+  <div>
+    <%= form.label :cater_drop_off, style: "display: block" %>
+    <%= form.check_box :cater_drop_off %>
+  </div>
+
+  <div>
+    <%= form.label :cater_setup, style: "display: block" %>
+    <%= form.check_box :cater_setup %>
+  </div>
+
+  <div>
+    <%= form.label :cater_full_service, style: "display: block" %>
+    <%= form.check_box :cater_full_service %>
+  </div>
+
+  <div>
+    <%= form.label :is_published, style: "display: block" %>
+    <%= form.check_box :is_published %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

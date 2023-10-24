@@ -1,0 +1,3 @@
+json.extract! business, :id, :name, :logo, :business_hours, :catering_hours, :address, :website_link, :contact_name_description, :contact_email, :contact_phone, :menu_link, :offers_delivery, :offers_catering, :vegetarian_options, :vegan_options, :gluten_free_options, :handles_tax_exemption, :handles_small_cater_size, :handles_medium_cater_size, :handles_large_cater_size, :handles_xlarge_cater_size, :small_cater_size_lead_time, :medium_cater_size_lead_time, :large_cater_size_lead_time, :xlarge_cater_size_lead_time, :cater_drop_off, :cater_setup, :cater_full_service, :is_published, :created_at, :updated_at
+json.url business_url(business, format: :json)
+json.logo url_for(business.logo)

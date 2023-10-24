@@ -1,0 +1,59 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  business_hours: MyText
+  catering_hours: MyText
+  address: MyString
+  website_link: MyString
+  contact_name_description: MyText
+  contact_email: MyString
+  contact_phone: MyString
+  menu_link: MyString
+  offers_delivery: false
+  offers_catering: false
+  vegetarian_options: false
+  vegan_options: false
+  gluten_free_options: false
+  handles_tax_exemption: false
+  handles_small_cater_size: false
+  handles_medium_cater_size: false
+  handles_large_cater_size: false
+  handles_xlarge_cater_size: false
+  small_cater_size_lead_time: MyText
+  medium_cater_size_lead_time: MyText
+  large_cater_size_lead_time: MyText
+  xlarge_cater_size_lead_time: MyText
+  cater_drop_off: false
+  cater_setup: false
+  cater_full_service: false
+  is_published: false
+
+two:
+  name: MyString
+  business_hours: MyText
+  catering_hours: MyText
+  address: MyString
+  website_link: MyString
+  contact_name_description: MyText
+  contact_email: MyString
+  contact_phone: MyString
+  menu_link: MyString
+  offers_delivery: false
+  offers_catering: false
+  vegetarian_options: false
+  vegan_options: false
+  gluten_free_options: false
+  handles_tax_exemption: false
+  handles_small_cater_size: false
+  handles_medium_cater_size: false
+  handles_large_cater_size: false
+  handles_xlarge_cater_size: false
+  small_cater_size_lead_time: MyText
+  medium_cater_size_lead_time: MyText
+  large_cater_size_lead_time: MyText
+  xlarge_cater_size_lead_time: MyText
+  cater_drop_off: false
+  cater_setup: false
+  cater_full_service: false
+  is_published: false

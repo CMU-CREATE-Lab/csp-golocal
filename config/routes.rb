@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :businesses
   get 'user/login', to: "user#user_login"
   get 'logout', to: "user#user_logout"
   get 'user/home'

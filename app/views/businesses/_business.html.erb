@@ -1,0 +1,142 @@
+<div id="<%= dom_id business %>">
+  <p>
+    <strong>Name:</strong>
+    <%= business.name %>
+  </p>
+
+  <p>
+    <strong>Logo:</strong>
+    <%= link_to business.logo.filename, business.logo if business.logo.attached? %>
+  </p>
+
+  <p>
+    <strong>Business hours:</strong>
+    <%= business.business_hours %>
+  </p>
+
+  <p>
+    <strong>Catering hours:</strong>
+    <%= business.catering_hours %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= business.address %>
+  </p>
+
+  <p>
+    <strong>Website link:</strong>
+    <%= business.website_link %>
+  </p>
+
+  <p>
+    <strong>Contact name description:</strong>
+    <%= business.contact_name_description %>
+  </p>
+
+  <p>
+    <strong>Contact email:</strong>
+    <%= business.contact_email %>
+  </p>
+
+  <p>
+    <strong>Contact phone:</strong>
+    <%= business.contact_phone %>
+  </p>
+
+  <p>
+    <strong>Menu link:</strong>
+    <%= business.menu_link %>
+  </p>
+
+  <p>
+    <strong>Offers delivery:</strong>
+    <%= business.offers_delivery %>
+  </p>
+
+  <p>
+    <strong>Offers catering:</strong>
+    <%= business.offers_catering %>
+  </p>
+
+  <p>
+    <strong>Vegetarian options:</strong>
+    <%= business.vegetarian_options %>
+  </p>
+
+  <p>
+    <strong>Vegan options:</strong>
+    <%= business.vegan_options %>
+  </p>
+
+  <p>
+    <strong>Gluten free options:</strong>
+    <%= business.gluten_free_options %>
+  </p>
+
+  <p>
+    <strong>Handles tax exemption:</strong>
+    <%= business.handles_tax_exemption %>
+  </p>
+
+  <p>
+    <strong>Handles small cater size:</strong>
+    <%= business.handles_small_cater_size %>
+  </p>
+
+  <p>
+    <strong>Handles medium cater size:</strong>
+    <%= business.handles_medium_cater_size %>
+  </p>
+
+  <p>
+    <strong>Handles large cater size:</strong>
+    <%= business.handles_large_cater_size %>
+  </p>
+
+  <p>
+    <strong>Handles xlarge cater size:</strong>
+    <%= business.handles_xlarge_cater_size %>
+  </p>
+
+  <p>
+    <strong>Small cater size lead time:</strong>
+    <%= business.small_cater_size_lead_time %>
+  </p>
+
+  <p>
+    <strong>Medium cater size lead time:</strong>
+    <%= business.medium_cater_size_lead_time %>
+  </p>
+
+  <p>
+    <strong>Large cater size lead time:</strong>
+    <%= business.large_cater_size_lead_time %>
+  </p>
+
+  <p>
+    <strong>Xlarge cater size lead time:</strong>
+    <%= business.xlarge_cater_size_lead_time %>
+  </p>
+
+  <p>
+    <strong>Cater drop off:</strong>
+    <%= business.cater_drop_off %>
+  </p>
+
+  <p>
+    <strong>Cater setup:</strong>
+    <%= business.cater_setup %>
+  </p>
+
+  <p>
+    <strong>Cater full service:</strong>
+    <%= business.cater_full_service %>
+  </p>
+
+  <p>
+    <strong>Is published:</strong>
+    <%= business.is_published %>
+  </p>
+
+</div>
