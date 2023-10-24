@@ -2,3 +2,42 @@
 <p>Find me in app/views/user/home.html.erb</p>
 
 <p><a href="/logout">Logout</a></p>
+
+<h4>Username</h4>
+<p><%= current_user.username %></p>
+
+<h4>Email</h4>
+<p><%= current_user.email %></p>
+
+<br/>
+<br/>
+<br/>
+
+<h3>Businesses</h3>
+
+<p><i><%= link_to "Go to main businesses page", temp_businesses_path %></i></p>
+
+<% if @temp_businesses.empty? %>
+<p><i>No businesses to display.</i></p>
+<% else %>
+<table class="table">
+
+<thead>
+<tr>
+  <th scope="col">ID</th>
+  <th scope="col">Business Name</th>
+  <th scope="col">Edit</th>
+  <th scope="col">Delete</th>
+</tr>
+</thead>
+
+<% @temp_businesses.each do |business| %>
+<tr>
+  <th scope="row"><%= business.id %></th>
+  <td><%= link_to business.name, temp_business_path(business) %></td>
+  <td><%= link_to "Edit", edit_temp_business_path(business) %></td>
+  <td><%= button_to "Delete", business, method: :delete %></td>
+</tr>
+<% end %>
+</table>
+<% end %>

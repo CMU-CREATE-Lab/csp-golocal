@@ -119,11 +119,15 @@
 <br/>
 <br/>
 
+<% if logged_in? and can? :edit, TempBusiness %>
 <div class="container">
   <%= link_to "Edit this temp business", edit_temp_business_path(@temp_business) %> |
   <%= link_to "Back to temp businesses", temp_businesses_path %>
 </div>
+<% end %>
 
+<% if logged_in? and can? :delete, TempBusiness %>
 <div class="container">
   <%= button_to "Destroy this temp business", @temp_business, method: :delete %>
 </div>
+<% end %>

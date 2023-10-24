@@ -29,6 +29,7 @@ class UserController < ApplicationController
     if not logged_in?
       redirect_to "/user/login"
     end
+    @temp_businesses = TempBusiness.all
   end
 
   def index

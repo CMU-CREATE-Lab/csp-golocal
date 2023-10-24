@@ -27,7 +27,9 @@
 <br/>
 <br/>
 
+<% if logged_in? and can? :create, TempBusiness %>
 <%= link_to "Create new", new_temp_business_path %>
+<% end %>
 
 
 <script>
