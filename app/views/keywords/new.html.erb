@@ -1,2 +1,10 @@
 <h1>Keyword#new</h1>
 <p>Find me in app/views/keyword/new.html.erb</p>
+
+<%= render "form", keyword: @keyword %>
+
+<br>
+
+<div>
+  <%= link_to "Back to keywords", keywords_path %>
+</div>
