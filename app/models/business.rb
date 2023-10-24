@@ -38,8 +38,12 @@ class Business < ApplicationRecord
     result.push("cater_dropoff") if self.cater_drop_off
     result.push("cater_setup") if self.cater_setup
     result.push("cater_fullservice") if self.cater_full_service
-    # TODO other keywords?
-    # handles_tax_exemption handles_small_cater_size handles_medium_cater_size handles_large_cater_size handles_xlarge_cater_size
+    result.push("cater_small") if self.handles_small_cater_size
+    result.push("cater_medium") if self.handles_medium_cater_size
+    result.push("cater_large") if self.handles_large_cater_size
+    result.push("cater_xlarge") if self.handles_xlarge_cater_size
+    # TODO other keywords? (from keywords table?)
+    # TODO other keywords? -- handles_tax_exemption
     return result
   end
 

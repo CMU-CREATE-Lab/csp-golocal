@@ -29,7 +29,9 @@ class UserController < ApplicationController
     if not logged_in?
       redirect_to "/user/login"
     end
-    @temp_businesses = TempBusiness.all
+    @businesses = Business.all
+    @businesses_published = Business.where(:is_published => true)
+    @businesses_unpublished = @businesses - @businesses_published
   end
 
   def index
