@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :keywords, only: [ :index, :new, :create, :edit, :update, :destroy ]
+
   resources :businesses
   get 'user/login', to: "user#user_login"
   get 'logout', to: "user#user_logout"
