@@ -1,0 +1,22 @@
+<p><%= link_to "Add more or edit here", keywords_path %></p>
+
+<% if keywords.empty? %>
+<p><i>No keywords to display.</i></p>
+<% else %>
+<table class="table">
+<thead>
+<tr>
+  <th scope="col">Name</th>
+  <th scope="col">Category</th>
+  <th scope="col">Current Business</th>
+</tr>
+</thead>
+<% @keywords.each do |keyword| %>
+<tr>
+  <td><%= keyword.name %></td>
+  <td><%= keyword.category %></td>
+  <td><%= form.check_box "keywords_selected_#{keyword.id}", { :name => "keywords_selected[#{keyword.id}]", :checked_value => keyword.id, :checked => business.keywords.include?(keyword) } %></td>
+</tr>
+<% end %>
+</table>
+<% end %>

@@ -25,11 +25,13 @@ class BusinessesController < ApplicationController
   def new
     authorize! :create, Business
     @business = Business.new
+    @keywords = Keyword.all
   end
 
   # GET /businesses/1/edit
   def edit
     authorize! :update, Business
+    @keywords = Keyword.all
   end
 
   # POST /businesses or /businesses.json
@@ -39,6 +41,10 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       if @business.save
+        # overrides strong parameters
+        keyword_params = request.parameters
+        keywords_selected = keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
+        @business.keywords = keywords_selected
         format.html { redirect_to business_url(@business), notice: "Business was successfully created." }
         format.json { render :show, status: :created, location: @business }
       else
@@ -53,6 +59,10 @@ class BusinessesController < ApplicationController
     authorize! :update, Business
     respond_to do |format|
       if @business.update(business_params)
+        # overrides strong parameters
+        keyword_params = request.parameters
+        keywords_selected = keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
+        @business.keywords = keywords_selected
         format.html { redirect_to business_url(@business), notice: "Business was successfully updated." }
         format.json { render :show, status: :ok, location: @business }
       else
@@ -82,5 +92,9 @@ class BusinessesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def business_params
       params.require(:business).permit(:name, :logo, :business_hours, :catering_hours, :address, :website_link, :contact_name_description, :contact_email, :contact_phone, :menu_link, :offers_delivery, :offers_catering, :vegetarian_options, :vegan_options, :gluten_free_options, :handles_tax_exemption, :handles_small_cater_size, :handles_medium_cater_size, :handles_large_cater_size, :handles_xlarge_cater_size, :small_cater_size_lead_time, :medium_cater_size_lead_time, :large_cater_size_lead_time, :xlarge_cater_size_lead_time, :cater_drop_off, :cater_setup, :cater_full_service, :is_published)
+    end
+
+    def keywords_params
+      params.permit(:keywords_selected)
     end
 end

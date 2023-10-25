@@ -151,6 +151,19 @@
     <%= form.check_box :is_published %>
   </div>
 
+<br/>
+<br/>
+<br/>
+
+  <div>
+    <%= form.label :keywords, style: "display: block" %>
+    <%= render "form_keywords", business: business, keywords: @keywords, form: form %>
+  </div>
+
+<br/>
+<br/>
+<br/>
+
   <div>
     <%= form.submit %>
   </div>
