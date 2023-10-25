@@ -64,6 +64,9 @@ gem 'highline', require: false
 gem 'cancancan'
 gem 'sorcery'
 
+# validations for active storage (https://stackoverflow.com/questions/70182977/how-to-restrict-file-type-in-rails-has-many-attached)
+gem 'active_storage_validations'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

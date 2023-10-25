@@ -48,6 +48,7 @@ class BusinessesController < ApplicationController
         format.html { redirect_to business_url(@business), notice: "Business was successfully created." }
         format.json { render :show, status: :created, location: @business }
       else
+        @keywords = Keyword.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @business.errors, status: :unprocessable_entity }
       end
@@ -66,6 +67,7 @@ class BusinessesController < ApplicationController
         format.html { redirect_to business_url(@business), notice: "Business was successfully updated." }
         format.json { render :show, status: :ok, location: @business }
       else
+        @keywords = Keyword.all
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @business.errors, status: :unprocessable_entity }
       end

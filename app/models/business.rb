@@ -4,6 +4,9 @@ class Business < ApplicationRecord
   has_one_attached :logo
   has_many_attached :gallery
 
+  validates :logo, content_type: ['image/png', 'image/jpeg'], size: { less_than: 5.megabytes }
+  validates :gallery, content_type: ['image/png', 'image/jpeg'], size: { less_than: 5.megabytes }
+
   @@filter_keywords_to_display = {
     offers_delivery: "Delivery",
     offers_catering: "Catering",
