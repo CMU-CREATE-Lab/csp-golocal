@@ -38,12 +38,11 @@ class BusinessesController < ApplicationController
   def create
     authorize! :create, Business
     @business = Business.new(business_params)
-
     respond_to do |format|
       if @business.save
         # overrides strong parameters
         keyword_params = request.parameters
-        keywords_selected = keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
+        keywords_selected = keyword_params[:keywords_selected].nil? ? [] : keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
         @business.keywords = keywords_selected
         format.html { redirect_to business_url(@business), notice: "Business was successfully created." }
         format.json { render :show, status: :created, location: @business }
@@ -62,7 +61,7 @@ class BusinessesController < ApplicationController
       if @business.update(business_params)
         # overrides strong parameters
         keyword_params = request.parameters
-        keywords_selected = keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
+        keywords_selected = keyword_params[:keywords_selected].nil? ? [] : keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
         @business.keywords = keywords_selected
         format.html { redirect_to business_url(@business), notice: "Business was successfully updated." }
         format.json { render :show, status: :ok, location: @business }

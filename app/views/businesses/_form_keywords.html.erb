@@ -2,6 +2,7 @@
 
 <% if keywords.empty? %>
 <p><i>No keywords to display.</i></p>
+<%= form.hidden_field "keywords_selected" %>
 <% else %>
 <table class="table">
 <thead>
