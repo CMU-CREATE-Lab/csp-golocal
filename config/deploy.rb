@@ -5,6 +5,8 @@ lock '~> 3.17'
 set :application, 'csp-golocal'
 set :deploy_to, "/var/www/#{fetch(:application)}/#{fetch(:stage)}"
 
+set :linked_dirs, %w{ storage }
+
 # shared resources (ignore, for now)
 #set :linked_dirs, %w(log public/system tmp/cache)
 #set :linked_files, %w(config/database.yml config/secrets.yml config/environment.rb config/environments/production.rb)
