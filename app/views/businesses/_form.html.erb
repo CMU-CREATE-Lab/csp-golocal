@@ -12,6 +12,11 @@
   <% end %>
 
   <div>
+    <%= form.label :is_published, style: "display: block" %>
+    <%= form.check_box :is_published %>
+  </div>
+
+  <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
@@ -22,13 +27,21 @@
   </div>
 
   <div>
-    <%= form.label :business_hours, style: "display: block" %>
-    <%= form.text_area :business_hours %>
+    <%= form.label :handles_tax_exemption, style: "display: block" %>
+    <%= form.check_box :handles_tax_exemption %>
+  </div>
+
+<br/>
+<h3>Business Information</h3>
+
+  <div>
+    <%= form.label :offers_delivery, style: "display: block" %>
+    <%= form.check_box :offers_delivery %>
   </div>
 
   <div>
-    <%= form.label :catering_hours, style: "display: block" %>
-    <%= form.text_area :catering_hours %>
+    <%= form.label :business_hours, style: "display: block" %>
+    <%= form.text_area :business_hours %>
   </div>
 
   <div>
@@ -40,6 +53,14 @@
     <%= form.label :website_link, style: "display: block" %>
     <%= form.text_field :website_link %>
   </div>
+
+  <div>
+    <%= form.label :menu_link, style: "display: block" %>
+    <%= form.text_field :menu_link %>
+  </div>
+
+<br/>
+<h3>Contact Information</h3>
 
   <div>
     <%= form.label :contact_name_description, style: "display: block" %>
@@ -56,15 +77,8 @@
     <%= form.text_field :contact_phone %>
   </div>
 
-  <div>
-    <%= form.label :menu_link, style: "display: block" %>
-    <%= form.text_field :menu_link %>
-  </div>
-
-  <div>
-    <%= form.label :offers_delivery, style: "display: block" %>
-    <%= form.check_box :offers_delivery %>
-  </div>
+<br/>
+<h3>Catering Options</h3>
 
   <div>
     <%= form.label :offers_catering, style: "display: block" %>
@@ -72,63 +86,8 @@
   </div>
 
   <div>
-    <%= form.label :vegetarian_options, style: "display: block" %>
-    <%= form.check_box :vegetarian_options %>
-  </div>
-
-  <div>
-    <%= form.label :vegan_options, style: "display: block" %>
-    <%= form.check_box :vegan_options %>
-  </div>
-
-  <div>
-    <%= form.label :gluten_free_options, style: "display: block" %>
-    <%= form.check_box :gluten_free_options %>
-  </div>
-
-  <div>
-    <%= form.label :handles_tax_exemption, style: "display: block" %>
-    <%= form.check_box :handles_tax_exemption %>
-  </div>
-
-  <div>
-    <%= form.label :handles_small_cater_size, style: "display: block" %>
-    <%= form.check_box :handles_small_cater_size %>
-  </div>
-
-  <div>
-    <%= form.label :handles_medium_cater_size, style: "display: block" %>
-    <%= form.check_box :handles_medium_cater_size %>
-  </div>
-
-  <div>
-    <%= form.label :handles_large_cater_size, style: "display: block" %>
-    <%= form.check_box :handles_large_cater_size %>
-  </div>
-
-  <div>
-    <%= form.label :handles_xlarge_cater_size, style: "display: block" %>
-    <%= form.check_box :handles_xlarge_cater_size %>
-  </div>
-
-  <div>
-    <%= form.label :small_cater_size_lead_time, style: "display: block" %>
-    <%= form.text_area :small_cater_size_lead_time %>
-  </div>
-
-  <div>
-    <%= form.label :medium_cater_size_lead_time, style: "display: block" %>
-    <%= form.text_area :medium_cater_size_lead_time %>
-  </div>
-
-  <div>
-    <%= form.label :large_cater_size_lead_time, style: "display: block" %>
-    <%= form.text_area :large_cater_size_lead_time %>
-  </div>
-
-  <div>
-    <%= form.label :xlarge_cater_size_lead_time, style: "display: block" %>
-    <%= form.text_area :xlarge_cater_size_lead_time %>
+    <%= form.label :catering_hours, style: "display: block" %>
+    <%= form.text_area :catering_hours %>
   </div>
 
   <div>
@@ -146,14 +105,85 @@
     <%= form.check_box :cater_full_service %>
   </div>
 
+<br/>
+<h4>Small Catering</h4>
+<p class="label-description">Small order sizes are between 1 and 25</p>
+
   <div>
-    <%= form.label :is_published, style: "display: block" %>
-    <%= form.check_box :is_published %>
+    <%= form.label :handles_small_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_small_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :small_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :small_cater_size_lead_time %>
+  </div>
+
+<br/>
+<h4>Medium Catering</h4>
+<p class="label-description">Medium order sizes are between 26 and 50</p>
+
+  <div>
+    <%= form.label :handles_medium_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_medium_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :medium_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :medium_cater_size_lead_time %>
+  </div>
+
+<br/>
+<h4>Large Catering</h4>
+<p class="label-description">Large order sizes are between 51 and 100</p>
+
+  <div>
+    <%= form.label :handles_large_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_large_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :large_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :large_cater_size_lead_time %>
+  </div>
+
+<br/>
+<h4>Xlarge Catering</h4>
+<p class="label-description">Xlarge order sizes are over 100</p>
+
+  <div>
+    <%= form.label :handles_xlarge_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_xlarge_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :xlarge_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :xlarge_cater_size_lead_time %>
+  </div>
+
+<br/>
+<h3>Dietary Restrictions</h3>
+
+  <div>
+    <%= form.label :vegetarian_options, style: "display: block" %>
+    <%= form.check_box :vegetarian_options %>
+  </div>
+
+  <div>
+    <%= form.label :vegan_options, style: "display: block" %>
+    <%= form.check_box :vegan_options %>
+  </div>
+
+  <div>
+    <%= form.label :gluten_free_options, style: "display: block" %>
+    <%= form.check_box :gluten_free_options %>
   </div>
 
 <br/>
 <br/>
 <br/>
+
+<h3>Keywords</h3>
 
   <div>
     <%= form.label :keywords, style: "display: block" %>
@@ -163,6 +193,8 @@
 <br/>
 <br/>
 <br/>
+
+<h3>Gallery</h3>
 
 <% if form_includes_gallery %>
   <div>
