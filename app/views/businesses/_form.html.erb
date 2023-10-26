@@ -164,11 +164,18 @@
 <br/>
 <br/>
 
-
+<% if form_includes_gallery %>
   <div>
     <%= form.label :gallery, style: "display: block" %>
     <%= form.file_field :gallery, multiple: true %>
   </div>
+<% else %>
+  <div>
+    <%= form.label :gallery, style: "display: block" %>
+    <p>Number of photos in gallery: <b><%= business.gallery.size %></b></p>
+    <p><%= link_to "Edit the photo gallery", "/businesses/#{business.id}/edit_gallery" %></p>
+  </div>
+<% end %>
 
 <br/>
 <br/>

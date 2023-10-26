@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   layout "application_front"
-  before_action :set_business, only: %i[ show edit update destroy ]
+  before_action :set_business, only: %i[ show edit edit_gallery update destroy ]
 
   # GET /businesses or /businesses.json
   def index
@@ -32,6 +32,10 @@ class BusinessesController < ApplicationController
   def edit
     authorize! :update, Business
     @keywords = Keyword.all
+  end
+
+  def edit_gallery
+    authorize! :update, Business
   end
 
   # POST /businesses or /businesses.json
