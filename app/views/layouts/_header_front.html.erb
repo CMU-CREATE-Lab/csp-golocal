@@ -6,6 +6,9 @@
     <a href="<%= item[:link] %>"><span class="glyphicon <%= item[:icon]%>"></span></a>
     <% end %>
 <% end %>
+<% if logged_in? %>
+    <a href="/login"><span class="glyphicon glyphicon-edit"></span></a>
+<% end %>
   </div>
   <h2 class="text-center"><a href="/">CSP GoLocal</a></h2>
 </div>
