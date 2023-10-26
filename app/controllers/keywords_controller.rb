@@ -1,4 +1,7 @@
 class KeywordsController < ApplicationController
+
+  layout "application_back"
+
   before_action :check_authorization
   before_action :set_keyword, only: %i[ edit update destroy ]
 

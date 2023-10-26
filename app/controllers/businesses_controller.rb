@@ -1,5 +1,8 @@
 class BusinessesController < ApplicationController
-  layout "application_front"
+
+  layout "application_back", only: %i[ edit edit_gallery new ]
+  layout "application_front", except: %i[ edit edit_gallery new ]
+
   before_action :set_business, only: %i[ show edit edit_gallery update destroy ]
 
   # GET /businesses or /businesses.json

@@ -2,16 +2,21 @@
 
 
 <%= form_with(model: @business) do |form| %>
-<div>
-  <%= form.label :gallery, style: "display: block" %>
-  <%= form.file_field :gallery, multiple: true %>
-</div>
+  <div>
+    <%= form.label :gallery, style: "display: block" %>
+    <%= form.file_field :gallery, multiple: true %>
+  </div>
 
-<div>
-  <%= form.submit %>
-</div>
+  <br/>
+
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>
 
+
+<br/>
+<br/>
 
 <div>
   <%= link_to "Back to Edit business", edit_business_path(@business) %>

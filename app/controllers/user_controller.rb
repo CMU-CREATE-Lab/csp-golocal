@@ -1,5 +1,7 @@
 class UserController < ApplicationController
 
+  layout "application_back"
+
   def post_login
     #render :inline => params
     user = login(params[:username], params[:pwd], params[:remember_me])

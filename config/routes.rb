@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get "businesses/:id/edit_gallery", to: "businesses#edit_gallery"
   resources :businesses
-  
+
   get 'user/login', to: "user#user_login"
   get 'logout', to: "user#user_logout"
   get 'user/home'
@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "home#landing"
+  #root "home#landing"
+  get 'landing', to: "home#landing"
+  root to: redirect("/businesses")
 end

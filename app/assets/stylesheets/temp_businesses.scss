@@ -9,6 +9,14 @@ div.csp-header {
   background-color: #c41230;
 }
 
+div.csp-header-back {
+  margin-top: 0;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 100%;
+  background-color: #333;
+}
+
 div.csp-header div.container, div.csp-header h2 {
   margin: 0;
 }
@@ -108,4 +116,9 @@ div.csp-keywords span.badge.green {
 
 div.csp-keywords span.badge.blue {
   background-color: #6060ee;
+}
+
+p.label-description {
+  font-style: italic;
+  color: #aaa;
 }
