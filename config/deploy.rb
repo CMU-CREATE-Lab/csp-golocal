@@ -7,7 +7,7 @@ set :deploy_to, "/var/www/#{fetch(:application)}/#{fetch(:stage)}"
 
 set :linked_dirs, %w{ log storage public/system tmp/cache }
 
-# shared resources (ignore, for now)
+# shared resources (currently defined in each deploy/stage file)
 #set :linked_dirs, %w(log public/system tmp/cache)
 #set :linked_files, %w(config/database.yml config/secrets.yml config/environment.rb config/environments/production.rb)
 
@@ -66,8 +66,8 @@ namespace :deploy do
     begin
       on roles(:web) do
         within "#{fetch(:repo_path)}" do
-          execute(:git, "config", "--unset", "core.logallrefupdates")
-          execute(:git, "config", "--unset", "core.worktree")
+          # execute(:git, "config", "--unset", "core.logallrefupdates")
+          # execute(:git, "config", "--unset", "core.worktree")
           execute(:git, "config", "core.bare", "true")
         end
       end
@@ -84,45 +84,10 @@ namespace :deploy do
         execute(:git, "reset", "--hard", fetch(:branch))
         execute(:mkdir,"-p","tmp")
         sudo(:chmod, "-R", "777", "tmp")
-        ## TODO production only?
-        # # since cache is now symlinked we have to specify the dir
-        # sudo(:chmod, "-R", "777", "tmp/cache/*")
-        # execute(:rake, "assets:precompile")
         sudo(:chown, "-R", "#{fetch(:ssh_username)}:rvm", "#{fetch(:deploy_to)}")
         execute(:touch,"tmp/restart.txt")
       end
     end
   end
-
-
-  # after :started, :uninit_git_dir do
-  #   begin
-  #     on roles(:web) do
-  #       within "#{fetch(:repo_path)}" do
-  #         execute(:git, "config", "--unset", "core.logallrefupdates")
-  #         execute(:git, "config", "--unset", "core.worktree")
-  #         execute(:git, "config", "core.bare", "true")
-  #       end
-  #     end
-  #   rescue
-  #     puts "Directory #{fetch(:repo_path)} DNE; skipping uninit_git_dir (NOTE: this should only happen the first time the repo is deployed to the server; otherwise, something terrible probably happened)"
-  #   end
-  # end
-  #
-  #
-  # after :finished, :reinit_git_dir do
-  #   on roles(:web) do
-  #     within "#{fetch(:deploy_to)}/current" do
-  #       execute(:git, "init", "--separate-git-dir=#{fetch(:repo_path)}")
-  #       execute(:mkdir,"-p","tmp")
-  #       sudo(:chmod, "-R", "777", "tmp")
-  #       # since cache is now symlinked we have to specify the dir
-  #       sudo(:chmod, "-R", "777", "tmp/cache/*")
-  #       execute(:rake, "assets:precompile")
-  #       sudo(:chown, "-R", "#{fetch(:ssh_username)}:rvm", "#{fetch(:deploy_to)}")
-  #       execute(:touch,"tmp/restart.txt")
-  #     end
-  #   end
-  # end
 
 end
