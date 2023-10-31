@@ -26,7 +26,7 @@ set :branch, "main"
 set :repo_path, "#{fetch(:deploy_to)}/repo"
 
 #set :rvm1_ruby_version, "default"
-set :rvm1_ruby_version, "3.1.4"
+set :rvm1_ruby_version, "ruby-3.1.4"
 
 
 # deploy tasks
