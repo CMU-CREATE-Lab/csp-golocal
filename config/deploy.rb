@@ -33,14 +33,6 @@ set :rvm1_ruby_version, "ruby-3.1.4"
 namespace :deploy do
 
 
-  # remove the RVM scripts that capistrano creates (breaks when trying to chmod from someone else)
-  before "rvm1:hook", :remove_rvmscripts do
-    on roles(:web) do
-      sudo(:rm,"-rf","#{fetch(:deploy_to)}/rvm1scripts")
-    end
-  end
-
-
   # ASSERT: group 'rvm' exists and all deploy users are members
   before :starting, :fix_permissions do
     on roles(:web) do
