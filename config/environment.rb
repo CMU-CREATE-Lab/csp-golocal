@@ -5,4 +5,4 @@ require_relative "application"
 Rails.application.initialize!
 
 # TODO create email address with forwarding
-CONTACT_EMAIL = "info@cmucreatelab.org"
+CONTACT_EMAIL = "feedback@golocal.cmucsp.org"
