@@ -22,11 +22,20 @@
   <th scope="row"><%= keyword.id %></th>
   <td><%= keyword.name %></td>
   <td><%= keyword.category %></td>
+  <% if @business %>
+  <td><%= link_to "Edit", edit_business_keyword_path(@business, keyword) %></td>
+  <% else %>
   <td><%= link_to "Edit", edit_keyword_path(keyword) %></td>
+  <% end %>
   <td><%= button_to "Delete", keyword, method: :delete %></td>
 </tr>
 <% end %>
 
 </table>
 <% end %>
-<%= link_to "Create new", new_keyword_path %>
+<% if @business %>
+<p><%= link_to "Create new", new_business_keyword_path(@business) %></p>
+<p><%= link_to "Back to edit business", edit_business_path(@business) %></p>
+<% else %>
+<p><%= link_to "Create new", new_keyword_path %></p>
+<% end %>

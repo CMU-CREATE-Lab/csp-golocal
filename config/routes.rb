@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+
   resources :keywords, only: [ :index, :new, :create, :edit, :update, :destroy ]
 
   get "businesses/:id/edit_gallery", to: "businesses#edit_gallery"
-  resources :businesses
+  resources :businesses do
+    resources :keywords, only: [ :index, :new, :create, :edit, :update, :destroy ]
+  end
 
   get 'user/login', to: "user#user_login"
   get 'logout', to: "user#user_logout"

@@ -1,4 +1,8 @@
-<p><%= link_to "Add more or edit here", keywords_path %></p>
+<% if @business and @business.id %>
+<p><%= link_to "Add more or edit here", business_keywords_path(@business) %></p>
+<% else %>
+<p><i>Create this business first to edit keywords.</i></p>
+<% end %>
 
 <% if keywords.empty? %>
 <p><i>No keywords to display.</i></p>

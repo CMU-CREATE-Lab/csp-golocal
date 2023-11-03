@@ -5,6 +5,9 @@ class KeywordsController < ApplicationController
   before_action :check_authorization
   before_action :set_keyword, only: %i[ edit update destroy ]
 
+  # access to business model when in route with nested resources (e.g.  business_keywords_path => "/businesses/:business_id/keywords")
+  before_action :set_business
+
   def index
     @keywords = Keyword.all
   end
@@ -22,7 +25,7 @@ class KeywordsController < ApplicationController
 
     respond_to do |format|
       if @keyword.save
-        format.html { redirect_to keywords_path, notice: "Keyword was successfully created." }
+        format.html { redirect_to (@business ? business_keywords_path(@business) : keywords_path), notice: "Keyword was successfully created." }
         format.json { render :index, status: :created, location: @keyword }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +37,7 @@ class KeywordsController < ApplicationController
   def update
     respond_to do |format|
       if @keyword.update(keyword_params)
-        format.html { redirect_to keywords_path, notice: "Keyword was successfully updated." }
+        format.html { redirect_to (@business ? business_keywords_path(@business) : keywords_path), notice: "Keyword was successfully updated." }
         format.json { render :index, status: :ok, location: @keyword }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,5 +68,9 @@ class KeywordsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def keyword_params
       params.require(:keyword).permit(:name, :category)
+    end
+
+    def set_business
+      @business = Business.find(params[:business_id]) if params[:business_id]
     end
 end

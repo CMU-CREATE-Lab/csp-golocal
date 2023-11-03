@@ -4,6 +4,12 @@
 
 <br>
 
+<% if @business %>
+<div>
+  <%= link_to "Back to keywords", business_keywords_path(@business) %>
+</div>
+<% else %>
 <div>
   <%= link_to "Back to keywords", keywords_path %>
 </div>
+<% end %>

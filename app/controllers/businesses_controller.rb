@@ -1,7 +1,8 @@
 class BusinessesController < ApplicationController
 
-  layout "application_back", only: %i[ edit edit_gallery new ]
   layout "application_front", except: %i[ edit edit_gallery new ]
+  ## note: for multiple layouts, define in call to render
+  #layout "application_back", only: %i[ edit edit_gallery new ]
 
   before_action :set_business, only: %i[ show edit edit_gallery update destroy ]
 
@@ -29,16 +30,22 @@ class BusinessesController < ApplicationController
     authorize! :create, Business
     @business = Business.new
     @keywords = Keyword.all
+
+    render "new", layout: "application_back"
   end
 
   # GET /businesses/1/edit
   def edit
     authorize! :update, Business
     @keywords = Keyword.all
+
+    render "edit", layout: "application_back"
   end
 
   def edit_gallery
     authorize! :update, Business
+
+    render "edit_gallery", layout: "application_back"
   end
 
   # POST /businesses or /businesses.json

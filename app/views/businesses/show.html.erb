@@ -125,9 +125,3 @@
   <%= link_to "Back to businesses", businesses_path %>
 </div>
 <% end %>
-
-<% if logged_in? and can? :delete, Business %>
-<div class="container">
-  <%= button_to "Destroy this business", @business, method: :delete %>
-</div>
-<% end %>
