@@ -13,6 +13,7 @@ class Business < ApplicationRecord
     vegetarian_options: "Vegetarian",
     vegan_options: "Vegan",
     gluten_free_options: "Gluten-Free",
+    cater_pickup: "Cater: Pick-Up",
     cater_dropoff: "Cater: Drop-Off",
     cater_setup: "Cater: Setup",
     cater_fullservice: "Cater: Full Service",
@@ -40,6 +41,7 @@ class Business < ApplicationRecord
     result.push("vegetarian_options") if self.vegetarian_options
     result.push("vegan_options") if self.vegan_options
     result.push("gluten_free_options") if self.gluten_free_options
+    result.push("cater_pickup") if self.cater_pick_up
     result.push("cater_dropoff") if self.cater_drop_off
     result.push("cater_setup") if self.cater_setup
     result.push("cater_fullservice") if self.cater_full_service
