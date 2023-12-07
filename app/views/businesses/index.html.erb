@@ -1,14 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="container px-4">
-  <h2>Find A Restaurant</h2>
   <br/>
-  <h4>Filter Options</h4>
+  <h3>Filter Options</h3>
   <div class="csp-search-keywords">
     <% @filter_keywords_to_display.each do |keyword, display| %>
     <a href="#"><span value="<%= keyword %>" class="badge"><%= display %></span></a>
     <% end %>
   </div>
+  <br/>
+  <br/>
   <br/>
 </div>
 <br/>
