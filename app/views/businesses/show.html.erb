@@ -54,6 +54,30 @@
         <div class="col-md-6 col-lg-6">
           <h4>Catering Hours</h4>
           <%= simple_format @business.catering_hours %>
+
+          <% if @business.handles_small_cater_size %>
+          <br/>
+          <h5><b>Lead Time (Small Cater Size)</b></h5>
+          <i><%= simple_format @business.small_cater_size_lead_time %></i>
+          <% end %>
+
+          <% if @business.handles_medium_cater_size %>
+          <br/>
+          <h5><b>Lead Time (Medium Cater Size)</b></h5>
+          <i><%= simple_format @business.medium_cater_size_lead_time %></i>
+          <% end %>
+
+          <% if @business.handles_large_cater_size %>
+          <br/>
+          <h5><b>Lead Time (Large Cater Size)</b></h5>
+          <i><%= simple_format @business.large_cater_size_lead_time %></i>
+          <% end %>
+
+          <% if @business.handles_xlarge_cater_size %>
+          <br/>
+          <h5><b>Lead Time (X-Large Cater Size)</b></h5>
+          <i><%= simple_format @business.xlarge_cater_size_lead_time %></i>
+          <% end %>
         </div>
 <% end %>
       </div>

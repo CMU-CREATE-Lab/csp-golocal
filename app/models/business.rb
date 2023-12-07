@@ -21,6 +21,7 @@ class Business < ApplicationRecord
     cater_medium: "Cater: Medium (26-50)",
     cater_large: "Cater: Large (51-100)",
     cater_xlarge: "Cater: X-Large (100+)",
+    tax_exempt: "Tax Exempt",
   }
 
 
@@ -49,8 +50,8 @@ class Business < ApplicationRecord
     result.push("cater_medium") if self.handles_medium_cater_size
     result.push("cater_large") if self.handles_large_cater_size
     result.push("cater_xlarge") if self.handles_xlarge_cater_size
+    result.push("tax_exempt") if self.handles_tax_exemption
     # TODO other keywords? (from keywords table?)
-    # TODO other keywords? -- handles_tax_exemption
     return result
   end
 
