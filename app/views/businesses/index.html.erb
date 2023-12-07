@@ -13,7 +13,22 @@
   <br/>
 </div>
 <br/>
-<div class="container px-4">
+<div class="container px-4" id="business2-list-header">
+  <br/>
+  <br/>
+  <h2>Filtered Results</h2>
+  <hr/>
+  <br/>
+  <div id="business2-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5 gy-5">
+    <!-- script: populateViews() -->
+  </div>
+</div>
+<div class="container px-4" id="business-list-header">
+  <br/>
+  <br/>
+  <h2>All Businesses</h2>
+  <hr/>
+  <br/>
   <div id="business-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5 gy-5">
     <!-- script: populateViews() -->
   </div>
@@ -48,6 +63,9 @@ var keywordsSelected = [];
 var today = new Date();
 var randomSeed = ""+today.getDate()+today.getMonth()+today.getYear();
 
+var listFiltered = [];
+var listAll = [];
+
 
 // helper functions
 
@@ -61,6 +79,30 @@ function updateKeywordsSelected() {
 function intersectArray(array1, array2) {
   // https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
   return array1.filter(value => array2.includes(value));
+}
+
+// find all items in array1 that are NOT in array2
+function componentArray(array1, array2) {
+  var result = [];
+  array1.forEach(function(item) {
+    if (!(array2.includes(item))) {
+      result.push(item);
+    }
+  });
+  return result;
+}
+
+function intersectArrayWithKeywords(array, keywords) {
+  var result = [];
+  array.forEach(function (item) {
+    for (i=0; i<keywords.length; i++) {
+      if (!(item.keywords.includes(keywords[i]))) {
+        return;
+      }
+    }
+    result.push(item);
+  });
+  return result;
 }
 
 function trulyRandomCompare() {
@@ -89,7 +131,15 @@ function generateSortFunctionWithAscendingNames(keywords) {
   });
 }
 
-function generateSortFunctionWithRandomSeed(keywords, seed) {
+function generateSortFunctionWithRandomSeed(seed) {
+  return (function(a, b) {
+    var s2 = randomCompare(a.name, b.name, seed);
+    //var s2 = trulyRandomCompare();
+    return s2;
+  });
+}
+
+function generateSortFunctionWithRandomSeed_AndKeywords(keywords, seed) {
   return (function(a, b) {
     // #-matching-keywords in descending order
     var s1 = (intersectArray(keywords, b.keywords).length - intersectArray(keywords, a.keywords).length);
@@ -112,8 +162,40 @@ function generateSortFunction(keywords) {
   return generateSortFunctionWithRandomSeed(keywords, parseInt(randomSeed));
 }
 
+function generateSortFunctionNoKeywords() {
+  return generateSortFunctionWithRandomSeed(parseInt(randomSeed));
+}
+
 
 // DOM manipulation functions
+
+function createDivForBusinessWithOpacity(business, withOpacity) {
+  // see "Creating New Elements": https://api.jquery.com/jQuery/#jQuery2
+  var divCol = (withOpacity) ? $("<div class=\"col\" style=\"opacity:0.5;\" />") : $("<div class=\"col\" />");
+  var aLink = $('<a style="display:block; color: inherit; text-decoration: inherit;" href="'+business.link+'" />');
+  var div2 = $('<div class="p-3 border bg-light" />');
+  var img = $('<img src="'+business.logo+'" alt="'+business.name+'" style="width:100%; height:250px; object-fit: cover;" />');
+  var h3 = $('<h3>'+business.name+'</h3>');
+  var divKeywords = $('<div class="csp-index-keywords" />');
+
+  var listSpans = business.keywords.map( function(item) {
+    var display = js_filter_keywords_to_display[item];
+    var classesForCss = keywordsSelected.includes(item) ? " keywords-selected" : "";
+    return $('<span value="'+item+'" class="badge'+classesForCss+'">'+display+'</span>');
+  });
+
+  // construction
+  listSpans.forEach(function(item) {
+    divKeywords.append(item);
+  });
+  div2.append(img);
+  div2.append(h3);
+  div2.append(divKeywords);
+  aLink.append(div2);
+  divCol.append(aLink);
+
+  return divCol;
+}
 
 function createDivForBusiness(business) {
   // see "Creating New Elements": https://api.jquery.com/jQuery/#jQuery2
@@ -145,19 +227,56 @@ function createDivForBusiness(business) {
 
 function businessListClear() {
   $("#business-list").children().remove();
+  $("#business2-list").children().remove();
 }
 
-function businessListAppend(jsonArray) {
+function businessListAppend(jsonArray, withOpacity) {
+  if (jsonArray.length == 0) {
+    $("#business-list-header").hide();
+  } else {
+    $("#business-list-header").show();
+  }
   jsonArray.forEach(function(item) {
     // TODO call createDivForBusiness only once?
     // NOTE: alternatively you can jquery select keywords as $('span[value="offers_delivery"]')
-    $("#business-list").append( createDivForBusiness(item) );
+    $("#business-list").append( createDivForBusinessWithOpacity(item, withOpacity) );
   });
 }
 
-function populateViews(list) {
+function business2ListAppend(jsonArray) {
+  if (jsonArray.length == 0) {
+    $("#business2-list-header").hide();
+  } else {
+    $("#business2-list-header").show();
+  }
+  jsonArray.forEach(function(item) {
+    // TODO call createDivForBusiness only once?
+    // NOTE: alternatively you can jquery select keywords as $('span[value="offers_delivery"]')
+    $("#business2-list").append( createDivForBusiness(item) );
+  });
+}
+
+function populateViews(list1, list2) {
   businessListClear();
-  businessListAppend(list);
+  if (list2.length == 0) {
+    if (keywordsSelected.length == 0) {
+      businessListAppend(list1, false);
+      business2ListAppend(list2);
+    } else {
+      business2ListAppend(list1);
+      businessListAppend([]);
+    }
+  } else {
+    business2ListAppend(list1);
+    businessListAppend(list2, true);
+  }
+}
+
+function updateViewsFromKeywords() {
+  var tempList = structuredClone(js_businesses);
+  listFiltered = intersectArrayWithKeywords(tempList, keywordsSelected);
+  listAll = componentArray(tempList, listFiltered);
+  populateViews(listFiltered.sort(generateSortFunctionNoKeywords()), listAll.sort(generateSortFunctionNoKeywords()));
 }
 
 
@@ -169,12 +288,12 @@ window.onload = function () {
     $(target).toggleClass("keywords-selected");
     //console.log("Toggle keyword: " + target.textContent + ", value=" + $(target).attr("value"));
     updateKeywordsSelected();
-    populateViews(js_businesses.sort(generateSortFunction( keywordsSelected )));
+    updateViewsFromKeywords();
   });
 
   // ASSERT: no filters selected on page load
   //populateViews(js_businesses);
-  populateViews(js_businesses.sort(generateSortFunction( keywordsSelected )));
+  updateViewsFromKeywords();
 };
 
 </script>
