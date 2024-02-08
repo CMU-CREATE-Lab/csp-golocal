@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="container px-4">
+<div class="container px-4" id="filter-options">
   <br/>
   <h3>Filter Options</h3>
   <div class="csp-search-keywords">
@@ -13,6 +13,31 @@
   <br/>
 </div>
 <br/>
+<div class="container px-4" id="business3-list-header">
+  <br/>
+  <br/>
+  <h2>Businesses</h2>
+  <hr/>
+  <br/>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-5 gy-5">
+    <% @businesses.each do |business| %>
+    <div class="col">
+          <a style="display:block; color: inherit; text-decoration: inherit;" href="/businesses/<%=business.id%>">
+              <div class="p-3 border bg-light">
+                <img src="<%= (business.logo.blank? ? "" : url_for(business.logo)) %>" alt="<%=business.name%>" style="width:100%; height:250px; object-fit: cover;" />
+                <h3><%= business.name %></h3>
+                <div class="csp-index-keywords">
+                  <% business.generate_keywords_for_filter.each do |keyword| %>
+                    <span value="<%= keyword %>" class="badge"><%= @filter_keywords_to_display[keyword.to_sym] %></span>
+                  <% end %>
+                </div>
+              </div>
+          </a>
+    </div>
+    <% end %>
+  </div>
+</div>
+
 <div class="container px-4" id="business2-list-header">
   <br/>
   <br/>
@@ -280,20 +305,29 @@ function updateViewsFromKeywords() {
 }
 
 
+var filtersEnabled = false;
 // document on-ready, listeners, initializers
-
 window.onload = function () {
+  $("#filter-options").hide();
+  $("#business2-list-header").hide();
+  $("#business-list-header").hide();
   $("div.csp-search-keywords a").on("click", function(event) {
-    var target = event.target;
-    $(target).toggleClass("keywords-selected");
-    //console.log("Toggle keyword: " + target.textContent + ", value=" + $(target).attr("value"));
-    updateKeywordsSelected();
-    updateViewsFromKeywords();
+    if (filtersEnabled) {
+      var target = event.target;
+      $(target).toggleClass("keywords-selected");
+      //console.log("Toggle keyword: " + target.textContent + ", value=" + $(target).attr("value"));
+      updateKeywordsSelected();
+      updateViewsFromKeywords();
+    }
   });
 
   // ASSERT: no filters selected on page load
   //populateViews(js_businesses);
   updateViewsFromKeywords();
+
+  filtersEnabled = true;
+  $("#filter-options").show();
+  $("#business3-list-header").hide();
 };
 
 </script>
