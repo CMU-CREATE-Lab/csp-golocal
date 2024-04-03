@@ -7,6 +7,8 @@
     <% @filter_keywords_to_display.each do |keyword, display| %>
     <a href="#"><span value="<%= keyword %>" class="badge"><%= display %></span></a>
     <% end %>
+    <br/>
+    <a id="csp-search-clear" href="#"><span id="csp2-search-clear" class="badge">ⓧ Clear All</span></a>
   </div>
   <br/>
   <br/>
@@ -311,7 +313,7 @@ window.onload = function () {
   $("#filter-options").hide();
   $("#business2-list-header").hide();
   $("#business-list-header").hide();
-  $("div.csp-search-keywords a").on("click", function(event) {
+  $("div.csp-search-keywords a:not(#csp-search-clear)").on("click", function(event) {
     if (filtersEnabled) {
       var target = event.target;
       $(target).toggleClass("keywords-selected");
@@ -319,6 +321,11 @@ window.onload = function () {
       updateKeywordsSelected();
       updateViewsFromKeywords();
     }
+  });
+  $("#csp-search-clear").on("click", function(event) {
+    $("div.csp-search-keywords span").removeClass("keywords-selected");
+    keywordsSelected = [];
+    updateViewsFromKeywords();
   });
 
   // ASSERT: no filters selected on page load
