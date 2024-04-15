@@ -38,7 +38,7 @@
 
       <!-- Shout-out to https://glyphicons.com/ -->
       <% unless @business.website_link.blank? %><h5><a target="_blank" href="<%= @business.website_link %>"><span class="glyphicon glyphicon-globe"></span> Website (Link)</a></h5><% end %>
-      <% unless @business.website_link.blank? %><h5><a target="_blank" href="<%= @business.menu_link %>"><span class="glyphicon glyphicon-paperclip"></span> Menu (Link)</a></h5><% end %>
+      <% unless @business.menu_link.blank? %><h5><a target="_blank" href="<%= @business.menu_link %>"><span class="glyphicon glyphicon-paperclip"></span> Menu (Link)</a></h5><% end %>
 <% unless @business.address.blank? %>
       <h5><a target="_blank" href="http://maps.google.com/?q=<%= @business.address %>"><span class="glyphicon glyphicon-map-marker"></span> Address (Google Maps) <p><%= @business.address %></p></a></h5>
 <% end %>
