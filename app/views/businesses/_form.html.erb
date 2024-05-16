@@ -31,12 +31,22 @@
     <%= form.check_box :handles_tax_exemption %>
   </div>
 
+  <div>
+    <%= form.label :headline_description, style: "display: block" %>
+    <%= form.text_area :headline_description %>
+  </div>
+
 <br/>
 <h3>Business Information</h3>
 
   <div>
     <%= form.label :offers_delivery, style: "display: block" %>
     <%= form.check_box :offers_delivery %>
+  </div>
+
+  <div>
+    <%= form.label :delivery_information, style: "display: block" %>
+    <%= form.text_area :delivery_information %>
   </div>
 
   <div>

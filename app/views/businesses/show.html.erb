@@ -8,6 +8,10 @@
 
 <div class="text-center">
   <h1><%= @business.name %></h1>
+
+  <div class="headline-description">
+    <%= @business.headline_description %>
+  </div>
 </div>
 
 <div class="container">
@@ -41,6 +45,9 @@
       <% unless @business.menu_link.blank? %><h5><a target="_blank" href="<%= @business.menu_link %>"><span class="glyphicon glyphicon-paperclip"></span> Menu (Link)</a></h5><% end %>
 <% unless @business.address.blank? %>
       <h5><a target="_blank" href="http://maps.google.com/?q=<%= @business.address %>"><span class="glyphicon glyphicon-map-marker"></span> Address (Google Maps) <p><%= @business.address %></p></a></h5>
+<% end %>
+<% unless @business.delivery_information.blank? %>
+      <h5>Delivery Information: <%= @business.delivery_information %></h5>
 <% end %>
 
       <br/>
