@@ -1,0 +1,15 @@
+<div class="csp-header text-center" style="background: none;">
+  <div class="csp-header-buttons">
+<% unless @header_buttons.nil? %>
+    <!-- <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a> -->
+    <% @header_buttons.each do |item| %>
+    <a href="<%= item[:link] %>"><span class="glyphicon <%= item[:icon]%>"></span></a>
+    <% end %>
+<% end %>
+<% if logged_in? %>
+    <a href="/login"><span class="glyphicon glyphicon-edit"></span></a>
+<% end %>
+  </div>
+  <a href="/"><img src="<%= asset_path('golocal-logo.jpg')%>" height="120" /></a>
+  <!-- <h2 class="text-center"><a href="/">CSP GoLocal</a></h2> -->
+</div>

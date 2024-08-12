@@ -1,0 +1,31 @@
+<% content_for :google_analytics do %>
+  <% if Rails.env == "production" %>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNP1JJFHBR"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CNP1JJFHBR');
+      </script>
+  <% end %>
+<% end %>
+
+<% content_for :header do %>
+  <% if params["opt"] == "1" %>
+  <%= render "layouts/header_front_opt1" %>
+  <% elsif params["opt"] == "2" %>
+  <%= render "layouts/header_front_opt2" %>
+  <% elsif params["opt"] == "3" %>
+  <%= render "layouts/header_front_opt3" %>
+  <% else %>
+  <%= render "layouts/header_front" %>
+  <% end %>
+<% end %>
+
+<% content_for :footer do %>
+<%= render "layouts/footer" %>
+<% end %>
+
+<%= render template: "layouts/application" %>
