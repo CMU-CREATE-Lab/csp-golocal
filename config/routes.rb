@@ -15,10 +15,6 @@ Rails.application.routes.draw do
   get 'user/create'
   get 'user/destroy'
 
-  # 2024-08 Demo
-  get '/demo/0', to: "demo#demo0"
-  get '/demo/1', to: "demo#demo1"
-
   get 'login', to: redirect("/user/login")
   post 'login', to: "user#post_login"
 

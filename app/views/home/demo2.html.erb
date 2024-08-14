@@ -1,0 +1,24 @@
+<h1>Home#demo2</h1>
+
+<p>Find me in app/views/home/demo2.html.erb</p>
+
+<button type="button"
+        class="btn btn-lg btn-danger"
+        data-bs-toggle="popover"
+        title="Popover title"
+        data-bs-content="Amazing content, right ?">
+        Click to toggle popover
+</button>
+
+<script>
+window.onload = function () {
+  $("button").popover();
+};
+
+// https://turbo.hotwired.dev/handbook/building mentions this hook
+document.addEventListener("turbo:load", function() {
+  $(window).on("load", function() {
+    console.log("bubble");
+  });
+});
+</script>
