@@ -13,49 +13,20 @@ class Business < ApplicationRecord
     vegetarian_options: "Vegetarian",
     vegan_options: "Vegan",
     gluten_free_options: "Gluten-Free",
-    cater_pickup: "Pick-Up",
-    cater_dropoff: "Drop-Off",
-    cater_setup: "Setup",
-    cater_fullservice: "Full Service",
-    cater_small: "Small (1-25)",
-    cater_medium: "Medium (26-50)",
-    cater_large: "Large (51-100)",
-    cater_xlarge: "X-Large (100+)",
+    cater_pickup: "Cater: Pick-Up",
+    cater_dropoff: "Cater: Drop-Off",
+    cater_setup: "Cater: Setup",
+    cater_fullservice: "Cater: Full Service",
+    cater_small: "Cater: Small (1-25)",
+    cater_medium: "Cater: Medium (26-50)",
+    cater_large: "Cater: Large (51-100)",
+    cater_xlarge: "Cater: X-Large (100+)",
     tax_exempt: "Tax Exempt",
   }
 
 
   def self.filter_keywords
     return @@filter_keywords_to_display.keys.map(&:to_s)
-  end
-
-
-  def self.keywords_dietary_restrictions
-    return [
-      "vegetarian_options",
-      "vegan_options",
-      "gluten_free_options",
-    ]
-  end
-
-
-  def self.keywords_catering_options
-    return [
-      "cater_pickup",
-      "cater_dropoff",
-      "cater_setup",
-      "cater_fullservice",
-    ]
-  end
-
-
-  def self.keywords_event_sizes
-    return [
-      "cater_small",
-      "cater_medium",
-      "cater_large",
-      "cater_xlarge",
-    ]
   end
 
 
@@ -87,24 +58,6 @@ class Business < ApplicationRecord
 
   def generate_keywords_for_filter
     return (Business.filter_keywords & generate_keywords())
-  end
-
-
-  def generate_span_text_for_dietary_restrictions
-    result = Business.keywords_dietary_restrictions() & generate_keywords()
-    return result.map{|x| @@filter_keywords_to_display[x.to_sym] }.join ", "
-  end
-
-
-  def generate_span_text_for_catering_options
-    result = Business.keywords_catering_options() & generate_keywords()
-    return result.map{|x| @@filter_keywords_to_display[x.to_sym] }.join ", "
-  end
-
-
-  def generate_span_text_for_event_sizes
-    result = Business.keywords_event_sizes() & generate_keywords()
-    return result.map{|x| @@filter_keywords_to_display[x.to_sym] }.join ", "
   end
 
 end

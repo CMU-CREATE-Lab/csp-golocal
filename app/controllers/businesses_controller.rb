@@ -10,18 +10,7 @@ class BusinessesController < ApplicationController
   def index
     @businesses = Business.where(:is_published => true)
     @filter_keywords_to_display = Business.filter_keywords_to_display
-    @js_businesses = @businesses.map{
-      |x| {
-        name: x.name,
-        headline_description: (x.headline_description.blank? ? "" : x.headline_description),
-        logo: (x.logo.blank? ? "" : url_for(x.logo)),
-        link: "/businesses/#{x.id}",
-        keywords: x.generate_keywords_for_filter,
-        span_text_for_dietary_restrictions: x.generate_span_text_for_dietary_restrictions,
-        span_text_for_catering_options: x.generate_span_text_for_catering_options,
-        span_text_for_event_sizes: x.generate_span_text_for_event_sizes,
-      }
-    }.to_json
+    @js_businesses = @businesses.map{|x| {name: x.name, headline_description: (x.headline_description.blank? ? "" : x.headline_description), logo: (x.logo.blank? ? "" : url_for(x.logo)), link: "/businesses/#{x.id}", keywords: x.generate_keywords_for_filter}}.to_json
     @js_filter_keywords_to_display = @filter_keywords_to_display.to_json
   end
 
