@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cuisines
+  resources :social_media_sites
 
   resources :keywords, only: [ :index, :new, :create, :edit, :update, :destroy ]
 

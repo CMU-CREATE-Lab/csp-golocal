@@ -25,3 +25,5 @@ facebook.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-m
 twitter.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-media-sites', 'twitter-logo.png')), filename: 'twitter-logo.png')
 instagram.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-media-sites', 'instagram-logo.png')), filename: 'instagram-logo.png')
 website.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-media-sites', 'website-logo.png')), filename: 'website-logo.png')
+# website_filepath = Rails.root.join('public', 'assets', 'social-media-sites', 'website-logo.png')
+# website.logo.attach(io: File.open(website_filepath), filename: 'website-logo.png')

@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  parent_cuisine_id: 1
+  parent_cuisine: one
 
 two:
   name: MyString
-  parent_cuisine_id: 1
+  parent_cuisine: two
