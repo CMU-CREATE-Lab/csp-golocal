@@ -44,6 +44,7 @@ class BusinessesController < ApplicationController
     authorize! :create, Business
     @business = Business.new
     @keywords = Keyword.all
+    @cuisines = Cuisine.all
 
     render "new", layout: "application_back"
   end
@@ -52,6 +53,7 @@ class BusinessesController < ApplicationController
   def edit
     authorize! :update, Business
     @keywords = Keyword.all
+    @cuisines = Cuisine.all
 
     render "edit", layout: "application_back"
   end
@@ -72,10 +74,13 @@ class BusinessesController < ApplicationController
         keyword_params = request.parameters
         keywords_selected = keyword_params[:keywords_selected].nil? ? [] : keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
         @business.keywords = keywords_selected
+        cuisines_selected = keyword_params[:cuisines_selected].nil? ? [] : keyword_params[:cuisines_selected].map{|x,y| y == "1" ? (Cuisine.exists?(x) ? Cuisine.find(x) : nil) : nil} - [nil]
+        @business.cuisines = cuisines_selected
         format.html { redirect_to business_url(@business), notice: "Business was successfully created." }
         format.json { render :show, status: :created, location: @business }
       else
         @keywords = Keyword.all
+        @cuisines = Cuisine.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @business.errors, status: :unprocessable_entity }
       end
@@ -91,10 +96,13 @@ class BusinessesController < ApplicationController
         keyword_params = request.parameters
         keywords_selected = keyword_params[:keywords_selected].nil? ? [] : keyword_params[:keywords_selected].map{|x,y| y == "1" ? (Keyword.exists?(x) ? Keyword.find(x) : nil) : nil} - [nil]
         @business.keywords = keywords_selected
+        cuisines_selected = keyword_params[:cuisines_selected].nil? ? [] : keyword_params[:cuisines_selected].map{|x,y| y == "1" ? (Cuisine.exists?(x) ? Cuisine.find(x) : nil) : nil} - [nil]
+        @business.cuisines = cuisines_selected
         format.html { redirect_to business_url(@business), notice: "Business was successfully updated." }
         format.json { render :show, status: :ok, location: @business }
       else
         @keywords = Keyword.all
+        @cuisines = Cuisine.all
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @business.errors, status: :unprocessable_entity }
       end
