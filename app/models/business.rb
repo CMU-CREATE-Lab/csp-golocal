@@ -1,5 +1,6 @@
 class Business < ApplicationRecord
   has_and_belongs_to_many :keywords
+  has_and_belongs_to_many :cuisines
 
   has_one_attached :logo
   has_many_attached :gallery

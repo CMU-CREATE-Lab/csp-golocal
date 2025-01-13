@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_13_184940) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -74,11 +74,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
     t.text "delivery_information"
   end
 
+  create_table "businesses_cuisines", id: false, force: :cascade do |t|
+    t.integer "business_id", null: false
+    t.integer "cuisine_id", null: false
+  end
+
   create_table "businesses_keywords", id: false, force: :cascade do |t|
     t.integer "business_id", null: false
     t.integer "keyword_id", null: false
     t.index ["business_id"], name: "index_businesses_keywords_on_business_id"
     t.index ["keyword_id"], name: "index_businesses_keywords_on_keyword_id"
+  end
+
+  create_table "cuisines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "parent_cuisine_id"
+    t.index ["parent_cuisine_id"], name: "index_cuisines_on_parent_cuisine_id"
   end
 
   create_table "keywords", force: :cascade do |t|
@@ -122,4 +135,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cuisines", "cuisines", column: "parent_cuisine_id"
 end
