@@ -39,8 +39,12 @@
     <div class="col">
           <a style="display:block; color: inherit; text-decoration: inherit;" href="/businesses/<%=business.id%>">
               <div class="p-3 border bg-light">
-                <img src="<%= (business.logo.blank? ? "" : url_for(business.logo)) %>" alt="<%=business.name%>" style="width:100%; height:250px; object-fit: cover;" />
+                <img src="<%= (business.featured_image.blank? ? (business.logo.blank? ? "" : url_for(business.logo)) : url_for(business.featured_image)) %>" alt="<%=business.name%>" style="width:100%; height:250px; object-fit: cover;" />
                 <h3><%= business.name %></h3>
+                <div class="headline-description">
+                  <%= image_tag business.is_food_truck ? "/assets/food-truck.png" : "", title: "This Business operates as a Food Truck" %>
+                  <%= image_tag business.is_on_campus ? "/assets/on-campus.png" : "", title: "This Business is located on CMU campus" %>
+                </div>
                 <div class="headline-description">
                   <%= business.headline_description %>
                 </div>
@@ -220,8 +224,10 @@ function createDivForBusinessWithOpacity(business, withOpacity) {
   var divCol = (withOpacity) ? $("<div class=\"col\" style=\"opacity:0.5;\" />") : $("<div class=\"col\" />");
   var aLink = $('<a style="display:block; color: inherit; text-decoration: inherit;" href="'+business.link+'" />');
   var div2 = $('<div class="p-3 border bg-light" />');
-  var img = $('<img src="'+business.logo+'" alt="'+business.name+'" style="width:100%; height:250px; object-fit: contain;" />');
+  var urlfor_image = !(business.featured_image) ? business.logo : business.featured_image;
+  var img = $('<img src="'+urlfor_image+'" alt="'+business.name+'" style="width:100%; height:250px; object-fit: contain;" />');
   var h3 = $('<h3>'+business.name+'</h3>');
+  var divIndicators = $('<div class="headline-description">'+(!(business.is_food_truck) ? "" : "<img src='/assets/food-truck.png' title='This Business operates as a Food Truck'/>")+(!(business.is_on_campus) ? "" : "<img src='/assets/on-campus.png' title='This Business is located on CMU campus'/>")+'</div>');
   var divHeadline = $('<div class="headline-description">'+business.headline_description+'</div>');
   var divCategories = $('<div class="csp-index-category"><p>Dietary Restrictions: <span>'+business.span_text_for_dietary_restrictions+'</span></p></div><div class="csp-index-category"><p>Catering Options: <span>'+business.span_text_for_catering_options+'</span></p></div><div class="csp-index-category"><p>Event Sizes: <span>'+business.span_text_for_event_sizes+'</span></p></div>');
   var divKeywords = $('<div class="csp-index-keywords nodisplay" />');
@@ -238,6 +244,7 @@ function createDivForBusinessWithOpacity(business, withOpacity) {
   });
   div2.append(img);
   div2.append(h3);
+  div2.append(divIndicators);
   div2.append(divHeadline);
   div2.append(divCategories);
   div2.append(divKeywords);
@@ -252,8 +259,10 @@ function createDivForBusiness(business) {
   var divCol = $("<div class=\"col\" />");
   var aLink = $('<a style="display:block; color: inherit; text-decoration: inherit;" href="'+business.link+'" />');
   var div2 = $('<div class="p-3 border bg-light" />');
-  var img = $('<img src="'+business.logo+'" alt="'+business.name+'" style="width:100%; height:250px; object-fit: cover;" />');
+  var urlfor_image = !(business.featured_image) ? business.logo : business.featured_image;
+  var img = $('<img src="'+urlfor_image+'" alt="'+business.name+'" style="width:100%; height:250px; object-fit: cover;" />');
   var h3 = $('<h3>'+business.name+'</h3>');
+  var divIndicators = $('<div class="headline-description">'+(!(business.is_food_truck) ? "" : "<img src='/assets/food-truck.png' title='This Business operates as a Food Truck'/>")+(!(business.is_on_campus) ? "" : "<img src='/assets/on-campus.png' title='This Business is located on CMU campus'/>")+'</div>');
   var divHeadline = $('<div class="headline-description">'+business.headline_description+'</div>');
   var divCategories = $('<div class="csp-index-category"><p>Dietary Restrictions: <span>'+business.span_text_for_dietary_restrictions+'</span></p></div><div class="csp-index-category"><p>Catering Options: <span>'+business.span_text_for_catering_options+'</span></p></div><div class="csp-index-category"><p>Event Sizes: <span>'+business.span_text_for_event_sizes+'</span></p></div>');
   var divKeywords = $('<div class="csp-index-keywords nodisplay" />');
@@ -270,6 +279,7 @@ function createDivForBusiness(business) {
   });
   div2.append(img);
   div2.append(h3);
+  div2.append(divIndicators);
   div2.append(divHeadline);
   div2.append(divCategories);
   div2.append(divKeywords);

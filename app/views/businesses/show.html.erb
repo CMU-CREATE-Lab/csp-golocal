@@ -30,6 +30,8 @@
           <p><%= @business.offers_delivery ? "✅" : "❌" %> Offers Delivery</p>
           <p><%= @business.offers_catering ? "✅" : "❌" %> Offers Catering</p>
           <p><%= @business.handles_tax_exemption ? "✅" : "❌" %> Handles Tax Exemptions</p>
+          <p><%= @business.is_food_truck ? "✅" : "❌" %> Food Truck</p>
+          <p><%= @business.is_on_campus ? "✅" : "❌" %> On-Campus</p>
         </div>
         <div class="col-md-6 col-lg-6">
           <p><%= @business.vegetarian_options ? "✅" : "❌" %> Vegetarian Options</p>
@@ -103,6 +105,13 @@
       <p><i>(<%= @business.contact_name_description %>)</i></p>
       <% unless @business.contact_email.blank? %><h5>Email: <%= @business.contact_email %></h5><% end %>
       <% unless @business.contact_phone.blank? %><h5>Phone: <%= @business.contact_phone %></h5><% end %>
+<% end %>
+
+      <br/>
+
+<% unless @business.bio.blank? %>
+      <h4>Bio</h4>
+      <p><i><%= @business.bio %></i></p>
 <% end %>
 
       <br/>

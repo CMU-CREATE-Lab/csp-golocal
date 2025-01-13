@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_13_191050) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_13_222141) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -82,6 +82,10 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_13_191050) do
     t.boolean "cater_pick_up"
     t.text "headline_description"
     t.text "delivery_information"
+    t.boolean "is_food_truck"
+    t.boolean "is_on_campus"
+    t.text "bio"
+    t.string "featured_image"
   end
 
   create_table "businesses_cuisines", id: false, force: :cascade do |t|
