@@ -13,3 +13,15 @@ end
 
 Cuisine.create(name: "Asian")
 Cuisine.create(name: "Mexican")
+
+# Social Media Sites
+facebook = SocialMediaSite.create(name: 'Facebook')
+twitter = SocialMediaSite.create(name: 'Twitter')
+instagram = SocialMediaSite.create(name: 'Instagram')
+website = SocialMediaSite.create(name: 'Website')
+# Attach logos
+# (taken from: https://icons8.com/icons/set/social-media)
+facebook.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-media-sites', 'facebook-logo.png')), filename: 'facebook-logo.png')
+twitter.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-media-sites', 'twitter-logo.png')), filename: 'twitter-logo.png')
+instagram.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-media-sites', 'instagram-logo.png')), filename: 'instagram-logo.png')
+website.logo.attach(io: File.open(Rails.root.join('public', 'assets', 'social-media-sites', 'website-logo.png')), filename: 'website-logo.png')
