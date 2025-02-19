@@ -1,4 +1,6 @@
 class SocialMediaSitesController < ApplicationController
+
+  before_action :check_authorization
   before_action :set_social_media_site, only: %i[ show edit update destroy ]
 
   # GET /social_media_sites or /social_media_sites.json
@@ -58,6 +60,10 @@ class SocialMediaSitesController < ApplicationController
   end
 
   private
+    def check_authorization
+      authorize! :manage, SocialMediaSite
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_social_media_site
       @social_media_site = SocialMediaSite.find(params[:id])

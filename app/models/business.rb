@@ -5,7 +5,7 @@ class Business < ApplicationRecord
   has_one_attached :logo
   has_one_attached :featured_image
   has_many_attached :gallery
-  has_and_belongs_to_many :social_media_site, join_table: :business_social_media_site
+  has_many :business_social_media_sites, join_table: :business_social_media_site
 
   validates :logo, content_type: ['image/png', 'image/jpeg'], size: { less_than: 5.megabytes }
   validates :featured_image, content_type: ['image/png', 'image/jpeg'], size: { less_than: 5.megabytes }

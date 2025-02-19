@@ -1,0 +1,12 @@
+<h1>Business Social Media Sites</h1>
+
+<p style="color: green"><%= notice %></p>
+
+<%= render 'table_index', business: @business, business_social_media_sites: @business_social_media_sites, include_edit_delete: true %>
+
+<% if @business %>
+<p><%= link_to "Create new", new_business_business_social_media_site_path(@business) %></p>
+<p><%= link_to "Back to edit business", edit_business_path(@business) %></p>
+<% else %>
+<p><%## note: this path is not currently defined (nested resources)... = link_to "Create new", new_business_social_media_site_path %></p>
+<% end %>

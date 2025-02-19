@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :cuisines
+  ## TODO way to edit (admin only)
   resources :social_media_sites
 
   resources :keywords, only: [ :index, :new, :create, :edit, :update, :destroy ]
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   get "businesses/:id/edit_gallery", to: "businesses#edit_gallery"
   resources :businesses do
     resources :keywords, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    ## TODO consider way to query business_social_media_sites without nested resources? (admin only)
+    resources :business_social_media_sites, only: [ :index, :new, :create, :edit, :update, :destroy ]
   end
 
   get 'user/login', to: "user#user_login"
