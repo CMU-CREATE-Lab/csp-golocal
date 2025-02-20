@@ -20,16 +20,30 @@ class BusinessSocialMediaSitesController < ApplicationController
   end
 
   def update
-    ## TODO actions (...this is copied from Keyword controller)
-    # respond_to do |format|
-    #   if @keyword.update(keyword_params)
-    #     format.html { redirect_to (@business ? business_keywords_path(@business) : keywords_path), notice: "Keyword was successfully updated." }
-    #     format.json { render :index, status: :ok, location: @keyword }
-    #   else
-    #     format.html { render :edit, status: :unprocessable_entity }
-    #     format.json { render json: @keyword.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @business_social_media_site.update(business_social_media_site_params)
+        format.html { redirect_to (@business ? business_business_social_media_sites_path(@business) : business_business_social_media_sites_path), notice: "Business Social Media Site was successfully updated." }
+        format.json { render :index, status: :ok, location: @business_social_media_site }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @business_social_media_site.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create
+    @business_social_media_site = BusinessSocialMediaSite.new(business_social_media_site_params)
+    #@keyword = Keyword.new(keyword_params)
+
+    respond_to do |format|
+      if @business_social_media_site.save
+        format.html { redirect_to (@business ? business_business_social_media_sites_path(@business) : @business_social_media_site), notice: "Keyword was successfully created." }
+        format.json { render :index, status: :created, location: @business_social_media_site }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @business_social_media_site.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
@@ -51,11 +65,10 @@ class BusinessSocialMediaSitesController < ApplicationController
       @business_social_media_site = BusinessSocialMediaSite.find(params[:id])
     end
 
-    ## TODO : Handle params...???
-    # # Only allow a list of trusted parameters through.
-    # def keyword_params
-    #   params.require(:business_social_media_site).permit(:url)
-    # end
+    # Only allow a list of trusted parameters through.
+    def business_social_media_site_params
+      params.require(:business_social_media_site).permit(:url, :business_id, :social_media_site_id)
+    end
 
     def set_business
       @business = Business.find(params[:business_id]) if params[:business_id]
