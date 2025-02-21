@@ -155,7 +155,13 @@ div.headline-description {
 
 div.csp-index-category {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   color: #A1A1A1;
   padding-bottom: 5px;
+}
+
+div.csp-index-category p span {
+  font-weight: normal;
+  font-size: 16px;
+  color: #A1A1A1;
 }
