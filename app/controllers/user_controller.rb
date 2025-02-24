@@ -32,8 +32,8 @@ class UserController < ApplicationController
       redirect_to "/user/login"
     end
     @businesses = Business.all
-    @businesses_published = Business.where(:is_published => true)
-    @businesses_unpublished = @businesses - @businesses_published
+    @businesses_published = Business.where(:is_published => true).order('LOWER(name) ASC')
+    @businesses_unpublished = Business.where(:is_published => false).order('LOWER(name) ASC')
   end
 
   def index
