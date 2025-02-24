@@ -29,11 +29,11 @@ Rails.application.routes.draw do
   #root "home#landing"
   root to: redirect("/businesses")
 
-  # header links
-  get '/about-us', to: "home#about_us"
-  get '/partner-with-us', to: "home#about_partner_with_us"
-  get '/catering-tips', to: "home#about_catering_tips"
-  get '/our-partners', to: "home#about_our_partners"
-  get '/about-events', to: "home#about_events"
-  get '/testimonials', to: "home#about_testimonials"
+  # # header links
+  # get '/about-us', to: "home#about_us"
+  # get '/partner-with-us', to: "home#about_partner_with_us"
+  # get '/catering-tips', to: "home#about_catering_tips"
+  # get '/our-partners', to: "home#about_our_partners"
+  # get '/about-events', to: "home#about_events"
+  # get '/testimonials', to: "home#about_testimonials"
 end
