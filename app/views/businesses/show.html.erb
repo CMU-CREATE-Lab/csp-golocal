@@ -14,6 +14,7 @@
   </div>
 
   <% unless @business.gallery.empty? %>
+  <div class="container">
       <h4>Photo Gallery</h4>
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -53,6 +54,7 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+  </div>
   <% end %>
 </div>
 
@@ -151,6 +153,19 @@
 
       <br/>
 
+      <h4>Social Media</h4>
+
+      <div class="row">
+        <div class="col-md-10 col-lg-10">
+          <% @business.business_social_media_sites.each do |business_social_media_site| %>
+          <%= link_to(image_tag(business_social_media_site.social_media_site.logo, height: "48"), business_social_media_site.url, target: '_blank') %>
+          <% end %>
+          <br/>
+        </div>
+      </div>
+
+      <br/>
+
 <% unless @business.bio.blank? %>
       <h4>Bio</h4>
       <p><i><%= @business.bio %></i></p>
@@ -158,8 +173,6 @@
 
       <br/>
 
-    </div>
-    <div class="col-md-2 col-lg-2">
     </div>
   </div>
 </div>
