@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_13_222141) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "business_social_media_sites", force: :cascade do |t|
+    t.integer "business_id", null: false
+    t.integer "social_media_site_id", null: false
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_business_social_media_sites_on_business_id"
+    t.index ["social_media_site_id"], name: "index_business_social_media_sites_on_social_media_site_id"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -72,6 +82,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
     t.boolean "cater_pick_up"
     t.text "headline_description"
     t.text "delivery_information"
+    t.boolean "is_food_truck"
+    t.boolean "is_on_campus"
+    t.text "bio"
+    t.string "featured_image"
+  end
+
+  create_table "businesses_cuisines", id: false, force: :cascade do |t|
+    t.integer "business_id", null: false
+    t.integer "cuisine_id", null: false
   end
 
   create_table "businesses_keywords", id: false, force: :cascade do |t|
@@ -81,9 +100,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
     t.index ["keyword_id"], name: "index_businesses_keywords_on_keyword_id"
   end
 
+  create_table "cuisines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "parent_cuisine_id"
+    t.index ["parent_cuisine_id"], name: "index_cuisines_on_parent_cuisine_id"
+  end
+
   create_table "keywords", force: :cascade do |t|
     t.string "name"
     t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "social_media_sites", force: :cascade do |t|
+    t.string "name"
+    t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -122,4 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_163151) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "business_social_media_sites", "businesses"
+  add_foreign_key "business_social_media_sites", "social_media_sites"
+  add_foreign_key "cuisines", "cuisines", column: "parent_cuisine_id"
 end

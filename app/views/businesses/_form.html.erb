@@ -23,21 +23,95 @@
 
   <div>
     <%= form.label :logo, style: "display: block" %>
+    <small class="text-muted">Displays on the full page for the business.</small>
     <%= form.file_field :logo %>
   </div>
 
+<br/>
+<br/>
+<br/>
+
+<h3>Highlights (Displays on Landing Page)</h3>
   <div>
-    <%= form.label :handles_tax_exemption, style: "display: block" %>
-    <%= form.check_box :handles_tax_exemption %>
+    <%= form.label :featured_image, style: "display: block" %>
+    <small class="text-muted">Main image for the thumnail on the list of businesses page. Logo image is used otherwise.</small>
+    <%= form.file_field :featured_image %>
+  </div>
+  
+  <div>
+    <%= form.label :is_food_truck, style: "display: block" %>
+    <%= form.check_box :is_food_truck %>
   </div>
 
   <div>
-    <%= form.label :headline_description, style: "display: block" %>
-    <%= form.text_area :headline_description %>
+    <%= form.label :is_on_campus, style: "display: block" %>
+    <%= form.check_box :is_on_campus %>
+  </div>
+
+  <br/>
+  <h4>Dietary Restrictions</h3>
+  <div>
+    <%= form.label :vegetarian_options, style: "display: block" %>
+    <%= form.check_box :vegetarian_options %>
+  </div>
+
+  <div>
+    <%= form.label :vegan_options, style: "display: block" %>
+    <%= form.check_box :vegan_options %>
+  </div>
+
+  <div>
+    <%= form.label :gluten_free_options, style: "display: block" %>
+    <%= form.check_box :gluten_free_options %>
+  </div>
+
+  <br/>
+  <h4>Catering Options</h3>
+<div>
+  <div>
+    <%= form.label :offers_catering, style: "display: block" %>
+    <%= form.check_box :offers_catering %>
+  </div>
+
+  <div>
+    <%= form.label :catering_hours, style: "display: block" %>
+    <%= form.text_area :catering_hours %>
+  </div>
+
+  <div>
+    <%= form.label :cater_pick_up, style: "display: block" %>
+    <%= form.check_box :cater_pick_up %>
+  </div>
+
+  <div>
+    <%= form.label :cater_drop_off, style: "display: block" %>
+    <%= form.check_box :cater_drop_off %>
+  </div>
+
+  <div>
+    <%= form.label :cater_setup, style: "display: block" %>
+    <%= form.check_box :cater_setup %>
+  </div>
+
+  <div>
+    <%= form.label :cater_full_service, style: "display: block" %>
+    <%= form.check_box :cater_full_service %>
   </div>
 
 <br/>
-<h3>Business Information</h3>
+
+
+</div>
+
+<br/>
+<br/>
+<br/>
+
+
+<br/>
+
+<br/>
+  <h3>Business Information</h3>
 
   <div>
     <%= form.label :offers_delivery, style: "display: block" %>
@@ -88,39 +162,8 @@
   </div>
 
 <br/>
-<h3>Catering Options</h3>
 
-  <div>
-    <%= form.label :offers_catering, style: "display: block" %>
-    <%= form.check_box :offers_catering %>
-  </div>
-
-  <div>
-    <%= form.label :catering_hours, style: "display: block" %>
-    <%= form.text_area :catering_hours %>
-  </div>
-
-  <div>
-    <%= form.label :cater_pick_up, style: "display: block" %>
-    <%= form.check_box :cater_pick_up %>
-  </div>
-
-  <div>
-    <%= form.label :cater_drop_off, style: "display: block" %>
-    <%= form.check_box :cater_drop_off %>
-  </div>
-
-  <div>
-    <%= form.label :cater_setup, style: "display: block" %>
-    <%= form.check_box :cater_setup %>
-  </div>
-
-  <div>
-    <%= form.label :cater_full_service, style: "display: block" %>
-    <%= form.check_box :cater_full_service %>
-  </div>
-
-<br/>
+<h3>Catering (Details)</h3>
 <h4>Small Catering</h4>
 <p class="label-description">Small order sizes are between 1 and 25</p>
 
@@ -177,32 +220,22 @@
   </div>
 
 <br/>
-<h3>Dietary Restrictions</h3>
-
-  <div>
-    <%= form.label :vegetarian_options, style: "display: block" %>
-    <%= form.check_box :vegetarian_options %>
-  </div>
-
-  <div>
-    <%= form.label :vegan_options, style: "display: block" %>
-    <%= form.check_box :vegan_options %>
-  </div>
-
-  <div>
-    <%= form.label :gluten_free_options, style: "display: block" %>
-    <%= form.check_box :gluten_free_options %>
-  </div>
-
-<br/>
 <br/>
 <br/>
 
-<h3>Keywords</h3>
+<h3>Social Media Sites</h3>
 
-  <div>
-    <%= form.label :keywords, style: "display: block" %>
-    <%= render "form_keywords", business: business, keywords: @keywords, form: form %>
+  <div>  
+    <%= form.label :social_media_sites, style: "display: block" %>
+    <% ## <%= render "form_business_social_media_sites", business: business, form: form #%#>
+    %>
+
+    <% if @business and @business.id %>
+    <p><%= link_to "Add more or edit here", business_business_social_media_sites_path(@business) %></p>
+    <% else %>
+    <p><i>Create this business first to edit Social Media Sites.</i></p>
+    <% end %>
+    <%= render 'business_social_media_sites/table_index', business: business, business_social_media_sites: business.business_social_media_sites %>
   </div>
 
 <br/>
@@ -211,6 +244,7 @@
 
 <h3>Gallery</h3>
 
+<div>
 <% if form_includes_gallery %>
   <div>
     <%= form.label :gallery, style: "display: block" %>
@@ -223,6 +257,54 @@
     <p><%= link_to "Edit the photo gallery", "/businesses/#{business.id}/edit_gallery" %></p>
   </div>
 <% end %>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<h3>Extras</h3>
+
+  <div>
+    <%= form.label :handles_tax_exemption, style: "display: block" %>
+    <%= form.check_box :handles_tax_exemption %>
+  </div>
+
+  <br/>
+
+  <div>
+    <%= form.label :headline_description, style: "display: block" %>
+    <small class="text-muted">Appears at the top of the full page for the business.</small>
+    <br/>
+    <%= form.text_area :headline_description %>
+  </div>
+
+  <br/>
+
+  <div>
+    <%= form.label :bio, style: "display: block" %>
+    <small class="text-muted">Appears at the bottom of the full page for the business.</small>
+    <br/>
+    <%= form.text_area :bio %>
+  </div>
+
+  <br/>
+  <br/>
+
+  <h4>Keywords</h3>
+  <div>
+    <%= form.label :keywords, style: "display: block" %>
+    <%= render "form_keywords", business: business, keywords: @keywords, form: form %>
+  </div>
+
+<%## TODO Hide Cuisines, for now %>
+<div style="display: none;">
+  <h4>Cuisine Types</h4>
+  <div>
+      <%= form.label :Cuisines, style: "display: block" %>
+      <%= render "form_cuisines", business: business, cuisines: @cuisines, form: form %>
+  </div>
+</div>
 
 <br/>
 <br/>

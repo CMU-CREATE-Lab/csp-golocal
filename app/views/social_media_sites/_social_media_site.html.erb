@@ -1,0 +1,13 @@
+<div id="<%= dom_id social_media_site %>">
+  <p>
+    <strong>Name:</strong>
+    <%= social_media_site.name %>
+  </p>
+
+  <p>
+    <strong>Logo:</strong>
+    <%= image_tag(social_media_site.logo) if social_media_site.logo.attached? %>
+    <%= link_to social_media_site.logo.filename, social_media_site.logo if social_media_site.logo.attached? %>
+  </p>
+
+</div>

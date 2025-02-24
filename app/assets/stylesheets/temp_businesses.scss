@@ -27,6 +27,8 @@ div.csp-header h2 a {
 
 div.csp-header .csp-header-buttons {
   position: absolute;
+  /* easy way to ensure button stays in front of other layouts */
+  z-index: 10;
   margin-left: 10px;
   margin-top: 0;
   font-size: 30px;
@@ -35,6 +37,13 @@ div.csp-header .csp-header-buttons {
 
 div.csp-header .csp-header-buttons a {
   color: #000;
+}
+
+div.csp-header div.csp-header-links a {
+  color: #000; /* link default is #337ab7 */
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 16px;
 }
 
 
@@ -78,6 +87,10 @@ div.csp-index-keywords span {
 div.csp-index-keywords span.keywords-selected {
   color: #eee;
   background-color: #111;
+}
+
+div.csp-index-keywords.nodisplay {
+  display: none;
 }
 
 div.csp-search-disclaimer p {
@@ -135,7 +148,20 @@ p.label-description {
 div.headline-description {
   font-style: italic;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   color: #465F8B;
   padding-bottom: 20px;
+}
+
+div.csp-index-category {
+  font-weight: bold;
+  font-size: 16px;
+  color: #A1A1A1;
+  padding-bottom: 5px;
+}
+
+div.csp-index-category p span {
+  font-weight: normal;
+  font-size: 16px;
+  color: #A1A1A1;
 }

@@ -1,0 +1,21 @@
+<% if cuisines.empty? %>
+<p><i>No cuisines to display.</i></p>
+<%= form.hidden_field "cuisines_selected" %>
+<% else %>
+<table class="table">
+<thead>
+<tr>
+  <th scope="col">Cuisine Name</th>
+  <th scope="col">Parent Cuisine?</th>
+  <th scope="col">Current Business</th>
+</tr>
+</thead>
+<% @cuisines.each do |cuisine| %>
+<tr>
+  <td><%= cuisine.name %></td>
+  <td><%= cuisine.parent_cuisine.blank? ? "" : cuisine.parent_cuisine.name %></td>
+  <td><%= form.check_box "cuisines_selected_#{cuisine.id}", { :name => "cuisines_selected[#{cuisine.id}]", :checked_value => cuisine.id, :checked => business.cuisines.include?(cuisine) } %></td>
+</tr>
+<% end %>
+</table>
+<% end %>

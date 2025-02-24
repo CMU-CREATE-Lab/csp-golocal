@@ -1,0 +1,16 @@
+<h1>BusinessSocialMediaSites#edit</h1>
+<p>Find me in app/views/business_social_media_sites/edit.html.erb</p>
+
+<% if @business %>
+<%= render 'form', business: @business, business_social_media_site: @business_social_media_site %>
+<br/>
+<br/>
+<br/>
+<p><%= link_to "Back to Social Media Sites for #{@business.name}", business_business_social_media_sites_path(@business) %></p>
+<% else %>
+<%## note: this path is not currently defined (nested resources)... = render 'form', business: @business, business_social_media_site: @business_social_media_site %>
+<br/>
+<br/>
+<br/>
+<p><%## note: this path is not currently defined (nested resources)... = link_to "Back to Social Media Sites for #{@business.name}", business_business_social_media_sites_path(@business) %></p>
+<% end %>

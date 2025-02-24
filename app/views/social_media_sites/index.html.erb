@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Social media sites</h1>
+
+<div id="social_media_sites">
+  <% @social_media_sites.each do |social_media_site| %>
+    <%= render social_media_site %>
+    <p>
+      <%= link_to "Show this social media site", social_media_site %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New social media site", new_social_media_site_path %>
