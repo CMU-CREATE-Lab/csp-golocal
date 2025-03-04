@@ -92,6 +92,14 @@
 <% unless @business.address.blank? %>
       <h5><a target="_blank" href="http://maps.google.com/?q=<%= @business.address %>"><span class="glyphicon glyphicon-map-marker"></span> Address (Google Maps) <p><%= @business.address %></p></a></h5>
 <% end %>
+      <div class="row">
+        <div class="col-md-10 col-lg-10">
+          <% @business.business_social_media_sites.each do |business_social_media_site| %>
+          <%= link_to(image_tag(business_social_media_site.social_media_site.logo, height: "48"), business_social_media_site.url, target: '_blank') %>
+          <% end %>
+          <br/>
+        </div>
+      </div>
 <% unless @business.delivery_information.blank? %>
       <h5>Delivery Information: <%= @business.delivery_information %></h5>
 <% end %>
@@ -150,19 +158,6 @@
       <% unless @business.contact_email.blank? %><h5>Email: <%= @business.contact_email %></h5><% end %>
       <% unless @business.contact_phone.blank? %><h5>Phone: <%= @business.contact_phone %></h5><% end %>
 <% end %>
-
-      <br/>
-
-      <h4>Social Media</h4>
-
-      <div class="row">
-        <div class="col-md-10 col-lg-10">
-          <% @business.business_social_media_sites.each do |business_social_media_site| %>
-          <%= link_to(image_tag(business_social_media_site.social_media_site.logo, height: "48"), business_social_media_site.url, target: '_blank') %>
-          <% end %>
-          <br/>
-        </div>
-      </div>
 
       <br/>
 
