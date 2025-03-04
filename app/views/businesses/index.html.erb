@@ -43,6 +43,7 @@
                 <div class="headline-description">
                   <%= image_tag business.is_food_truck ? "/assets/food-truck.png" : "", title: "This Business operates as a Food Truck" %>
                   <%= image_tag business.is_on_campus ? "/assets/on-campus.png" : "", title: "This Business is located on CMU campus" %>
+                  <%= image_tag business.is_phdc ? "/assets/phdc.png" : "", title: "This is a PHDC Business" %>
                 </div>
                 <div class="headline-description">
                   <%= business.headline_description %>
@@ -226,7 +227,9 @@ function createDivForBusinessWithOpacity(business, withOpacity) {
   var urlfor_image = !(business.featured_image) ? business.logo : business.featured_image;
   var img = $('<img src="'+urlfor_image+'" alt="'+business.name+'" style="width:100%; height:250px; object-fit: contain;" />');
   var h3 = $('<h3>'+business.name+'</h3>');
-  var divIndicators = $('<div class="headline-description">'+(!(business.is_food_truck) ? "" : "<img src='/assets/food-truck.png' title='This Business operates as a Food Truck'/>")+(!(business.is_on_campus) ? "" : "<img src='/assets/on-campus.png' title='This Business is located on CMU campus'/>")+'</div>');
+  var divIndicators = $('<div class="headline-description">'+(!(business.is_food_truck) ? "" : "<img src='/assets/food-truck.png' title='This Business operates as a Food Truck'/>")+(!(business.is_on_campus) ? "" : "<img src='/assets/on-campus.png' title='This Business is located on CMU campus'/>")+(!(business.is_phdc) ? "" : "<img src='/assets/phdc.png' title='This is a PHDC Business'/>")+'</div>');
+  //(!(business.is_phdc) ? "" : "<img src='/assets/phdc.png' title='This is a PHDC Business'/>")
+  //TODO PHDC
   var divHeadline = $('<div class="headline-description">'+business.headline_description+'</div>');
   var divCategories = $('<div class="csp-index-category"><p>Dietary Restrictions: <span>'+business.span_text_for_dietary_restrictions+'</span></p></div><div class="csp-index-category"><p>Catering Options: <span>'+business.span_text_for_catering_options+'</span></p></div><div class="csp-index-category"><p>Event Sizes: <span>'+business.span_text_for_event_sizes+'</span></p></div>');
   var divKeywords = $('<div class="csp-index-keywords nodisplay" />');
@@ -261,7 +264,9 @@ function createDivForBusiness(business) {
   var urlfor_image = !(business.featured_image) ? business.logo : business.featured_image;
   var img = $('<img src="'+urlfor_image+'" alt="'+business.name+'" style="width:100%; height:250px; object-fit: cover;" />');
   var h3 = $('<h3>'+business.name+'</h3>');
-  var divIndicators = $('<div class="headline-description">'+(!(business.is_food_truck) ? "" : "<img src='/assets/food-truck.png' title='This Business operates as a Food Truck'/>")+(!(business.is_on_campus) ? "" : "<img src='/assets/on-campus.png' title='This Business is located on CMU campus'/>")+'</div>');
+  var divIndicators = $('<div class="headline-description">'+(!(business.is_food_truck) ? "" : "<img src='/assets/food-truck.png' title='This Business operates as a Food Truck'/>")+(!(business.is_on_campus) ? "" : "<img src='/assets/on-campus.png' title='This Business is located on CMU campus'/>")+(!(business.is_phdc) ? "" : "<img src='/assets/phdc.png' title='This is a PHDC Business'/>")+'</div>');
+  //(!(business.is_phdc) ? "" : "<img src='/assets/phdc.png' title='This is a PHDC Business'/>")
+  // TODO PHDC
   var divHeadline = $('<div class="headline-description">'+business.headline_description+'</div>');
   var divCategories = $('<div class="csp-index-category"><p>Dietary Restrictions: <span>'+business.span_text_for_dietary_restrictions+'</span></p></div><div class="csp-index-category"><p>Catering Options: <span>'+business.span_text_for_catering_options+'</span></p></div><div class="csp-index-category"><p>Event Sizes: <span>'+business.span_text_for_event_sizes+'</span></p></div>');
   var divKeywords = $('<div class="csp-index-keywords nodisplay" />');
