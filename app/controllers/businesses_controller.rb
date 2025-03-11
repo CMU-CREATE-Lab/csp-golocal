@@ -129,6 +129,46 @@ class BusinessesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def business_params
-      params.require(:business).permit(:name, :headline_description, :delivery_information, :logo, :business_hours, :catering_hours, :address, :website_link, :contact_name_description, :contact_email, :contact_phone, :menu_link, :offers_delivery, :offers_catering, :vegetarian_options, :vegan_options, :gluten_free_options, :handles_tax_exemption, :handles_small_cater_size, :handles_medium_cater_size, :handles_large_cater_size, :handles_xlarge_cater_size, :small_cater_size_lead_time, :medium_cater_size_lead_time, :large_cater_size_lead_time, :xlarge_cater_size_lead_time, :cater_pick_up, :cater_drop_off, :cater_setup, :cater_full_service, :is_published, :is_food_truck, :is_on_campus, :is_phdc, :featured_image, :bio, gallery: [])
+      params.require(:business)
+        .permit(
+          :name, 
+          :headline_description, 
+          :delivery_information, 
+          :logo, 
+          :business_hours, 
+          :catering_hours, 
+          :address, 
+          :website_link, 
+          :contact_name_description, 
+          :contact_email, 
+          :contact_phone, 
+          :menu_link, 
+          :offers_delivery, 
+          :offers_catering, 
+          :vegetarian_options, 
+          :vegan_options, 
+          :halal_options, 
+          :gluten_free_options, 
+          :handles_tax_exemption, 
+          :handles_small_cater_size, 
+          :handles_medium_cater_size, 
+          :handles_large_cater_size, 
+          :handles_xlarge_cater_size, 
+          :small_cater_size_lead_time, 
+          :medium_cater_size_lead_time, 
+          :large_cater_size_lead_time, 
+          :xlarge_cater_size_lead_time, 
+          :cater_pick_up, 
+          :cater_drop_off, 
+          :cater_setup, 
+          :cater_full_service, 
+          :is_published, 
+          :is_food_truck, 
+          :is_on_campus, 
+          :is_phdc, 
+          :featured_image, 
+          :bio, 
+          gallery: []
+        )
     end
 end
