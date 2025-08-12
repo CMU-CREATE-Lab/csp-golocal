@@ -5,7 +5,7 @@ lock '~> 3.17'
 set :application, 'csp-golocal'
 set :deploy_to, "/var/www/#{fetch(:application)}/#{fetch(:stage)}"
 
-set :linked_dirs, %w{ log storage public/system public/assets tmp/cache }
+set :linked_dirs, %w{ log storage public/system public/assets public/downloads tmp/cache }
 
 # shared resources (currently defined in each deploy/stage file)
 #set :linked_dirs, %w(log public/system tmp/cache)
