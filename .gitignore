@@ -42,3 +42,6 @@ db/seeds/
 
 # Ignore demophotos directory
 public/demophotos/
+
+# Ignore linked directory (shows up on production)
+public/downloads
