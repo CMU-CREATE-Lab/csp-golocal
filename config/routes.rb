@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :news_posts
   resources :cuisines
   ## TODO way to edit (admin only)
   resources :social_media_sites
