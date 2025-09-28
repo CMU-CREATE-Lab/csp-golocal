@@ -1,8 +1,11 @@
-//= require jquery3
-//= require popper
-//= require bootstrap
-
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-import * as bootstrap from "bootstrap"
+//// NOTE: Bootstrap 3 can't use imports
+//import * as bootstrap from "bootstrap"
+
+// ...= require jquery3
+// ...= require popper
+// ...= require bootstrap
+// ...Use Only Importmap
+
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails

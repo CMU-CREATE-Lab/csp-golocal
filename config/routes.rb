@@ -117,6 +117,29 @@ Rails.application.routes.draw do
 
   # --
 
+  ## RUBYGEMS: rails_admin, administrate
+  ## leaving notes on these, but I don't recommend using.
+  #
+  ## ... (from Gemfile):
+  # # after install: `rails g rails_admin:install`
+  # # (also removed rails_admin.scss)
+  # gem "rails_admin"
+  # # after install: `rails g administrate:install`
+  # gem "administrate"
+  ## ... (routes)
+  # if Rails.env.development?
+  #   ## (not necessary to include for rails_db gem)
+  #   #mount RailsDb::Engine => '/rails/db', as: 'rails_db'
+  #
+  #   #Administrate or RailsAdmin or ActiveAdmin
+  #   ## ignore for now (requires sass build and SCSS changes)
+  #   ##mount RailsAdmin::Engine => '/rails_admin', as: 'rails_admin'
+  #   namespace :admin do
+  #     # Administrate dashboard routes
+  #     Administrate::Engine.routes
+  #   end
+  # end
+
   ## Example legacy route for the home controller
   #get '/about-events', to: "home#about_events"
 end
