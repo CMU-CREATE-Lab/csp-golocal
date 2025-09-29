@@ -1,14 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <h1>News</h1>
+  <hr/>
+  <br/>
 
-<h1>News posts</h1>
-
-<div id="news_posts">
   <% @news_posts.each do |news_post| %>
-    <%= render news_post %>
+    <div id="<%= dom_id news_post %>">
+      <h1><%= news_post.title %></h1>
+      <h3><i>Created: <%= news_post.created_at.strftime("%B %d, %Y") %></i></h3>
+    </div>
     <p>
-      <%= link_to "Show this news post", news_post %>
+      <%= link_to "Read more", about_news_path(news_post.id) %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New news post", new_news_post_path %>

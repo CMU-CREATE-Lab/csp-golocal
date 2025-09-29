@@ -1,15 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div id="<%= dom_id @news_post %>">
+    <h1><%= @news_post.title %></h1>
+    <h3><i>Created: <%= @news_post.created_at.strftime("%B %d, %Y") %></i></h3>
+  </div>
 
-<%= render @news_post %>
+  <hr/>
 
-<div>
-  <%= link_to "Edit this news post", edit_news_post_path(@news_post) %> |
-  <%= link_to "Back to news posts", news_posts_path %>
-
-  <%= button_to "Destroy this news post", @news_post, method: :delete %>
+  <div>
+    <%= @safe_html_content %>
+  </div>
 </div>
-
-<hr/>
-
-<h1>HTML Generated From Markdown</h1>
-<%= @safe_html_content %>
