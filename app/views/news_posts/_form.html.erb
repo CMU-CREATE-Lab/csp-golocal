@@ -1,4 +1,4 @@
-<%= form_with(model: news_post) do |form| %>
+<%= form_with(model: news_post, data: { controller: "form-handler-markdown", action: "submit->form-handler-markdown#beforeSubmit" }) do |form| %>
   <% if news_post.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(news_post.errors.count, "error") %> prohibited this news_post from being saved:</h2>
@@ -18,7 +18,8 @@
 
   <div>
     <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+    <small class="text-muted"><a target="_blank" href="https://commonmark.org/help/">Click Here</a> for more info about markdown syntax.</small>
+    <%= form.text_area :content, data: { controller: "markdown" } %>
   </div>
 
   <div>

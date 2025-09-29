@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ace-rails-ap (4.5)
     actioncable (7.0.5)
       actionpack (= 7.0.5)
       activesupport (= 7.0.5)
@@ -92,6 +93,8 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
+    bootstrap-markdown-editor-rails (1.2.1)
+      railties (> 3.1)
     builder (3.2.4)
     cancancan (3.5.0)
     capistrano (3.17.3)
@@ -340,11 +343,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ace-rails-ap
   active_storage_validations
   better_errors
   binding_of_caller
   bootsnap
   bootstrap (~> 5.2.0)
+  bootstrap-markdown-editor-rails
   cancancan
   capistrano (~> 3.17)
   capistrano-sudo
