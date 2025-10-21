@@ -3,7 +3,7 @@ class About::NewsPostsController < ApplicationController
   layout "application_front"
 
   def index
-    @news_posts = NewsPost.where(published: true)
+    @news_posts = NewsPost.where(published: true).order(created_at: :desc)
   end
 
   def show
