@@ -1,6 +1,4 @@
-
-<div class="container">
-    <%= link_to 'Back', :back %>
+<% content_for :body do %>
 
     <h1>About Us</h1>
 
@@ -8,4 +6,6 @@
 
     <p>There is nothing more powerful than coming together over a meal, and this project was inspired by the countless administrative assistants who build community on campus every time they order catering for meetings and events. Cornelia Moore, long time Purchasing Manager in Civil & Environmental Engineering and now retired, created the first known campus directory of local businesses that was widely circulated and used at Carnegie Mellon. With gratitude for her wisdom and initiative, we offer GoLocal as a resource to university staff, faculty, and students who want to buy local.</p>
 
-</div>
+<% end %>
+
+<%= render 'about/about_layout' %>

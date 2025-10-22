@@ -1,9 +1,9 @@
-
-<div class="container">
-    <%= link_to 'Back', :back %>
+<% content_for :body do %>
 
     <h1>Testimonials</h1>
 
     <p>Ordered food from a GoLocal vendor and loved it? Submit a GoLocal testimonial using <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFULRglUt2mMWBm1TXDHkSHjx4UzQEp_arGxZEQn8FXxjmzw/viewform">this form</a>.</p>
 
-</div>
+<% end %>
+
+<%= render 'about/about_layout' %>

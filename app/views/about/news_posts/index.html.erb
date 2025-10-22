@@ -1,19 +1,21 @@
-<div class="container">
-  <%= link_to 'Back', :back %>
+<% content_for :body do %>
 
-  <h1>News</h1>
+    <h1>News</h1>
 
-<% @news_posts.each do |news_post| %>
+  <% @news_posts.each do |news_post| %>
 
-  <div class="row" style="margin-bottom: 45px;">
-    <div id="<%= dom_id news_post %>">
-      <h1><%= news_post.title %></h1>
-      <h3><i>Created: <%= news_post.created_at.strftime("%B %d, %Y") %></i></h3>
+    <div class="row" style="margin-bottom: 45px;">
+      <div id="<%= dom_id news_post %>">
+        <h1><%= news_post.title %></h1>
+        <h3><i>Created: <%= news_post.created_at.strftime("%B %d, %Y") %></i></h3>
+      </div>
+      <p>
+        <%= link_to "Read more", about_news_path(news_post.id) %>
+      </p>
     </div>
-    <p>
-      <%= link_to "Read more", about_news_path(news_post.id) %>
-    </p>
-  </div>
+
+  <% end %>
 
 <% end %>
-</div>
+
+<%= render 'about/about_layout' %>

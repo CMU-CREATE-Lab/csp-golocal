@@ -1,6 +1,4 @@
-
-<div class="container">
-    <%= link_to 'Back', :back %>
+<% content_for :body do %>
 
     <h1>Our Partners</h1>
 
@@ -10,4 +8,6 @@
 
     <p>Working together we can make a difference for small local food businesses, whether they are just starting up or a vital part of our city's fabric.</p>
 
-</div>
+<% end %>
+
+<%= render 'about/about_layout' %>

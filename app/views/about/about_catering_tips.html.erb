@@ -1,6 +1,4 @@
-
-<div class="container">
-    <%= link_to 'Back', :back %>
+<% content_for :body do %>
 
     <h1>Catering Tips</h1>
 
@@ -19,4 +17,6 @@
       <li>Check out the CMU Procurement Manual for additional information about the rules and regulations of buying stuff with university funds: <a href="https://www.cmu.edu/finance/procurementservices/policies-procedures/procurement-manual.html">https://www.cmu.edu/finance/procurementservices/policies-procedures/procurement-manual.html</a></li>
     </ol>
 
-</div>
+<% end %>
+
+<%= render 'about/about_layout' %>

@@ -1,6 +1,4 @@
-
-<div class="container">
-    <%= link_to 'Back', :back %>
+<% content_for :body do %>
 
     <h1>Join GoLocal</h1>
 
@@ -8,4 +6,6 @@
 
     <p>If you know of a local food business that you've worked with and would like to see on GoLocal, please <a href="mailto:centerforsharedprosperity@gmail.com">email us</a> and we will reach out to them.</p>
 
-</div>
+<% end %>
+
+<%= render 'about/about_layout' %>
