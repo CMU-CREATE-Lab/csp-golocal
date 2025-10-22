@@ -67,6 +67,14 @@ gem 'sorcery'
 # validations for active storage (https://stackoverflow.com/questions/70182977/how-to-restrict-file-type-in-rails-has-many-attached)
 gem 'active_storage_validations'
 
+# markdown and sanitize
+gem 'redcarpet'
+gem 'sanitize'
+
+# markdown editor/preview
+gem 'ace-rails-ap'
+gem 'bootstrap-markdown-editor-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -76,8 +84,16 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  # developer tools, dashboard, etc
+  # web request get "/rails/db"
+  gem "rails_db"
+  # better rails error pages
+  gem "better_errors"
+  gem "binding_of_caller"
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  # requires "rails restart"? Then appears as badge in top-left (or top-right?)
+  gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"

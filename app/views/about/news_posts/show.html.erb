@@ -1,0 +1,16 @@
+<% content_for :body do %>
+
+    <div id="<%= dom_id @news_post %>">
+      <h1><%= @news_post.title %></h1>
+      <h3><i>Created: <%= @news_post.created_at.strftime("%B %d, %Y") %></i></h3>
+    </div>
+
+    <hr/>
+
+    <div>
+      <%= @safe_html_content %>
+    </div>
+
+<% end %>
+
+<%= render 'about/about_layout' %>

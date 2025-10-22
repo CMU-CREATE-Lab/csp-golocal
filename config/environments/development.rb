@@ -11,6 +11,11 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # "Ensure caching is disabled" for quick refresh HTML?
+  config.reload_classes_only_on_change = false
+  config.action_view.cache_template_loading = false
+  config.file_watcher = ActiveSupport::FileUpdateChecker
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

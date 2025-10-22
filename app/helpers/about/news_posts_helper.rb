@@ -1,0 +1,2 @@
+module About::NewsPostsHelper
+end
