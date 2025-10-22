@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   scope :about do
     get '/', to: redirect('/about/about_us')
     # Static about pages
-    %w[about_us about_partner_with_us about_catering_tips about_our_partners about_testimonials].each do |page|
+    %w[about_us about_join_golocal about_catering_tips about_our_partners about_testimonials].each do |page|
       # NOTE: you can also explicitly route from a namespace (e.g. /about#show)
       get page, to: "about##{page}", as: page.to_sym
     end

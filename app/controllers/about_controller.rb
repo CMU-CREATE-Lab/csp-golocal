@@ -5,7 +5,7 @@ class AboutController < ApplicationController
     def about_us
     end
 
-    def about_partner_with_us
+    def about_join_golocal
     end
 
     def about_catering_tips
