@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Managed files</h1>
+
+<div id="managed_files">
+  <% @managed_files.each do |managed_file| %>
+    <%= render managed_file %>
+    <p>
+      <%= link_to "Show this managed file", managed_file %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New managed file", new_managed_file_path %>

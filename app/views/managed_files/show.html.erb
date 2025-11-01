@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @managed_file %>
+
+<div>
+  <%= link_to "Edit this managed file", edit_managed_file_path(@managed_file) %> |
+  <%= link_to "Back to managed files", managed_files_path %>
+
+  <%= button_to "Destroy this managed file", @managed_file, method: :delete %>
+</div>

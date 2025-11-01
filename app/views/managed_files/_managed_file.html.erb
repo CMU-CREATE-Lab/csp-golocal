@@ -1,0 +1,14 @@
+<div id="<%= dom_id managed_file %>">
+  <p>
+    <strong>Name:</strong>
+    <%= managed_file.name %>
+  </p>
+
+  <% if managed_file.file.attached? %>
+    <p>
+      <strong>File:</strong>
+      <%= link_to managed_file.file.filename.to_s, rails_blob_path(managed_file.file, disposition: "attachment") %>
+    </p>
+  <% end %>
+
+</div>

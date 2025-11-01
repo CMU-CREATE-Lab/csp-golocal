@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   # `resources :modelname` will generate 7 RESTful routes by default:
   # [ :index, :show, :new, :create, :edit, :update, :destroy ]
 
+  resources :managed_files
+
   resources :news_posts
 
   resources :cuisines
