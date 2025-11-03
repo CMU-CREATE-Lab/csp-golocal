@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   # `resources :modelname` will generate 7 RESTful routes by default:
   # [ :index, :show, :new, :create, :edit, :update, :destroy ]
 
+  get '/managed_files/filename/:name', to: 'managed_files#show_from_filename'
+  get '/managed_files/stream/:name', to: 'managed_files#show_from_stream'
   resources :managed_files
 
   resources :news_posts
