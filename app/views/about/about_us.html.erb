@@ -1,10 +1,18 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "about", "data-turbo-track": "reload" %>
+<% end %>
+
 <% content_for :body do %>
+  
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <h1>About Us</h1>
 
-    <h1>About Us</h1>
+      <p>Where we spend our money matters. Each purchase that we make is an opportunity to invest in local businesses. GoLocal was created to make it easier for university purchasers to find and buy food from local small businesses. We do this because buying local supports our neighbors and their businesses, ensuring that we always have a variety of new flavors near campus. The university attracts people from all over the world, and we are happy to play a small part in helping people find a taste of home or perhaps experience Pittsburgh's own quirky cuisine derived from its history as a cultural melting pot.</p>
 
-    <p>Where we spend our money matters. Each purchase that we make is an opportunity to invest in local businesses. GoLocal was created to make it easier for university purchasers to find and buy food from local small businesses. We do this because buying local supports our neighbors and their businesses, ensuring that we always have a variety of new flavors near campus. The university attracts people from all over the world, and we are happy to play a small part in helping people find a taste of home or perhaps experience Pittsburgh's own quirky cuisine derived from its history as a cultural melting pot.</p>
+      <p>There is nothing more powerful than coming together over a meal, and this project was inspired by the countless administrative assistants who build community on campus every time they order catering for meetings and events. Cornelia Moore, long time Purchasing Manager in Civil & Environmental Engineering and now retired, created the first known campus directory of local businesses that was widely circulated and used at Carnegie Mellon. With gratitude for her wisdom and initiative, we offer GoLocal as a resource to university staff, faculty, and students who want to buy local.</p>
+    </div>
 
-    <p>There is nothing more powerful than coming together over a meal, and this project was inspired by the countless administrative assistants who build community on campus every time they order catering for meetings and events. Cornelia Moore, long time Purchasing Manager in Civil & Environmental Engineering and now retired, created the first known campus directory of local businesses that was widely circulated and used at Carnegie Mellon. With gratitude for her wisdom and initiative, we offer GoLocal as a resource to university staff, faculty, and students who want to buy local.</p>
+    <center><iframe src="https://www.google.com/maps/d/embed?mid=1XQQ_4u2D387rPFOygFpjgchq2w2qjMM&ehbc=2E312F" width="640" height="480"></iframe></center>
 
 <% end %>
 

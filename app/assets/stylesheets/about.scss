@@ -1,0 +1,13 @@
+body {
+  font-family: Georgia, serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  // weights 100-900 in 100 increments: bold is 700, normal is 400
+  font-weight: 600;
+}
+
+p {
+  // margin/padding takes 1, 2, 3, or 4 values, starting at top and moving clockwise
+  padding: 10px 0;
+}
