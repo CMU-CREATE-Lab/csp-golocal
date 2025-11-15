@@ -1,0 +1,45 @@
+<h3>Businesses</h3>
+
+<p><i><%= link_to "Go to main businesses page", businesses_path %></i></p>
+
+<% if @businesses.empty? %>
+<p><i>No businesses to display.</i></p>
+<% else %>
+<table class="table">
+
+<thead>
+<tr>
+  <th scope="col">ID</th>
+  <th scope="col">Business Name</th>
+  <th scope="col">Edit</th>
+  <th scope="col">Delete</th>
+</tr>
+</thead>
+
+<tr>
+  <th scope="row" colspan="4">Published</th>
+</tr>
+<% @businesses_published.each do |business| %>
+<tr>
+  <th scope="row"><%= business.id %></th>
+  <td><%= link_to business.name, business_path(business) %></td>
+  <td><%= link_to "Edit", edit_business_path(business) %></td>
+  <td><%= button_to "Delete", business, method: :delete %></td>
+</tr>
+<% end %>
+
+<tr>
+  <th scope="row" colspan="4">Unpublished</th>
+</tr>
+<% @businesses_unpublished.each do |business| %>
+<tr>
+  <th scope="row"><%= business.id %></th>
+  <td><%= link_to business.name, business_path(business) %></td>
+  <td><%= link_to "Edit", edit_business_path(business) %></td>
+  <td><%= button_to "Delete", business, method: :delete %></td>
+</tr>
+<% end %>
+
+</table>
+<% end %>
+<p><%= link_to "Create new", new_business_path %></p>

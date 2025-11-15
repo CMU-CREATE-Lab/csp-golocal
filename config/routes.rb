@@ -56,6 +56,23 @@ Rails.application.routes.draw do
 
   get 'login', to: redirect("/user/login")
 
+  namespace :admin do
+    #root to: "admin#index"
+    controller :home do
+      get '/', action: 'index', as: 'index'
+    end
+    # ...
+    resources :managed_files, path: 'files', only: [ :index ], as: 'files'
+    resources :news_posts, path: 'news', only: [ :index ], as: 'news'
+    #resources :businesses, path: 'businesses', only: [ :index ], as: 'businesses'
+    controller :businesses do
+      get 'businesses', action: 'index', as: 'businesses'
+      get 'businesses/social_media_sites', action: 'social_media_sites', as: 'businesses/social_media_sites'
+      get 'businesses/keywords', action: 'keywords', as: 'businesses/keywords'
+      get 'businesses/cuisines', action: 'cuisines', as: 'businesses/cuisines'
+    end
+  end
+
   ###########################################################
   # ℹ️ ABOUT PAGES (Static + Dynamic + News)
   ###########################################################
