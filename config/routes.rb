@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     end
     # ...
     resources :managed_files, path: 'files', only: [ :index, :edit, :new, :create, :update, :destroy ], as: 'files'
-    resources :news_posts, path: 'news', only: [ :index ], as: 'news'
+    resources :news_posts, path: 'news', only: [ :index, :edit, :new, :create, :update, :destroy ], as: 'news'
     #resources :businesses, path: 'businesses', only: [ :index ], as: 'businesses'
     controller :businesses do
       get 'businesses', action: 'index', as: 'businesses'

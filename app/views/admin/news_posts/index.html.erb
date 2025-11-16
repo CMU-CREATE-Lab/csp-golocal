@@ -1,2 +1,32 @@
 <h1>News</h1>
 news_posts/index.html.erb
+
+<% if @news_posts.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Published At</th>
+        <th>Last Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @news_posts.each do |news_post| %>
+        <tr>
+          <td><%= news_post.title %></td>
+          <td><%= news_post.published %></td>
+          <td><%= news_post.updated_at.strftime("%B %d, %Y %H:%M") %></td>
+          <td>
+            <%= link_to 'Edit', edit_admin_news_path(news_post), class: 'btn btn-success' %><br/>
+            <%= button_to 'Delete', admin_news_path(news_post), method: :delete, class: 'btn btn-danger' %><br/>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p><i>No news posts to display.</i></p>
+<% end %>
+
+<%= link_to "Add New Newspost", new_admin_news_path %>
