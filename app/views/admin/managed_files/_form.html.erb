@@ -1,0 +1,31 @@
+<%= form_with(model: managed_file,
+  url: managed_file.persisted? ? admin_file_path(managed_file) : admin_files_path,
+  method: managed_file.persisted? ? :patch : :post,
+  local: true
+) do |form| %>
+  <% if managed_file.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(managed_file.errors.count, "error") %> prohibited this managed_file from being saved:</h2>
+
+      <ul>
+        <% managed_file.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
