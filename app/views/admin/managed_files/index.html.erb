@@ -1,2 +1,35 @@
 <h1>Files</h1>
 managed_files/index.html.erb
+
+<% if @managed_files.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>File URL</th>
+        <th>File Size</th>
+        <th>Last Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @managed_files.each do |mfile| %>
+        <tr>
+          <td><%= mfile.name %></td>
+          <td>file_url: <%= mfile.name %> [CLIPBOARD ICON]</td>
+          <td><%= number_to_human_size(mfile.file.byte_size) %></td>
+          <td><%= mfile.updated_at.strftime("%B %d, %Y %H:%M") %></td>
+          <td>
+            <%= link_to 'Edit', edit_admin_file_path(mfile), class: 'btn btn-success' %><br/>
+            <%= link_to 'Download', rails_blob_path(mfile.file), class: 'btn btn-primary' %><br/>
+            <%= button_to 'Delete', admin_file_path(mfile), method: :delete, class: 'btn btn-danger' %><br/>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p><i>No files to display.</i></p>
+<% end %>
+
+<%= link_to "New managed file", new_managed_file_path %>
