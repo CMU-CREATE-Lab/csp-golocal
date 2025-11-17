@@ -1,5 +1,9 @@
-<h1>News</h1>
-news_posts/index.html.erb
+<h1>
+<%= link_to "Admin", admin_index_path %>
+&gt;
+News
+</h1>
+<br/>
 
 <% if @news_posts_published.any? or @news_posts_unpublished.any? %>
   <table class="table">

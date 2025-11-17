@@ -1,15 +1,21 @@
-<h1>Files</h1>
-managed_files/index.html.erb
+<h1>
+<%= link_to "Admin", admin_index_path %>
+&gt;
+Files
+</h1>
+<br/>
 
 <% if @managed_files.any? %>
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>File URL</th>
-        <th>File Size</th>
-        <th>Last Updated</th>
-        <th>Actions</th>
+        <th scope="col">Name</th>
+        <th scope="col">File URL</th>
+        <th scope="col">File Size</th>
+        <th scope="col">Last Updated</th>
+        <th scope="col">Download</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -19,11 +25,9 @@ managed_files/index.html.erb
           <td>file_url: <%= mfile.name %> [CLIPBOARD ICON]</td>
           <td><%= number_to_human_size(mfile.file.byte_size) %></td>
           <td><%= mfile.updated_at.strftime("%B %d, %Y %H:%M") %></td>
-          <td>
-            <%= link_to 'Edit', edit_admin_file_path(mfile), class: 'btn btn-success' %><br/>
-            <%= link_to 'Download', rails_blob_path(mfile.file), class: 'btn btn-primary' %><br/>
-            <%= button_to 'Delete', admin_file_path(mfile), method: :delete, class: 'btn btn-danger' %><br/>
-          </td>
+          <td><%= link_to 'Download', rails_blob_path(mfile.file), class: 'btn btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_admin_file_path(mfile), class: 'btn btn-success' %></td>
+          <td><%= button_to 'Delete', admin_file_path(mfile), method: :delete, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>

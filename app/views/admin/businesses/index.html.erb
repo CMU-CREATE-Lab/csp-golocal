@@ -1,16 +1,19 @@
-<h3>Businesses</h3>
+<h1>
+<%= link_to "Admin", admin_index_path %>
+&gt;
+Businesses
+</h1>
+<br/>
 
-<p><i><%= link_to "Go to main businesses page", businesses_path %></i></p>
-
-<% if @businesses.empty? %>
-<p><i>No businesses to display.</i></p>
-<% else %>
+<% if @businesses_published.any? or @businesses_unpublished.any? %>
 <table class="table">
 
 <thead>
 <tr>
   <th scope="col">ID</th>
   <th scope="col">Business Name</th>
+  <th scope="col" colspan="2">Photo Gallery (size / edit)</th>
+  <th scope="col" colspan="2">Social Media</th>
   <th scope="col">Edit</th>
   <th scope="col">Delete</th>
 </tr>
@@ -23,8 +26,16 @@
 <tr>
   <th scope="row"><%= business.id %></th>
   <td><%= link_to business.name, business_path(business) %></td>
-  <td><%= link_to "Edit", edit_business_path(business) %></td>
-  <td><%= button_to "Delete", business, method: :delete %></td>
+  <td><%= business.gallery.size %></td>
+  <td><%= link_to 'Edit Gallery', "/", class: 'btn btn-default' %><br/></td>
+  <td>
+    <% business.business_social_media_sites.each do |business_social_media_site| %>
+      <%= link_to(image_tag(business_social_media_site.social_media_site.logo, height: "48"), business_social_media_site.url, target: '_blank') %>
+    <% end %>
+  </td>
+  <td><%= link_to 'Edit Social Media', "/", class: 'btn btn-default' %><br/></td>
+  <td><%= link_to 'Edit', edit_business_path(business), class: 'btn btn-success' %></td>
+  <td><%= button_to 'Delete', business, method: :delete, class: 'btn btn-danger' %></td>
 </tr>
 <% end %>
 
@@ -35,11 +46,22 @@
 <tr>
   <th scope="row"><%= business.id %></th>
   <td><%= link_to business.name, business_path(business) %></td>
-  <td><%= link_to "Edit", edit_business_path(business) %></td>
-  <td><%= button_to "Delete", business, method: :delete %></td>
+  <td><%= business.gallery.size %></td>
+  <td><%= link_to 'Edit Gallery', "/", class: 'btn btn-default' %><br/></td>
+  <td>
+    <% business.business_social_media_sites.each do |business_social_media_site| %>
+      <%= link_to(image_tag(business_social_media_site.social_media_site.logo, height: "48"), business_social_media_site.url, target: '_blank') %>
+    <% end %>
+  </td>
+  <td><%= link_to 'Edit Social Media', "/", class: 'btn btn-default' %><br/></td>
+  <td><%= link_to 'Edit', edit_business_path(business), class: 'btn btn-success' %></td>
+  <td><%= button_to 'Delete', business, method: :delete, class: 'btn btn-danger' %></td>
 </tr>
 <% end %>
 
 </table>
+<% else %>
+<p><i>No businesses to display.</i></p>
 <% end %>
+
 <p><%= link_to "Create new", new_business_path %></p>
