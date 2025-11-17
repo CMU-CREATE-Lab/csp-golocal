@@ -1,26 +1,41 @@
 <h1>News</h1>
 news_posts/index.html.erb
 
-<% if @news_posts.any? %>
+<% if @news_posts_published.any? or @news_posts_unpublished.any? %>
   <table class="table">
     <thead>
       <tr>
+        <th scope="col">ID</th>
         <th>Title</th>
-        <th>Published At</th>
-        <th>Last Updated</th>
-        <th>Actions</th>
+        <th>Created</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-      <% @news_posts.each do |news_post| %>
+      <tr>
+        <th scope="row" colspan="5">Published</th>
+      </tr>
+      <% @news_posts_published.each do |news_post| %>
         <tr>
-          <td><%= news_post.title %></td>
-          <td><%= news_post.published %></td>
-          <td><%= news_post.updated_at.strftime("%B %d, %Y %H:%M") %></td>
-          <td>
-            <%= link_to 'Edit', edit_admin_news_path(news_post), class: 'btn btn-success' %><br/>
-            <%= button_to 'Delete', admin_news_path(news_post), method: :delete, class: 'btn btn-danger' %><br/>
-          </td>
+          <td><%= news_post.id %></td>
+          <td><%= link_to news_post.title, about_news_path(news_post) %></td>
+          <td><%= news_post.created_at.strftime("%B %d, %Y") %></td>
+          <td><%= link_to 'Edit', edit_admin_news_path(news_post), class: 'btn btn-success' %></td>
+          <td><%= button_to 'Delete', admin_news_path(news_post), method: :delete, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+      
+      <tr>
+        <th scope="row" colspan="5">Unpublished</th>
+      </tr>
+      <% @news_posts_unpublished.each do |news_post| %>
+        <tr>
+          <td><%= news_post.id %></td>
+          <td><%= link_to news_post.title, about_news_path(news_post) %></td>
+          <td><%= news_post.created_at.strftime("%B %d, %Y") %></td>
+          <td><%= link_to 'Edit', edit_admin_news_path(news_post), class: 'btn btn-success' %></td>
+          <td><%= button_to 'Delete', admin_news_path(news_post), method: :delete, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>

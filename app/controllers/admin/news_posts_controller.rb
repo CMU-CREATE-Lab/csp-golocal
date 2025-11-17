@@ -5,7 +5,8 @@ class Admin::NewsPostsController < ApplicationController
   before_action :authorize_news_posts
 
   def index
-    @news_posts = NewsPost.all
+    @news_posts_published = NewsPost.where(:published => true)
+    @news_posts_unpublished = NewsPost.where(:published => false)
   end
 
   def show
