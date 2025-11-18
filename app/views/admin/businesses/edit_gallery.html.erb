@@ -1,0 +1,19 @@
+<h1>Editing Photo Gallery for Business '<%= @business.name %>'</h1>
+
+
+<%= form_with(model: @business,
+  url: @business.persisted? ? admin_business_path(@business) : admin_businesses_path,
+  method: @business.persisted? ? :patch : :post,
+  local: true
+) do |form| %>
+  <div>
+    <%= form.label :gallery, style: "display: block" %>
+    <%= form.file_field :gallery, multiple: true %>
+  </div>
+
+  <br/>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

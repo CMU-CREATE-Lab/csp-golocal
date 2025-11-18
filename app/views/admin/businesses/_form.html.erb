@@ -1,0 +1,275 @@
+<%= form_with(model: business,
+  url: business.persisted? ? admin_business_path(business) : admin_businesses_path,
+  method: business.persisted? ? :patch : :post,
+  local: true
+) do |form| %>
+  <% if business.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(business.errors.count, "error") %> prohibited this business from being saved:</h2>
+
+      <ul>
+        <% business.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :is_published, style: "display: block" %>
+    <%= form.check_box :is_published %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :logo, style: "display: block" %>
+    <small class="text-muted">Displays on the full page for the business.</small>
+    <%= form.file_field :logo %>
+  </div>
+
+<br/>
+<br/>
+<br/>
+
+<h3>Highlights (Displays on Landing Page)</h3>
+  <div>
+    <%= form.label :featured_image, style: "display: block" %>
+    <small class="text-muted">Main image for the thumnail on the list of businesses page. Logo image is used otherwise.</small>
+    <%= form.file_field :featured_image %>
+  </div>
+  
+  <div>
+    <%= form.label :is_food_truck, style: "display: block" %>
+    <%= form.check_box :is_food_truck %>
+  </div>
+
+  <div>
+    <%= form.label :is_on_campus, style: "display: block" %>
+    <%= form.check_box :is_on_campus %>
+  </div>
+
+  <div>
+    <%= form.label :is_phdc, "Is PHDC", style: "display: block" %>
+    <%= form.check_box :is_phdc %>
+  </div>
+
+  <br/>
+  <h4>Dietary Restrictions</h3>
+  <div>
+    <%= form.label :vegetarian_options, style: "display: block" %>
+    <%= form.check_box :vegetarian_options %>
+  </div>
+
+  <div>
+    <%= form.label :vegan_options, style: "display: block" %>
+    <%= form.check_box :vegan_options %>
+  </div>
+
+  <div>
+    <%= form.label :gluten_free_options, style: "display: block" %>
+    <%= form.check_box :gluten_free_options %>
+  </div>
+
+  <div>
+    <%= form.label :halal_options, style: "display: block" %>
+    <%= form.check_box :halal_options %>
+  </div>
+
+  <br/>
+  <h4>Catering Options</h3>
+<div>
+  <div>
+    <%= form.label :offers_catering, style: "display: block" %>
+    <%= form.check_box :offers_catering %>
+  </div>
+
+  <div>
+    <%= form.label :catering_hours, style: "display: block" %>
+    <%= form.text_area :catering_hours %>
+  </div>
+
+  <div>
+    <%= form.label :cater_pick_up, style: "display: block" %>
+    <%= form.check_box :cater_pick_up %>
+  </div>
+
+  <div>
+    <%= form.label :cater_drop_off, style: "display: block" %>
+    <%= form.check_box :cater_drop_off %>
+  </div>
+
+  <div>
+    <%= form.label :cater_setup, style: "display: block" %>
+    <%= form.check_box :cater_setup %>
+  </div>
+
+  <div>
+    <%= form.label :cater_full_service, style: "display: block" %>
+    <%= form.check_box :cater_full_service %>
+  </div>
+
+<br/>
+
+
+</div>
+
+<br/>
+<br/>
+<br/>
+
+
+<br/>
+
+<br/>
+  <h3>Business Information</h3>
+
+  <div>
+    <%= form.label :offers_delivery, style: "display: block" %>
+    <%= form.check_box :offers_delivery %>
+  </div>
+
+  <div>
+    <%= form.label :delivery_information, style: "display: block" %>
+    <%= form.text_area :delivery_information %>
+  </div>
+
+  <div>
+    <%= form.label :business_hours, style: "display: block" %>
+    <%= form.text_area :business_hours %>
+  </div>
+
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :website_link, style: "display: block" %>
+    <%= form.text_field :website_link %>
+  </div>
+
+  <div>
+    <%= form.label :menu_link, style: "display: block" %>
+    <%= form.text_field :menu_link %>
+  </div>
+
+<br/>
+<h3>Contact Information</h3>
+
+  <div>
+    <%= form.label :contact_name_description, style: "display: block" %>
+    <%= form.text_area :contact_name_description %>
+  </div>
+
+  <div>
+    <%= form.label :contact_email, style: "display: block" %>
+    <%= form.text_field :contact_email %>
+  </div>
+
+  <div>
+    <%= form.label :contact_phone, style: "display: block" %>
+    <%= form.text_field :contact_phone %>
+  </div>
+
+<br/>
+
+<h3>Catering (Details)</h3>
+<h4>Small Catering</h4>
+<p class="label-description">Small order sizes are between 1 and 25</p>
+
+  <div>
+    <%= form.label :handles_small_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_small_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :small_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :small_cater_size_lead_time %>
+  </div>
+
+<br/>
+<h4>Medium Catering</h4>
+<p class="label-description">Medium order sizes are between 26 and 50</p>
+
+  <div>
+    <%= form.label :handles_medium_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_medium_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :medium_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :medium_cater_size_lead_time %>
+  </div>
+
+<br/>
+<h4>Large Catering</h4>
+<p class="label-description">Large order sizes are between 51 and 100</p>
+
+  <div>
+    <%= form.label :handles_large_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_large_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :large_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :large_cater_size_lead_time %>
+  </div>
+
+<br/>
+<h4>Xlarge Catering</h4>
+<p class="label-description">Xlarge order sizes are over 100</p>
+
+  <div>
+    <%= form.label :handles_xlarge_cater_size, style: "display: block" %>
+    <%= form.check_box :handles_xlarge_cater_size %>
+  </div>
+
+  <div>
+    <%= form.label :xlarge_cater_size_lead_time, style: "display: block" %>
+    <%= form.text_area :xlarge_cater_size_lead_time %>
+  </div>
+
+<br/>
+<br/>
+<br/>
+
+<h3>Extras</h3>
+
+  <div>
+    <%= form.label :handles_tax_exemption, style: "display: block" %>
+    <%= form.check_box :handles_tax_exemption %>
+  </div>
+
+  <br/>
+
+  <div>
+    <%= form.label :headline_description, style: "display: block" %>
+    <small class="text-muted">Appears at the top of the full page for the business.</small>
+    <br/>
+    <%= form.text_area :headline_description %>
+  </div>
+
+  <br/>
+
+  <div>
+    <%= form.label :bio, style: "display: block" %>
+    <small class="text-muted">Appears at the bottom of the full page for the business.</small>
+    <br/>
+    <%= form.text_area :bio %>
+  </div>
+
+  <br/>
+  <br/>
+
+<br/>
+<br/>
+<br/>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

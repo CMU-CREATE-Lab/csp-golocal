@@ -27,15 +27,15 @@ Businesses
   <th scope="row"><%= business.id %></th>
   <td><%= link_to business.name, business_path(business) %></td>
   <td><%= business.gallery.size %></td>
-  <td><%= link_to 'Edit Gallery', "/", class: 'btn btn-default' %><br/></td>
+  <td><%= link_to 'Edit Gallery', admin_edit_business_gallery_path(business), class: 'btn btn-default' %><br/></td>
   <td>
     <% business.business_social_media_sites.each do |business_social_media_site| %>
       <%= link_to(image_tag(business_social_media_site.social_media_site.logo, height: "48"), business_social_media_site.url, target: '_blank') %>
     <% end %>
   </td>
   <td><%= link_to 'Edit Social Media', "/", class: 'btn btn-default' %><br/></td>
-  <td><%= link_to 'Edit', edit_business_path(business), class: 'btn btn-success' %></td>
-  <td><%= button_to 'Delete', business, method: :delete, class: 'btn btn-danger' %></td>
+  <td><%= link_to 'Edit', edit_admin_business_path(business), class: 'btn btn-success' %></td>
+  <td><%= button_to 'Delete', admin_business_path(business), method: :delete, class: 'btn btn-danger' %></td>
 </tr>
 <% end %>
 
@@ -47,15 +47,15 @@ Businesses
   <th scope="row"><%= business.id %></th>
   <td><%= link_to business.name, business_path(business) %></td>
   <td><%= business.gallery.size %></td>
-  <td><%= link_to 'Edit Gallery', "/", class: 'btn btn-default' %><br/></td>
+  <td><%= link_to 'Edit Gallery', admin_edit_business_gallery_path(business), class: 'btn btn-default' %><br/></td>
   <td>
     <% business.business_social_media_sites.each do |business_social_media_site| %>
       <%= link_to(image_tag(business_social_media_site.social_media_site.logo, height: "48"), business_social_media_site.url, target: '_blank') %>
     <% end %>
   </td>
   <td><%= link_to 'Edit Social Media', "/", class: 'btn btn-default' %><br/></td>
-  <td><%= link_to 'Edit', edit_business_path(business), class: 'btn btn-success' %></td>
-  <td><%= button_to 'Delete', business, method: :delete, class: 'btn btn-danger' %></td>
+  <td><%= link_to 'Edit', edit_admin_business_path(business), class: 'btn btn-success' %></td>
+  <td><%= button_to 'Delete', admin_business_path(business), method: :delete, class: 'btn btn-danger' %></td>
 </tr>
 <% end %>
 
@@ -64,4 +64,4 @@ Businesses
 <p><i>No businesses to display.</i></p>
 <% end %>
 
-<p><%= link_to "Create new", new_business_path %></p>
+<p><%= link_to "Create new", new_admin_business_path %></p>
