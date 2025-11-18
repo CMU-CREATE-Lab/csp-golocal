@@ -1,0 +1,35 @@
+<% include_edit_delete ||= false %>
+
+<% if business_social_media_sites.empty? %>
+<p><i>No Social Media Sites to display.</i></p>
+<% else %>
+<table class="table">
+<thead>
+<tr>
+  <th scope="col">Logo</th>
+  <th scope="col">Media Type</th>
+  <th scope="col">URL</th>
+<% if include_edit_delete %>
+  <th scope="col">Edit</th>
+  <th scope="col">Delete</th>
+<% end %>
+</tr>
+</thead>
+<% business_social_media_sites.each do |business_social_media_site| %>
+<tr>
+  <td><%= image_tag(business_social_media_site.social_media_site.logo, height: "48")  %></td>
+  <td><%= business_social_media_site.social_media_site.name %></td>
+  <td><%= link_to(business_social_media_site.url, business_social_media_site.url, target: '_blank') %></td>
+<% if include_edit_delete %>
+<% if business %>
+  <td><%= link_to "Edit", edit_admin_business_business_social_media_site_path(@business, business_social_media_site) %></td>
+  <td><%= button_to "Delete", admin_business_business_social_media_site_path(@business, business_social_media_site), method: :delete %></td>
+<% else %>
+  <td><%## note: this path is not currently defined (nested resources)... = link_to "Edit", edit_business_social_media_site_path(business_social_media_site) %></td>
+  <td><%## note: this path is not currently defined (nested resources)... = button_to "Delete", business_social_media_site, method: :delete %></td>
+<% end %>
+<% end %>
+</tr>
+<% end %>
+</table>
+<% end %>

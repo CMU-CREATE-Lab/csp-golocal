@@ -64,7 +64,9 @@ Rails.application.routes.draw do
     # ...
     resources :managed_files, path: 'files', only: [ :index, :edit, :new, :create, :update, :destroy ], as: 'files'
     resources :news_posts, path: 'news', only: [ :index, :edit, :new, :create, :update, :destroy ], as: 'news'
-    resources :businesses, path: 'businesses', only: [ :index, :edit, :new, :create, :update, :destroy ], as: 'businesses'
+    resources :businesses, path: 'businesses', only: [ :index, :edit, :new, :create, :update, :destroy ], as: 'businesses' do
+      resources :business_social_media_sites, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    end
     controller :businesses do
       get "businesses/:id/edit_gallery", to: "businesses#edit_gallery", as: 'edit_business_gallery'
     end
