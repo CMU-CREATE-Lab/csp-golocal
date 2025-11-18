@@ -3,29 +3,25 @@ class Admin::BusinessesController < ApplicationController
   layout "application_back"
 
   before_action :set_business, only: %i[ show edit edit_gallery update destroy ]
+  before_action :authorize_model
 
   def index
-    authorize! :manage, Business
     @businesses_published = Business.where(:is_published => true).order('LOWER(name) ASC')
     @businesses_unpublished = Business.where(:is_published => false).order('LOWER(name) ASC')
   end
   
   def new
-    authorize! :manage, Business
     @business = Business.new
   end
   
   def edit
-    authorize! :manage, Business
   end
   
   def edit_gallery
-    authorize! :update, Business
     render "edit_gallery"
   end
 
   def create
-    authorize! :create, Business
     @business = Business.new(business_params)
     respond_to do |format|
       if @business.save
@@ -37,7 +33,6 @@ class Admin::BusinessesController < ApplicationController
   end
 
   def update
-    authorize! :update, Business
     respond_to do |format|
       if @business.update(business_params)
         format.html { redirect_to admin_businesses_path, notice: "Business was successfully updated." }
@@ -48,7 +43,6 @@ class Admin::BusinessesController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, Business
     @business.destroy
 
     respond_to do |format|
@@ -105,5 +99,9 @@ class Admin::BusinessesController < ApplicationController
           :bio, 
           gallery: []
         )
+    end
+
+    def authorize_model
+      authorize! :manage, Business
     end
 end

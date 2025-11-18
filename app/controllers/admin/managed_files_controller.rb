@@ -2,16 +2,15 @@ class Admin::ManagedFilesController < ApplicationController
 
   # before_action :reuse_views, only: %i[ new edit ]
   before_action :set_managed_file, only: %i[ show edit update destroy ]
+  before_action :authorize_model
   layout "application_back"
 
   def index
-    authorize! :manage, ManagedFile
     @managed_files = ManagedFile.all
     #render :inline => "Admin::ManagedFilesController"
   end
 
   def destroy
-    authorize! :manage, ManagedFile
     @managed_file = ManagedFile.find(params[:id])
     @managed_file.destroy
 
@@ -22,7 +21,6 @@ class Admin::ManagedFilesController < ApplicationController
 
 
   def new
-    authorize! :create, ManagedFile
     @managed_file = ManagedFile.new
   end
 
@@ -67,5 +65,9 @@ class Admin::ManagedFilesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def managed_file_params
       params.require(:managed_file).permit(:name, :file)
+    end
+
+    def authorize_model
+      authorize! :manage, ManagedFile
     end
 end

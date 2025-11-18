@@ -1,5 +1,6 @@
 class NewsPostsController < ApplicationController
   before_action :set_news_post, only: %i[ show edit update destroy ]
+  before_action :authorize_model
 
   # GET /news_posts or /news_posts.json
   def index
@@ -84,5 +85,9 @@ class NewsPostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def news_post_params
       params.require(:news_post).permit(:title, :content, :published)
+    end
+
+    def authorize_model
+      authorize! :manage, NewsPost
     end
 end

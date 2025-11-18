@@ -1,7 +1,7 @@
 class ManagedFilesController < ApplicationController
 
   before_action :set_managed_file, only: %i[ show edit update destroy ]
-
+  before_action :authorize_model, except: %i[ show_from_filename show_from_stream ]
 
   def show_from_filename
     managed_file = ManagedFile.find_by(name: params[:name])
@@ -108,5 +108,9 @@ class ManagedFilesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def managed_file_params
       params.require(:managed_file).permit(:name, :file)
+    end
+
+    def authorize_model
+      authorize! :manage, ManagedFile
     end
 end

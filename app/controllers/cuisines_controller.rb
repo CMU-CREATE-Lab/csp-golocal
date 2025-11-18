@@ -1,5 +1,6 @@
 class CuisinesController < ApplicationController
   before_action :set_cuisine, only: %i[ show edit update destroy ]
+  before_action :authorize_model
 
   # GET /cuisines or /cuisines.json
   def index
@@ -66,5 +67,9 @@ class CuisinesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def cuisine_params
       params.require(:cuisine).permit(:name, :parent_cuisine_id)
+    end
+
+    def authorize_model
+      authorize! :manage, ManagedFile
     end
 end
