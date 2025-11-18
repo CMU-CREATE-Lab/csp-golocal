@@ -1,5 +1,6 @@
 <h1>Editing Photo Gallery for Business '<%= @business.name %>'</h1>
 
+<small class="text-muted">WARNING: editing the gallery will remove any previously-uploaded photos. Be sure to upload all files at once by selecting multiple files in the system file selector.</small>
 
 <%= form_with(model: @business,
   url: @business.persisted? ? admin_business_path(@business) : admin_businesses_path,
