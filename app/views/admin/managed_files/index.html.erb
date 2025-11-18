@@ -22,7 +22,7 @@ Files
       <% @managed_files.each do |mfile| %>
         <tr>
           <td><%= mfile.name %></td>
-          <td>file_url: <%= mfile.name %> [CLIPBOARD ICON]</td>
+          <td><%= link_to "#{request.protocol}#{request.host}#{mfile.streamed_filename_path}", mfile.streamed_filename_path %></td>
           <td><%= number_to_human_size(mfile.file.byte_size) %></td>
           <td><%= mfile.updated_at.strftime("%B %d, %Y %H:%M") %></td>
           <td><%= link_to 'Download', rails_blob_path(mfile.file), class: 'btn btn-primary' %></td>
