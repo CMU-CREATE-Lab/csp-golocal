@@ -11,7 +11,7 @@ class NewsPostsController < ApplicationController
   def show
     #markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     renderer = Redcarpet::Render::HTML.new(
-      filter_html: true,
+      filter_html: false,
       hard_wrap: true
     )
 
@@ -26,7 +26,8 @@ class NewsPostsController < ApplicationController
     })
     #
     rawmd_html_content = markdown.render(@news_post.content)
-    @safe_html_content = Sanitize.fragment(rawmd_html_content, Sanitize::Config::RELAXED).html_safe
+    #@safe_html_content = Sanitize.fragment(rawmd_html_content, Sanitize::Config::RELAXED).html_safe
+    @html_content = rawmd_html_content.html_safe
   end
 
   # GET /news_posts/new

@@ -1,3 +1,7 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "about", "data-turbo-track": "reload" %>
+<% end %>
+
 <% content_for :body do %>
 
     <div id="<%= dom_id @news_post %>">
@@ -8,7 +12,7 @@
     <hr/>
 
     <div>
-      <%= @safe_html_content %>
+      <%= @html_content %>
     </div>
 
 <% end %>

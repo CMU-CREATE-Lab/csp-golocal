@@ -1,3 +1,7 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "about", "data-turbo-track": "reload" %>
+<% end %>
+
 <% content_for :body do %>
 
   <% @news_posts.each do |news_post| %>
