@@ -1,10 +1,17 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.4"
+ruby "3.2.11"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.5"
+gem "rails", "~> 7.0.10"
+
+# Anything newer requires Rails 3.2+
+gem 'i18n', '1.14.8'
+
+# Bundler will keep trying to upgrade these, we don't want that
+gem 'stringio', '3.0.1.2'
+gem 'tsort', '0.1.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
