@@ -1,0 +1,255 @@
+/*
+ * Front-end stylesheet for the GoLocal redesign (layouts/landing).
+ * Bootstrap 5 themed with the palette from the Figma demo site.
+ * Compiled on its own (stubbed out of application.css) so the
+ * Bootstrap 3 admin pages are unaffected.
+ */
+
+// GoLocal palette
+$landing-lime: #9ACD65;
+$landing-sky: #456194;
+$landing-gold: #FAD331;
+$landing-cream: #FEF1E6;
+$landing-ink: #000000;
+$landing-stone: #F0DFC8;
+$landing-muted: #666666;
+$landing-periwinkle: #bacce7;
+$landing-sage: #6a9982;
+$landing-phdc: #dbbaab;
+
+// Bootstrap overrides
+$primary: $landing-lime;
+$secondary: $landing-sky;
+$warning: $landing-gold;
+$dark: $landing-ink;
+$body-bg: $landing-cream;
+$body-color: $landing-ink;
+$font-family-sans-serif: 'Lexend', sans-serif;
+$font-weight-base: 300;
+$headings-font-weight: 600;
+$border-color: $landing-ink;
+$border-radius: .625rem;
+$border-radius-lg: .75rem;
+$link-color: $landing-ink;
+$link-hover-color: $landing-ink;
+$btn-font-weight: 600;
+
+@import "bootstrap";
+
+:root {
+  --landing-lime: #{$landing-lime};
+  --landing-sky: #{$landing-sky};
+  --landing-gold: #{$landing-gold};
+  --landing-cream: #{$landing-cream};
+  --landing-ink: #{$landing-ink};
+  --landing-stone: #{$landing-stone};
+  --landing-periwinkle: #{$landing-periwinkle};
+  --landing-sage: #{$landing-sage};
+}
+
+.bg-landing-stone { background-color: $landing-stone; }
+.bg-landing-sky { background-color: $landing-sky; }
+.bg-landing-gold { background-color: $landing-gold; }
+.bg-landing-cream { background-color: $landing-cream; }
+.border-ink { border-color: $landing-ink !important; }
+.border-ink-2 { border-top: 2px solid $landing-ink; border-bottom: 2px solid $landing-ink; }
+.landing-icon { width: 1.25rem; height: 1.25rem; }
+.landing-icon-sm { width: .75rem; height: .75rem; }
+.landing-icon-lg { width: 3rem; height: 3rem; }
+
+/* ---------- Navigation ---------- */
+.landing-nav {
+  background-color: $landing-cream;
+  border-bottom: 2px solid $landing-ink;
+  min-height: 4rem;
+  transition: box-shadow .2s, background-color .2s;
+
+  &.landing-nav-scrolled {
+    background-color: rgba($landing-cream, .95);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+  }
+  .navbar-brand img { height: 2rem; width: auto; }
+  .nav-link {
+    color: $landing-ink;
+    font-size: .875rem;
+    font-weight: 500;
+    &.active { border-bottom: 2px solid $landing-sky; padding-bottom: .25rem; }
+  }
+  .navbar-toggler { border: 0; box-shadow: none; }
+
+  @include media-breakpoint-down(md) {
+    .navbar-collapse { border-top: 2px solid $landing-ink; margin: .5rem -1rem 0; padding: 1rem; }
+    .nav-link {
+      background-color: $landing-stone;
+      border-radius: .5rem;
+      padding: .5rem 1rem !important;
+      margin-bottom: .75rem;
+      &:hover { background-color: $landing-ink; color: #fff; }
+      &.active { background-color: $landing-lime; border-bottom: 0; }
+    }
+  }
+}
+
+/* ---------- Announcement banner ---------- */
+.landing-announcement {
+  background-color: $landing-lime;
+  color: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, .1);
+  a { color: #fff; }
+}
+
+/* ---------- Footer ---------- */
+.landing-footer {
+  background-color: $landing-ink;
+  color: #fff;
+  margin-top: 5rem;
+  a { color: #fff; text-decoration: none; }
+  a:hover { color: $landing-lime; }
+  h4 { font-size: .875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .025em; margin-bottom: 1rem; }
+  .landing-footer-bottom { border-top: 1px solid rgba(255, 255, 255, .2); }
+  .landing-heart { color: $landing-lime; }
+}
+
+/* ---------- Landing page ---------- */
+.landing-hero {
+  position: relative;
+  overflow: hidden;
+  h1 { font-size: calc(1.6rem + 3.5vw); font-weight: 700; line-height: 1.1; }
+  .lead { font-size: 1.25rem; font-weight: 300; }
+  @include media-breakpoint-up(md) { .lead { font-size: 1.5rem; } }
+  @include media-breakpoint-up(xl) { h1 { font-size: 4.5rem; } }
+}
+.landing-hero-texture {
+  position: absolute;
+  inset: 0;
+  opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231C1C1C' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.landing-btn-cta {
+  background-color: $landing-lime;
+  color: $landing-ink;
+  font-size: 1.125rem;
+  padding: 1rem 2rem;
+  border-radius: .5rem;
+  &:hover { background-color: rgba($landing-lime, .8); color: $landing-ink; }
+}
+
+.landing-ticker {
+  background-color: $landing-gold;
+  border-top: 2px solid $landing-ink;
+  border-bottom: 2px solid $landing-ink;
+  overflow: hidden;
+  padding: .75rem 0;
+}
+.landing-ticker-track {
+  display: flex;
+  gap: 4rem;
+  white-space: nowrap;
+  width: max-content;
+  animation: landing-ticker 20s linear infinite;
+  span { display: inline-flex; align-items: center; gap: .5rem; font-size: 1.125rem; font-weight: 500; }
+}
+@keyframes landing-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-1000px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-ticker-track { animation: none; }
+}
+
+.landing-stats {
+  background-color: $landing-stone;
+  border-bottom: 2px solid $landing-ink;
+  .landing-stat-number { font-size: 3rem; font-weight: 700; line-height: 1; }
+  .landing-stat-label { font-size: .875rem; text-transform: uppercase; letter-spacing: .025em; margin-top: .5rem; }
+}
+
+.landing-why {
+  background-color: $landing-sky;
+  border-top: 2px solid $landing-ink;
+  border-bottom: 2px solid $landing-ink;
+  color: #fff;
+  p { font-size: 1.125rem; font-weight: 500; }
+}
+
+/* ---------- Category rows ---------- */
+.landing-category-row h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+  img { width: 1.5rem; height: 1.5rem; margin-right: .5rem; vertical-align: -.2rem; }
+}
+.landing-scroll-btn {
+  background-color: $landing-stone;
+  border: 1px solid $landing-ink;
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  line-height: 1;
+  &:hover { background-color: $landing-ink; color: #fff; }
+}
+.landing-scroller {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  > * { flex: 0 0 20rem; }
+}
+
+/* ---------- Business card ---------- */
+.landing-card {
+  background-color: $landing-stone;
+  border: 2px solid $landing-ink;
+  border-radius: .75rem;
+  overflow: hidden;
+  height: 100%;
+  transition: box-shadow .2s;
+  &:hover { box-shadow: 0 10px 15px rgba(0, 0, 0, .1); }
+
+  .landing-card-img { height: 12rem; width: 100%; object-fit: cover; background-color: #fff; }
+  .landing-card-img-placeholder { height: 12rem; background-color: $landing-periwinkle; }
+  .card-title { font-size: 1.25rem; font-weight: 600; }
+  .card-title a { text-decoration: none; }
+  .card-title a::after { content: ""; position: absolute; inset: 0; } // whole card clickable
+  .landing-card-desc {
+    font-size: .875rem;
+    font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .landing-card-footer { border-top: 2px solid rgba($landing-ink, .2); position: relative; z-index: 1; }
+}
+
+.landing-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  padding: .25rem .5rem;
+  border-radius: 50rem;
+  font-size: .75rem;
+  font-weight: 500;
+  color: $landing-ink;
+}
+.landing-pill-cuisine { background-color: $landing-sky; color: #fff; }
+.landing-pill-place { background-color: #fff; border: 1px solid $landing-ink; }
+.landing-pill-diet { background-color: $landing-lime; }
+.landing-pill-veg { background-color: $landing-sage; }
+.landing-pill-gold { background-color: $landing-gold; }
+.landing-pill-phdc { background-color: $landing-phdc; img { filter: brightness(0); } }
+
+.landing-btn-visit {
+  background-color: $landing-periwinkle;
+  color: $landing-ink;
+  font-size: .875rem;
+  font-weight: 600;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  &:hover { background-color: $landing-periwinkle; opacity: .8; color: $landing-ink; }
+}

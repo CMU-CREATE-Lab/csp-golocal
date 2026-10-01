@@ -1,0 +1,49 @@
+<%# Business card (demo: restaurant-card.tsx). The whole card links to the business page. %>
+<div class="landing-card d-flex flex-column position-relative">
+  <% if (image_url = landing_business_image_url(business)) %>
+    <img src="<%= image_url %>" alt="<%= business.name %>" class="landing-card-img flex-shrink-0">
+  <% else %>
+    <div class="landing-card-img-placeholder flex-shrink-0"></div>
+  <% end %>
+
+  <div class="p-3 d-flex flex-column flex-grow-1 gap-3">
+    <h3 class="card-title mb-0"><%= link_to business.name, business_path(business) %></h3>
+
+    <div class="d-flex flex-wrap gap-2">
+      <% business.cuisines.each do |cuisine| %>
+        <span class="landing-pill landing-pill-cuisine"><%= cuisine.name %></span>
+      <% end %>
+      <% if business.is_on_campus %>
+        <span class="landing-pill landing-pill-place"><%= landing_icon("location-pin", css_class: "landing-icon-sm") %> On Campus</span>
+      <% end %>
+    </div>
+
+    <% if business.headline_description.present? %>
+      <p class="landing-card-desc mb-0"><%= business.headline_description %></p>
+    <% end %>
+
+    <div class="d-flex flex-wrap gap-2">
+      <% landing_dietary_badges(business).each do |label, icon, css| %>
+        <span class="landing-pill <%= css %>"><%= landing_icon(icon, css_class: "landing-icon-sm") %> <%= label %></span>
+      <% end %>
+      <% if business.offers_catering %>
+        <span class="landing-pill landing-pill-gold"><%= landing_icon("catering", css_class: "landing-icon-sm") %> Catering</span>
+      <% end %>
+      <% if business.is_food_truck %>
+        <span class="landing-pill landing-pill-gold"><%= landing_icon("food-truck", css_class: "landing-icon-sm") %> Food Truck</span>
+      <% end %>
+      <% if business.is_phdc %>
+        <span class="landing-pill landing-pill-phdc"><%= landing_icon("buildings", css_class: "landing-icon-sm") %> PHDC</span>
+      <% end %>
+    </div>
+
+    <div class="flex-grow-1"></div>
+
+    <% visit_link = business.menu_link.presence || business.website_link.presence %>
+    <% if visit_link %>
+      <div class="landing-card-footer d-flex justify-content-end pt-2">
+        <a href="<%= visit_link %>" target="_blank" rel="noopener noreferrer" class="btn landing-btn-visit">Order / Visit</a>
+      </div>
+    <% end %>
+  </div>
+</div>

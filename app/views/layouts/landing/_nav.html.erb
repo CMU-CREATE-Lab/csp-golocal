@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md sticky-top landing-nav">
+  <div class="container-fluid px-3 px-sm-4 px-lg-5">
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+      <%= image_tag "landing/logo.png", alt: "GoLocal" %>
+    <% end %>
+
+    <div class="d-flex align-items-center gap-3 order-md-last">
+      <a href="<%= landing_instagram_url %>" target="_blank" rel="noopener noreferrer" class="text-dark" aria-label="Instagram">
+        <%= landing_svg_icon(:instagram) %>
+      </a>
+      <% if logged_in? %>
+        <%= link_to "Admin", admin_index_path, class: "text-dark small fw-medium" %>
+      <% end %>
+      <button class="navbar-toggler p-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#landingNavLinks" aria-controls="landingNavLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <%= landing_svg_icon(:menu, size: 24) %>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse justify-content-md-end me-md-4" id="landingNavLinks">
+      <ul class="navbar-nav gap-md-4">
+        <% landing_nav_links.each do |link| %>
+          <li class="nav-item">
+            <%= link_to link[:label], link[:path], class: ["nav-link", ("active" if link[:path] != "#" && current_page?(link[:path]))] %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

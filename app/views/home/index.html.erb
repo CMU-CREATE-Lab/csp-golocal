@@ -1,0 +1,73 @@
+<%# GoLocal landing page (demo: pages/landing.tsx) %>
+<% ticker_categories = [
+     ["pizza", "Pizza"], ["asian", "Noodles"], ["mexican", "Tacos"], ["cafe-bakery", "Café"],
+     ["healthy", "Vegan"], ["takeout", "Takeout"], ["catering", "Catering"],
+     ["location-pin", "Southside"], ["late-night", "Open Late"], ["brunch", "Brunch"],
+   ] %>
+
+<section class="landing-hero bg-landing-cream">
+  <div class="landing-hero-texture"></div>
+  <div class="container-lg py-5 my-md-4 position-relative text-center">
+    <h1 class="mb-4">Your neighborhood, on one page.</h1>
+    <p class="lead mx-auto mb-4" style="max-width: 48rem;">
+      GoLocal is a community-built guide to the best local restaurants near you,
+      discovered and recommended by real people.
+    </p>
+    <%= link_to "Browse the Directory", businesses_path, class: "btn landing-btn-cta" %>
+  </div>
+
+  <div class="landing-ticker" aria-hidden="true">
+    <div class="landing-ticker-track">
+      <% 3.times do %>
+        <% ticker_categories.each do |icon, label| %>
+          <span><%= landing_icon(icon) %><%= label %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="landing-stats">
+  <div class="container-xl py-4">
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="landing-stat-number"><%= @business_count %></div>
+        <div class="landing-stat-label">Restaurants</div>
+      </div>
+      <div class="col-md-4">
+        <div class="landing-stat-number">12</div>
+        <div class="landing-stat-label">Neighborhoods</div>
+      </div>
+      <div class="col-md-4">
+        <div class="landing-stat-number">100%</div>
+        <div class="landing-stat-label">Human Curated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-xl py-5 my-md-3">
+  <%= render "landing/category_row", title: "Community Favorites", icon: "community", businesses: @community_favorites %>
+  <div class="text-center mt-4">
+    <%= link_to "See all restaurants →", businesses_path, class: "fs-5 fw-medium" %>
+  </div>
+</section>
+
+<section class="landing-why py-5">
+  <div class="container-xl py-md-3">
+    <div class="row g-5 text-center">
+      <div class="col-md-4">
+        <%= landing_icon("neighbors", css_class: "landing-icon-lg mb-3") %>
+        <p class="mb-0">Recommended by your neighbors.</p>
+      </div>
+      <div class="col-md-4">
+        <%= landing_icon("directory", css_class: "landing-icon-lg mb-3") %>
+        <p class="mb-0">A living directory you can contribute to!</p>
+      </div>
+      <div class="col-md-4">
+        <%= landing_icon("no", css_class: "landing-icon-lg mb-3") %>
+        <p class="mb-0">No ads or promoted placements.</p>
+      </div>
+    </div>
+  </div>
+</section>

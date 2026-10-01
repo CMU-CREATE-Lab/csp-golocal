@@ -1,0 +1,17 @@
+<%# Horizontally scrolling row of business cards (demo: category-row.tsx). %>
+<% if businesses.any? %>
+  <div class="landing-category-row mb-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="mb-0"><%= landing_icon(icon) %><%= title %></h2>
+      <div class="d-flex gap-2">
+        <button type="button" class="landing-scroll-btn d-inline-flex align-items-center justify-content-center" data-landing-scroll="left" aria-label="Scroll left"><%= landing_svg_icon(:chevron_left) %></button>
+        <button type="button" class="landing-scroll-btn d-inline-flex align-items-center justify-content-center" data-landing-scroll="right" aria-label="Scroll right"><%= landing_svg_icon(:chevron_right) %></button>
+      </div>
+    </div>
+    <div class="landing-scroller">
+      <% businesses.each do |business| %>
+        <div><%= render "landing/business_card", business: business %></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

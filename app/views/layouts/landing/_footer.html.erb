@@ -1,0 +1,41 @@
+<footer class="landing-footer">
+  <div class="container-xl py-5">
+    <div class="row g-5">
+      <div class="col-md-4">
+        <h3 class="fs-3 fw-bold mb-2">GoLocal</h3>
+        <p class="small mb-0">Found by neighbors, not an algorithm.</p>
+        <p class="small mt-2">Pittsburgh, PA</p>
+      </div>
+
+      <div class="col-md-4">
+        <h4>Quick Links</h4>
+        <div class="d-flex flex-column gap-2 small">
+          <%= link_to "Browse Directory", businesses_path %>
+          <%= link_to "Join GoLocal", about_join_golocal_path %>
+          <%= link_to "Catering Tips", about_catering_tips_path %>
+          <%= link_to "News", about_news_index_path %>
+          <%= link_to "Community Partners", about_our_partners_path %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <h4>Follow Us</h4>
+        <a href="<%= landing_instagram_url %>" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center gap-2 small">
+          <%= landing_svg_icon(:instagram) %>
+          <span><%= LandingHelper::LANDING_INSTAGRAM_HANDLE %></span>
+        </a>
+        <p class="small mt-3">Get GoLocal updates: new restaurants, events, and zines.</p>
+      </div>
+    </div>
+
+    <div class="landing-footer-bottom mt-5 pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 small">
+      <p class="mb-0">
+        Made with <span class="landing-heart"><%= landing_svg_icon(:heart, size: 16) %></span> by the GoLocal community · Pittsburgh, PA
+      </p>
+      <p class="mb-0">
+        Hosted by the <a href="https://cmucreatelab.org/">CREATE Lab</a> at <a href="https://www.cmu.edu/">CMU</a> ·
+        <a href="mailto:<%= CONTACT_EMAIL %>"><%= CONTACT_EMAIL %></a>
+      </p>
+    </div>
+  </div>
+</footer>

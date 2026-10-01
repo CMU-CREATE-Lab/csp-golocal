@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   #root "home#landing"
-  root to: redirect("/businesses")
+  root to: "home#index"
 
   ###########################################################
   # 📚 DB MODELS

@@ -1,0 +1,17 @@
+<%# Site-wide announcement. Set a view's :announcement content, e.g.
+    content_for :announcement, "CSP Spring Market, April 12th at the UC!"
+    Dismissed state is kept per browser session, as in the demo. %>
+<% if content_for?(:announcement) %>
+  <div class="landing-announcement alert alert-dismissible fade show rounded-0 border-0 mb-0 py-3" role="alert" id="landingAnnouncement">
+    <div class="container-xl">
+      <span class="fs-5 fw-bold"><%= yield :announcement %></span>
+    </div>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"
+            onclick="try { sessionStorage.setItem('announcement-dismissed', 'true') } catch (e) {}"></button>
+  </div>
+  <script>
+    try {
+      if (sessionStorage.getItem("announcement-dismissed")) document.getElementById("landingAnnouncement").remove();
+    } catch (e) {}
+  </script>
+<% end %>
