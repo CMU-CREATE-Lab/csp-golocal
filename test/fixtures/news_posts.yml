@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  content: MyText
-  published: false
+  title: First post
+  content: Hello **GoLocal**
+  published: true
 
 two:
-  title: MyString
-  content: MyText
+  title: Draft post
+  content: Not published yet
   published: false

@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Business One
   business_hours: MyText
   catering_hours: MyText
   address: MyString
@@ -30,7 +30,7 @@ one:
   is_published: false
 
 two:
-  name: MyString
+  name: Business Two
   business_hours: MyText
   catering_hours: MyText
   address: MyString

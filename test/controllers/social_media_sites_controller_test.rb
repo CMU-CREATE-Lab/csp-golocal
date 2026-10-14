@@ -2,6 +2,7 @@ require "test_helper"
 
 class SocialMediaSitesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    log_in_as(users(:one))
     @social_media_site = social_media_sites(:one)
   end
 
@@ -44,5 +45,11 @@ class SocialMediaSitesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to social_media_sites_url
+  end
+
+  test "should redirect to login when logged out" do
+    get logout_url
+    get social_media_sites_url
+    assert_redirected_to "/user/login"
   end
 end

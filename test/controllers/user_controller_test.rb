@@ -1,38 +1,46 @@
 require "test_helper"
 
 class UserControllerTest < ActionDispatch::IntegrationTest
-  test "should get login" do
+  setup do
+    @user = users(:one)
+  end
+
+  test "should get login page" do
     get user_login_url
     assert_response :success
   end
 
-  test "should get logout" do
-    get user_logout_url
+  test "should log in with valid credentials" do
+    log_in_as(@user)
+    assert_redirected_to "/user/home"
+
+    follow_redirect!
     assert_response :success
   end
 
-  test "should get home" do
-    get user_home_url
-    assert_response :success
+  test "should reject invalid credentials" do
+    log_in_as(@user, password: "wrong")
+    assert_response :unprocessable_entity
+    assert_match "Username or password was invalid", response.body
   end
 
-  test "should get index" do
-    get user_index_url
-    assert_response :success
+  test "should redirect login page to home when already logged in" do
+    log_in_as(@user)
+    get user_login_url
+    assert_redirected_to "/user/home"
   end
 
-  test "should get new" do
-    get user_new_url
-    assert_response :success
+  test "should log out" do
+    log_in_as(@user)
+    get logout_url
+    assert_redirected_to "/user/login"
+
+    get home_user_index_url
+    assert_redirected_to "/user/login"
   end
 
-  test "should get create" do
-    get user_create_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get user_destroy_url
-    assert_response :success
+  test "should redirect home to login when logged out" do
+    get home_user_index_url
+    assert_redirected_to "/user/login"
   end
 end

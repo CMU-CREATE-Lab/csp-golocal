@@ -2,6 +2,7 @@ require "test_helper"
 
 class NewsPostsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    log_in_as(users(:one))
     @news_post = news_posts(:one)
   end
 
@@ -44,5 +45,11 @@ class NewsPostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to news_posts_url
+  end
+
+  test "should redirect to login when logged out" do
+    get logout_url
+    get news_posts_url
+    assert_redirected_to "/user/login"
   end
 end
