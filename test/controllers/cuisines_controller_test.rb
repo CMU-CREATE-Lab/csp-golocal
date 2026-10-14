@@ -40,12 +40,22 @@ class CuisinesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy cuisine" do
-    # cuisines(:two) has no children; deleting a parent cuisine currently raises a foreign key error
     assert_difference("Cuisine.count", -1) do
       delete cuisine_url(cuisines(:two))
     end
 
     assert_redirected_to cuisines_url
+  end
+
+  test "should destroy parent cuisine and keep its children" do
+    child = cuisines(:two)
+
+    assert_difference("Cuisine.count", -1) do
+      delete cuisine_url(@cuisine)
+    end
+
+    assert_redirected_to cuisines_url
+    assert_nil child.reload.parent_cuisine_id
   end
 
   test "should redirect to login when logged out" do
