@@ -1,3 +1,5 @@
+<!-- Generated with Claude Code (Oct 14 2026) -->
+
 # Future tests
 
 Tests worth adding later, in priority order. Run the suite in the VM with `bin/rails test`.

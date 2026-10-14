@@ -1,7 +1,9 @@
-# The following report was generated with Claude Code on Oct 14 2026.
-# It outlines the process for updating Ruby+Rails for the project.
-# -Mike
-#
+<!--
+The following report was generated with Claude Code on Oct 14 2026.
+It outlines the process for updating Ruby+Rails for the project.
+-Mike
+-->
+
 # Upgrading Ruby 3.1 → 3.3 and Rails 7.0 → 8.1
 
 Branch: `upgrade-ruby-rails` (see `git log main..upgrade-ruby-rails`). Ruby is managed with rvm.
