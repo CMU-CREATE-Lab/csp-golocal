@@ -1,7 +1,7 @@
 class Admin::ManagedFilesController < ApplicationController
 
   # before_action :reuse_views, only: %i[ new edit ]
-  before_action :set_managed_file, only: %i[ show edit update destroy ]
+  before_action :set_managed_file, only: %i[ edit update destroy ]
   before_action :authorize_model
   layout "application_back"
 
