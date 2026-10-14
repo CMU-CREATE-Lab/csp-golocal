@@ -2,7 +2,7 @@ class Admin::BusinessesController < ApplicationController
 
   layout "application_back"
 
-  before_action :set_business, only: %i[ show edit edit_gallery update destroy ]
+  before_action :set_business, only: %i[ edit edit_gallery update destroy ]
   before_action :authorize_model
 
   def index

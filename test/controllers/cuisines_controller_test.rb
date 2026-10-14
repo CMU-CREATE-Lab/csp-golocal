@@ -2,6 +2,7 @@ require "test_helper"
 
 class CuisinesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    log_in_as(users(:one))
     @cuisine = cuisines(:one)
   end
 
@@ -17,7 +18,7 @@ class CuisinesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create cuisine" do
     assert_difference("Cuisine.count") do
-      post cuisines_url, params: { cuisine: { name: @cuisine.name, parent_cuisine_id: @cuisine.parent_cuisine_id } }
+      post cuisines_url, params: { cuisine: { name: "Thai", parent_cuisine_id: @cuisine.id } }
     end
 
     assert_redirected_to cuisine_url(Cuisine.last)
@@ -40,9 +41,26 @@ class CuisinesControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy cuisine" do
     assert_difference("Cuisine.count", -1) do
+      delete cuisine_url(cuisines(:two))
+    end
+
+    assert_redirected_to cuisines_url
+  end
+
+  test "should destroy parent cuisine and keep its children" do
+    child = cuisines(:two)
+
+    assert_difference("Cuisine.count", -1) do
       delete cuisine_url(@cuisine)
     end
 
     assert_redirected_to cuisines_url
+    assert_nil child.reload.parent_cuisine_id
+  end
+
+  test "should redirect to login when logged out" do
+    get logout_url
+    get cuisines_url
+    assert_redirected_to "/user/login"
   end
 end

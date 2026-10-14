@@ -11,3 +11,10 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+class ActionDispatch::IntegrationTest
+  # Logs in through the real login form (users in fixtures/users.yml use "secret").
+  def log_in_as(user, password: "secret")
+    post login_url, params: { username: user.username, pwd: password }
+  end
+end

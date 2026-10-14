@@ -12,7 +12,7 @@ class UserController < ApplicationController
       redirect_back_or_to "/user/home"
     else
       flash.now.alert = "Username or password was invalid"
-      render :user_login
+      render :user_login, status: :unprocessable_entity
     end
   end
 

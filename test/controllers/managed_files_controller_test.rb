@@ -2,7 +2,9 @@ require "test_helper"
 
 class ManagedFilesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    log_in_as(users(:one))
     @managed_file = managed_files(:one)
+    @managed_file.file.attach(fixture_file_upload("sample.txt", "text/plain"))
   end
 
   test "should get index" do
@@ -17,7 +19,7 @@ class ManagedFilesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create managed_file" do
     assert_difference("ManagedFile.count") do
-      post managed_files_url, params: { managed_file: { name: @managed_file.name } }
+      post managed_files_url, params: { managed_file: { name: "new-file", file: fixture_file_upload("sample.txt", "text/plain") } }
     end
 
     assert_redirected_to managed_file_url(ManagedFile.last)
@@ -44,5 +46,11 @@ class ManagedFilesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to managed_files_url
+  end
+
+  test "should redirect to login when logged out" do
+    get logout_url
+    get managed_files_url
+    assert_redirected_to "/user/login"
   end
 end
