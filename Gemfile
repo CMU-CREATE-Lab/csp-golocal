@@ -4,14 +4,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.11"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0"
+gem "rails", "~> 8.1"
 
 # Anything newer requires Rails 3.2+
 gem 'i18n', '1.14.8'
 
 # Bundler will keep trying to upgrade these, we don't want that
 gem 'stringio', '3.0.1.2'
-gem 'tsort', '0.1.0'
+# Update rails 8.0 -> 8.1 (requires tsort 0.1 -> 0.2)
+#gem 'tsort', '0.1.0'
+gem 'tsort', '0.2.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
