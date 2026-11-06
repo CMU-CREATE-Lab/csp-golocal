@@ -337,8 +337,9 @@ GEM
       bcrypt (~> 3.1)
       oauth (>= 0.6)
       oauth2 (~> 2.0)
-    sprockets (4.2.0)
-      concurrent-ruby (~> 1.0)
+    sprockets (4.4.1)
+      concurrent-ruby (~> 1.1)
+      logger
       rack (>= 2.2.4, < 4)
     sprockets-rails (3.5.2)
       actionpack (>= 6.1)
@@ -420,6 +421,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   sorcery
+  sprockets (~> 4.3)
   sprockets-rails
   sqlite3 (~> 2.1)
   stimulus-rails

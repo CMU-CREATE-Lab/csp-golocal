@@ -6,6 +6,9 @@ ruby "3.3.12"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1"
 
+# avoids conflict with sprockets and json 3+
+gem 'sprockets', '~> 4.3'
+
 # Anything newer requires Rails 3.2+
 gem 'i18n', '1.14.8'
 
